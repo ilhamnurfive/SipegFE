@@ -1,0 +1,57 @@
+stages:
+  - sync
+  - build
+  - deploy
+
+git_sync:
+  stage: sync
+  script:
+  - git remote rm upstream2 || true
+  - git remote rm upstream3 || true
+  - git remote add upstream2 ${REPO_DC} || true
+  - git remote set-url --add --push upstream2 ${REPO_DC} || true
+  - git push upstream2 HEAD:$CI_COMMIT_REF_NAME
+  - git remote add upstream3 ${REPO_KM} || true
+  - git remote set-url --add --push upstream3 ${REPO_KM} || true
+  - git push upstream3 HEAD:$CI_COMMIT_REF_NAME &> /dev/null
+  tags:
+  - runner-sync
+
+variables:
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG 
+  IMAGE_RELEASE_TAG: $CI_REGISTRY_IMAGE:latest
+  IMAGE_STABLE_TAG: $CI_REGISTRY_IMAGE:stable
+
+build:
+  stage: build
+  tags:
+    - rnd-docker-executor
+  script:
+  - if [ "$CI_COMMIT_REF_NAME" == "master" ] || [ "$CI_COMMIT_TAG" != "" ]; then TAG=$IMAGE_STABLE_TAG; else TAG=$IMAGE_RELEASE_TAG; fi  
+  - docker build -t $IMAGE_TAG -t ${TAG} .
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker push $IMAGE_TAG
+  - docker push ${TAG}
+  only:
+    refs:
+      - branches
+      - tags
+#   except:
+#     variables:
+#       - $CD_DEPLOY_IGNORE
+  
+build_docker:
+  tags:
+    - rnd-shell-executor
+  stage: deploy
+  only:
+    - development
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - export DOCKER_PID=$(docker ps -a -q -f name=sipg/frontend-dev)
+    - docker stop ${DOCKER_PID} || true && docker rm -v ${DOCKER_PID} || true
+    - docker run -d -m 256m --name sipg-frontend-dev --restart=always -p${SIPG_FE_PORT_OUT}:8080 --memory-swap -1 $CI_REGISTRY_IMAGE:latest
+#   except:
+#     variables:
+#       - $CD_DEPLOY_IGNORE

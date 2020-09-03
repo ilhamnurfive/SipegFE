@@ -1,0 +1,40 @@
+export default {
+    data(){
+        return{
+            mutasi:{
+                noUsul:'',
+                noSpp:'',
+                nama:'',
+                nip:'',
+                pangkat:'',
+                golonganRuang:'',
+                jabatan:'',
+                instansiAsal:'',
+                instansiBaru:'',
+                unitKerjaBaru:'',
+                jabatanBaru:'',
+                noSurat:'',
+                tanggalSurat:'',
+                jabatanPpkInstansiAsal:'',
+                nomorNota:'',
+
+                
+                tempatLahir:'',
+                tanggalLahir:'',
+                tmtGolonganRuang:'',
+                tanggalSpp:'',
+                wilayahPembayaranKppn:'',
+                noSuratPengantarPertek:'',
+                noNotaUsulMutasi:'',
+                noSuratPersPiAsal:'',
+                tanggalSuratPengantarPertek:'',
+                tanggalNotaUsulMutasi:'',
+                tanggalSuratPersPiAsal:'',
+                formasiTahun:'',
+                formasiJabatan:'',
+                formasiJumlahTerisi:'',
+                formasiTersisa:'',
+            }
+        }
+    }
+}

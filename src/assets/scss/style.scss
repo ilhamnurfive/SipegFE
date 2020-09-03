@@ -1,0 +1,29 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+@import "button";
+
+
+.card-header:not(.content-center)>.c-icon:first-child {
+  margin-right: 0.1rem;
+  margin-top: 0.1rem;
+  vertical-align: top;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.c-sidebar .c-sidebar-nav-link:hover,
+.c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover>.c-sidebar-nav-link,
+.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover>.c-sidebar-nav-dropdown-toggle {
+  background-color: $second-color;
+}
