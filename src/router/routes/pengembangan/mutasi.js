@@ -57,11 +57,28 @@ let routePages = {
         {
           path: 'specimen-spp',
           meta: {
-            judul: 'Surat Permintaan Persetujuan',
-            breadcrumb: 'Surat Permintaan Persetujuan'
+            judul: 'Specimen Surat Permintaan Persetujuan',
+            breadcrumb: 'Specimen Surat Permintaan Persetujuan'
           },
           name: 'specimen-spp',
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spp/SpecimenSPP.vue')
+        },{
+          path: 'detail-spp',
+          meta: {
+            judul: 'Detail Surat Permintaan Persetujuan',
+            breadcrumb: 'Detail Surat Permintaan Persetujuan'
+          },
+          name: 'detail-spp',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spp/DetailSPP.vue')
+        },
+        {
+          path: 'ubah-spp',
+          meta: {
+            judul: 'Ubah Surat Permintaan Persetujuan',
+            breadcrumb: 'Ubah Surat Permintaan Persetujuan'
+          },
+          name: 'ubah-spp',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spp/UbahSPP.vue')
         }
         ]
       },
@@ -83,8 +100,8 @@ let routePages = {
         {
           path: 'specimen-num',
           meta: {
-            judul: 'Nota Usul Mutasi',
-            breadcrumb: 'Nota Usul Mutasi'
+            judul: 'Specimen Nota Usul Mutasi',
+            breadcrumb: 'Specimen Nota Usul Mutasi'
           },
           name: 'specimen-num',
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/nota-usul-mutasi/SpecimenNUM.vue')
@@ -125,7 +142,7 @@ let routePages = {
           breadcrumb: 'SPMT'
         },
         children: [{
-          path: '',
+          path: 'spmt-pi',
           meta: {
             judul: 'Surat Pernyataan Telah Melaksanakan Tugas'
           },
@@ -133,13 +150,13 @@ let routePages = {
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spmt/TambahSPMT.vue')
         },
         {
-          path: 'specimen-pengangkatan',
+          path: 'specimen-spmt-pi',
           meta: {
-            judul: 'Specimen Pengangkatan',
-            breadcrumb: 'Specimen Pengangkatan'
+            judul: 'Specimen SPMT',
+            breadcrumb: 'Specimen SPMT'
           },
-          name: 'specimen-pengangkatan',
-          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/sk-pengangkatan/SpecimenPengangkatan.vue')
+          name: 'specimen-spmt-pi',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spmt/SpecimenSpmt.vue')
         }
         ]
       },
