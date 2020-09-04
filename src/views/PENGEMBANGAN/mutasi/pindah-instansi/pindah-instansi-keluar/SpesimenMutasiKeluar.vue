@@ -24,6 +24,22 @@
         <CCard>
           <CCardHeader>
             <h5 class="font-weight-bold">Spesimen PNS</h5>
+            <span>Surat Pengantar Pernyataan Persetujuan</span>
+          </CCardHeader>
+          <div class="overflow-auto p-3">
+            <header-table :load="load" :data="itemTable" :filter="true" :fields="fields">
+              <template #aksi="{item}">
+                <td>
+                  <b-form-checkbox :value="item" unchecked-value="not_accepted">Pilih Pegawai</b-form-checkbox>
+                </td>
+              </template>
+            </header-table>
+          </div>
+        </CCard>
+        <CCard>
+          <CCardHeader>
+            <h5 class="font-weight-bold">Spesimen PNS</h5>
+            <span>Surat Pernyataan Persetujuan</span>
           </CCardHeader>
           <div class="overflow-auto p-3">
             <header-table :load="load" :data="itemTable" :filter="true" :fields="fields">

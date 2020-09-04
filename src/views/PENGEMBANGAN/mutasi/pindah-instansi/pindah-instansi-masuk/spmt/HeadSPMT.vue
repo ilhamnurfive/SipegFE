@@ -62,7 +62,7 @@
                   <HeroiconsUploadOutline class="icon-size" />
                   <span class="ml-2">Unggah</span>
                 </CDropdownItem>
-                <CDropdownItem @click="toRoute('specimen-spmt', item)">
+                <CDropdownItem @click="toRoute('specimen-spmt-pi', item)">
                   <HeroiconsPrinterOutline class="icon-size" />
                   <span class="ml-2">Cetak</span>
                 </CDropdownItem>

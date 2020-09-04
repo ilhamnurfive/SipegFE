@@ -40,6 +40,20 @@
           :kelasform="$message.kelas.input"
           v-model="filter.no_usul"
         ></form-auto>
+        <CRow>
+          <label :class="$message.kelas.label">Jenis Usul Mutasi</label>
+          <div :class="$message.kelas.input">
+            <multiselect
+              :options="[]"
+              :showLabels="false"
+              :loading="null"
+              placeholder="Jenis Usul Mutasi"
+              label="Jenis Usul Mutasi"
+            >
+              <span slot="noResult">Data tidak ditemukan!</span>
+            </multiselect>
+          </div>
+        </CRow>
         <div class="text-right btn-tambah">
           <button
             @click="getListMutasi"
@@ -136,46 +150,40 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
       tableUnduh: [
-        { key: 'jenisDokumen', sorter: false, style: 'width: 40%' },
-        { key: 'dokumen', sorter: false, style: 'width: 40%' },
-        { key: 'unduh', label: '', sorter: false, style: 'width: 20$' }
+        { key: "jenisDokumen", sorter: false, style: "width: 40%" },
+        { key: "dokumen", sorter: false, style: "width: 40%" },
+        { key: "unduh", label: "", sorter: false, style: "width: 20$" },
       ],
       unduhItems: [
-        { jenisDokumen: 'SK', dokumen: 'Dummy SK-1' },
-        { jenisDokumen: 'SK', dokumen: 'Dummy SK-2' },
-        { jenisDokumen: 'Pertek', dokumen: 'Dummy Pertek' }
+        { jenisDokumen: "SK", dokumen: "Dummy SK-1" },
+        { jenisDokumen: "SK", dokumen: "Dummy SK-2" },
+        { jenisDokumen: "Pertek", dokumen: "Dummy Pertek" },
       ],
       isiTable: [
-        {
-          key: 'no',
-          label: 'No'
-        },
-        { key: 'noUsul' },
-        { key: 'nip', label: 'NIP' },
-        { key: 'namaPegawai' },
-        {
-          key: 'instansi'
-        },
-        {
-          key: 'satuanKerja',
-          label: 'Satuan Kerja'
-        },
-        {
-          key: 'aksi',
-          sorter: false
-        }
+        { key: "no", label: "No"},
+        { key: "no_usul", label: "No Usul" },
+        { key: "nip", label: "NIP" },
+        { key: "namaPegawai", label: "Nama Pegawai" },
+        { key: "jenis_mutasi", label: "Jenis Usul Mutasi" },
+        // { key: 'instansi' },
+        // { key: 'satuanKerja', label: 'Satuan Kerja'},
+        { key: "aksi", sorter: false },
       ],
       itemsTable: [],
-      data: '',
+      data: "",
       isSend: false,
       filter: {
-        no_usul: ''
-      }
+        no_usul: "",
+      },
     };
+  },
+  mounted() {
+    this.getMutasi();
   },
   methods: {
     async getListMutasi() {
@@ -183,7 +191,7 @@ export default {
 
       if (this.filter.no_usul) paramsSet.no_usul = this.filter.no_usul;
       this.isSend = true;
-      const get = await this.$store.dispatch('getDetailMutasi', paramsSet);
+      const get = await this.$store.dispatch("getDetailMutasi", paramsSet);
       this.isSend = false;
 
       if (get.status) {
@@ -208,7 +216,7 @@ export default {
             tglUsul: d.usul_mutasi.tgl_usul,
             noUsul: d.usul_mutasi.no_usul,
             instansi: d.usul_mutasi.instansi.instansi,
-            satuanKerja: d.usul_mutasi.satuan_kerja.satuan_kerja
+            satuanKerja: d.usul_mutasi.satuan_kerja.satuan_kerja,
           });
         });
       } else {
@@ -216,12 +224,27 @@ export default {
       }
     },
     toggleModal(modal) {
-      this.$refs[modal].toggle('#toggle-btn');
+      this.$refs[modal].toggle("#toggle-btn");
     },
     toRoute(name, id) {
       this.$router.push({ name: name, params: { id: id } });
-    }
-  }
+    },
+    getMutasi() {
+      var url = "http://192.168.212.93:8080/api/v1/usul-mutasi";
+      Axios.get(url)
+        .then((results) => {
+          console.log(results.data.data)
+          this.itemsTable=results.data.data
+
+          alert("data berhasil diterima");
+          console.log(results.data.data);
+        })
+        .catch((err) => {
+          alert("data gagal diterima");
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

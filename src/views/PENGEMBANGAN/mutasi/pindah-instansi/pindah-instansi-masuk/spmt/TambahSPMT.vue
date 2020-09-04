@@ -28,7 +28,7 @@
           </button>
         </div>
       </div>
-      <hr />
+item
       <label class="font-weight-bold">SK Pengangkatan</label>
       <div class="row">
         <div class="col-md-6">

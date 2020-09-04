@@ -35,6 +35,20 @@
             </header-table>
           </div>
         </CCard>
+        <CCard>
+          <CCardHeader>
+            <h5 class="font-weight-bold">Spesimen PNS Tembusan</h5>
+          </CCardHeader>
+          <div class="overflow-auto p-3">
+            <header-table :load="load" :data="itemTable" :filter="true" :fields="fields">
+              <template #aksi="{item}">
+                <td>
+                  <b-form-checkbox :value="item" unchecked-value="not_accepted">Pilih Pegawai</b-form-checkbox>
+                </td>
+              </template>
+            </header-table>
+          </div>
+        </CCard>
           <small>
             <b>Spesimen PNS akan menandatangani Surat Pengantar Usul Pertimbangan Teknis & Nota Usul Mutasi</b>
           </small>

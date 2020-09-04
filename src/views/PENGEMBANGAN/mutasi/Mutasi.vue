@@ -43,12 +43,15 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   methods: {
     toRoute(name){
       this.$router.push({name})
-    }
-  }
+    },
+
+  },
+
 };
 </script>
 

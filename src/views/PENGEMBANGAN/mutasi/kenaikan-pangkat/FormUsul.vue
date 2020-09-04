@@ -51,12 +51,21 @@
                 v-model="form.tgl_usul"
               ></form-auto>
               <form-auto
+                :title="tahunUsul"
+                input="input"
+                :kelastitle="$message.kelas.label"
+                :kelasform="$message.kelas.input"
+                aturan="required"
+                v-model="form.tahun_usul"
+              ></form-auto>
+              <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 title="Periode"
                 :placehold="form.periode_id"
-                read
+                aturan="required"
+                v-model="form.periode_id"
               ></form-auto>
             </div>
             <div v-if="!buatUsul" class="float-right">
@@ -108,6 +117,7 @@
                     :kelastitle="$message.kelas.meds"
                     :kelasform="$message.kelas.big"
                     title="Periode"
+                    v-model="form.periode_id"
                   ></form-auto>
                 </CCol>
                 <CCol sm="12" md>
@@ -148,7 +158,7 @@ export default {
         no_usul: '',
         tgl_usul: '',
         tahun_usul: '',
-        periode_id: '8191fee0-ebb1-428d-95f7-cbdb1b98afca'
+        periode_id: ''
       },
       dataSatker: [
         { id: '633e0675-1dd4-40f6-a8c4-46967d62fe02', name: 'Satker 1' }

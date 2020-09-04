@@ -130,6 +130,28 @@ export default {
     back() {
       this.$router.back();
     },
+    async deleteNum(item) {
+      this.$swal
+        .fire(this.$message.dataMessage.deleteConfirmation)
+        .then(async (result) => {
+          if (result.value) {
+            let paramsSet = {};
+            if (item.noUsul) paramsSet.no_usul = item.noUsul;
+            // const deleteUsulSpp = await this.$store.dispatch(
+            //   "deleteUsulSpp",
+            //   paramsSet
+            // );
+            this.$swal.fire(this.$message.dataMessage.deleted);
+            // this.getPengembanganKGB();
+          }
+        });
+    },
+    unduhNum(modal) {
+      this.$refs[modal].toggle("#toggle-btn");
+    },
+    unggahNum(modal) {
+      this.$refs[modal].toggle("#toggle-btn");
+    },
     toRoute(name, item) {
       if (!item) {
         this.$router.push({ name });
