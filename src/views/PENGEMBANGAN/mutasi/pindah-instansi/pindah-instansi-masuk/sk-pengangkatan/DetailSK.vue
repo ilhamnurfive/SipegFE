@@ -2,26 +2,6 @@
   <CCard>
     <content-header />
     <CCardBody>
-      <div class="row">
-        <div class="col-md-12 col-lg-5">
-          <form-auto
-            input="input"
-            :kelastitle="$message.kelas.big"
-            :kelasform="$message.kelas.big"
-            title="Nomor Nota Usul Mutasi"
-            v-model="filter.no_num"
-          ></form-auto>
-        </div>
-
-        <div class="col-md-12 col-lg-2 text-right text-lg-left">
-          <button class="pilih-btn" :class="$message.kelas.btn_main">
-            <span>
-              <HeroiconsSearchOutline class="icon-sizes" />
-            </span>Cari
-          </button>
-        </div>
-      </div>
-      <hr />
       <div class="container mb-5 mt-3">
         <div class="row mt-4">
           <div class="col-12 col-md-6">
@@ -31,7 +11,7 @@
               :kelasform="$message.kelas.big"
               title="Nomor Nota Usul Mutasi"
               read
-              v-model="tambahSk.no_num"
+              v-model="detailSk.no_num"
             ></form-auto>
             <form-auto
               input="date"
@@ -39,7 +19,7 @@
               :kelasform="$message.kelas.big"
               title="Tanggal Nota Usul Mutasi"
               read
-              v-model="tambahSk.tanggal_num"
+              v-model="detailSk.tanggal_num"
             ></form-auto>
             <form-auto
               input="input"
@@ -47,7 +27,7 @@
               :kelasform="$message.kelas.big"
               title="Nama"
               read
-              v-model="tambahSk.nama_pegawai"
+              v-model="detailSk.nama_pegawai"
             ></form-auto>
             <form-auto
               input="input"
@@ -55,7 +35,7 @@
               :kelasform="$message.kelas.big"
               title="NIP"
               read
-              v-model="tambahSk.nip"
+              v-model="detailSk.nip"
             ></form-auto>
             <form-auto
               input="input"
@@ -63,7 +43,7 @@
               :kelasform="$message.kelas.big"
               title="Pangkat"
               read
-              v-model="tambahSk.pangkat"
+              v-model="detailSk.pangkat"
             ></form-auto>
             <form-auto
               input="input"
@@ -71,7 +51,7 @@
               :kelasform="$message.kelas.big"
               title="Golongan Ruang"
               read
-              v-model="tambahSk.golongan_ruang"
+              v-model="detailSk.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
@@ -79,7 +59,7 @@
               :kelasform="$message.kelas.big"
               title="Jabatan"
               read
-              v-model="tambahSk.jabatan"
+              v-model="detailSk.jabatan"
             ></form-auto>
             <form-auto
               input="input"
@@ -87,7 +67,7 @@
               :kelasform="$message.kelas.big"
               title="Instansi Asal"
               read
-              v-model="tambahSk.instansi_asal"
+              v-model="detailSk.instansi_asal"
             ></form-auto>
             <form-auto
               input="input"
@@ -95,7 +75,7 @@
               :kelasform="$message.kelas.big"
               title="Instansi Baru"
               read
-              v-model="tambahSk.instansi_baru"
+              v-model="detailSk.instansi_baru"
             ></form-auto>
           </div>
           <div class="col-12 col-md-6">
@@ -105,7 +85,7 @@
               :kelasform="$message.kelas.big"
               title="Unit Kerja Baru"
               read
-              v-model="tambahSk.unit_kerja_baru"
+              v-model="detailSk.unit_kerja_baru"
             ></form-auto>
             <form-auto
               input="input"
@@ -113,7 +93,7 @@
               :kelasform="$message.kelas.big"
               title="Jabatan Baru"
               read
-              v-model="tambahSk.jabatan_baru"
+              v-model="detailSk.jabatan_baru"
             ></form-auto>
             <label for class="font-weight-bold">SK Peralihan Kepala :</label>
             <form-auto
@@ -121,14 +101,16 @@
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Nomor SK Peralihan Kepala"
-              v-model="tambahSk.no_sk_peralihan_kepala"
+              read
+              v-model="detailSk.no_sk_peralihan_kepala"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Tanggal SK Peralihan Kepala"
-              v-model="tambahSk.tanggal_sk_peralihan_kepala"
+              read
+              v-model="detailSk.tanggal_sk_peralihan_kepala"
             ></form-auto>
             <label for class="font-weight-bold">SK Pengangkatan :</label>
             <form-auto
@@ -136,14 +118,16 @@
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Nomor SK Pengangkatan"
-              v-model="tambahSk.no_skp"
+              read
+              v-model="detailSk.no_skp"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Tanggal SK Pengangkatan"
-              v-model="tambahSk.tanggal_skp"
+              read
+              v-model="detailSk.tanggal_skp"
             ></form-auto>
             <label for class="font-weight-bold">Pertimbangan Teknis :</label>
             <form-auto
@@ -151,24 +135,22 @@
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Nomor Pertek"
-              v-model="tambahSk.no_pertek"
+              read
+              v-model="detailSk.no_pertek"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Tanggal Pertek"
-              v-model="tambahSk.tanggal_pertek"
+              read
+              v-model="detailSk.tanggal_pertek"
             ></form-auto>
           </div>
         </div>
       </div>
       <div class="float-right">
-        <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
-        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
-        <!-- <router-link :to="{name: 'specimen-pengangkatan'}">
-          <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link>-->
+        <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.kembali }}</button>
       </div>
     </CCardBody>
   </CCard>
@@ -178,7 +160,7 @@
 export default {
   data() {
     return {
-      tambahSk: {
+      detailSk: {
         no_num: "",
         tanggal_num: "",
         nama_pegawai: "",
@@ -197,16 +179,10 @@ export default {
         no_pertek: "",
         tanggal_pertek: "",
       },
-      filter:{
-        no_num:''
-      }
     };
   },
   methods: {
     back() {
-      this.$router.back();
-    },
-    simpan() {
       this.$router.back();
     },
   },

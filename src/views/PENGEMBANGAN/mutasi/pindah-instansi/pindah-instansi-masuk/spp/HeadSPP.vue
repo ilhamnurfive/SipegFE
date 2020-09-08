@@ -46,7 +46,7 @@
       </div>
       <div class="mt-4">
         <div class="overflow-auto text-center table-height">
-          <header-table :load="isSend" :data="itemTable" :filter="true" :fields="fields">
+          <header-table :load="isSend" :data="dataSpp" :filter="true" :fields="fields">
             <template #aksi="{item}">
               <td>
                 <b-dropdown variant="light" toggle-class="text-decoration-none">
@@ -61,7 +61,7 @@
                     <HeroiconsPencilAltOutline class="text-warning icon-size" />
                     <span class="ml-2">Ubah</span>
                   </CDropdownItem>
-                  <CDropdownItem @click="deleteUsulSpp(item)">
+                  <CDropdownItem @click="deleteSpp(item)">
                     <HeroiconsTrashOutline class="text-danger icon-size" />
                     <span class="ml-2">Hapus</span>
                   </CDropdownItem>
@@ -140,6 +140,7 @@
 import getNIP from "@/mixins/GetNIP";
 import j_onSending from "@/utils/j-on-sending";
 import axios from "axios";
+import Axios from "axios";
 
 export default {
   mixins: [j_onSending, getNIP],
@@ -147,13 +148,15 @@ export default {
     return {
       fields: [
         { key: "no" },
-        { key: "no_surat", label: "No Surat Permintaan Persetujuan" },
-        { key: "nama" },
+        { key: "no_spp", label: "No Surat Permintaan Persetujuan" },
+        { key: "nama_pegawai" },
         { key: "nip", label: "NIP" },
-        { key: "asal_instansi" },
+        { key: "instansi_asal" },
         { key: "aksi" },
       ],
-      dataSpp: [],
+      dataSpp: [
+        
+      ],
       unduhItems: [
         { jenisDokumen: "SPP", dokumen: "Dummy SPP-1" },
         { jenisDokumen: "SPP", dokumen: "Dummy SPP-2" },
@@ -182,28 +185,50 @@ export default {
       isSend: false,
     };
   },
-  // mounted(){
-  //   this.getSpp()
-  //   console.log(this.dataSpp)
-  // },
+  mounted() {
+    this.getSpp();
+  },
   methods: {
     back() {
       this.$router.back();
     },
-    // getSpp(){
-    //   var url="http://localhost:8081/biodata"
-    //   axios.get(url)
-    //   .then(results=>{
-    //     alert('data berhasil diterima');
-    //     this.dataSpp= results.data;
-    //     console.log(results.data);
-    //     console.log(results.data);
-    //   })
-    //   .catch(err=>{
-    //     alert('data gagal diterima');
-    //     console.log(err)
-    //   })
-    // },
+    getSpp() {
+      var url = "http://localhost:8081/mutasi";
+      // var url = "http://192.168.212.93:8080/mutasi";
+      axios
+        .get(url)
+        .then((results) => {
+          console.log(results.data)
+          this.dataSpp = results.data;
+          // for(var i=1;i<=results.dataSpp.length;i++){
+          //   results.data[no]=i;
+          //   console.log(results.data[no])
+          // }
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    deleteSpp(item) {
+      var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
+
+      
+      Axios.delete(url)
+      this.$swal.fire(this.$message.dataMessage.deleteConfirmation)
+        .then((results) => {
+          this.$swal.fire(this.$message.dataMessage.deleted).then((results)=>{
+            if(results){
+            location.reload();
+          }
+          });
+          
+        })
+        .catch((err) => {
+          
+        });
+    },
     async deleteUsulSpp(item) {
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)

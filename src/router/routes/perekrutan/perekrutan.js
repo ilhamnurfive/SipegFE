@@ -1,7 +1,7 @@
 let routePages = {
   path: 'perekrutan-pegawai',
   meta: {
-    breadcrumb: 'Perenkrutan Pegawai'
+    breadcrumb: 'Perekrutan Pegawai'
   },
   component: () => import('@/views/Index.vue'),
   children: [{
@@ -74,15 +74,15 @@ let routePages = {
     },
     component: () => import('@/views/PEREKRUTAN/partial/spmt/TambahSPMT.vue')
   },
-  {
-    path: 'ubah-spmt',
-    name: 'ubah-spmt',
-    meta: {
-      breadcrumb: 'Ubah SPMT',
-      judul: 'Surat Pernyataan Melaksanakan Tugas'
-    },
-    component: () => import('@/views/PEREKRUTAN/partial/spmt/TambahSPMT.vue')
-  },
+  // {
+  //   path: 'ubah-spmt',
+  //   name: 'ubah-spmt',
+  //   meta: {
+  //     breadcrumb: 'Ubah SPMT',
+  //     judul: 'Surat Pernyataan Melaksanakan Tugas'
+  //   },
+  //   component: () => import('@/views/PEREKRUTAN/partial/spmt/TambahSPMT.vue')
+  // },
   {
     path: 'specimen-spmt',
     name: 'specimen-spmt',

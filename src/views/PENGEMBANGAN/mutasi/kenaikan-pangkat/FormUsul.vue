@@ -7,15 +7,8 @@
         <CTab title="USUL KENAIKAN PANGKAT">
         <ValidationObserver v-slot="{ handleSubmit  }">
           <form @submit.prevent="handleSubmit(submitUsul)">
+            <br/>
             <div>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="pilihJenis"
-                placehold="Kenaikan Pangkat"
-                read
-              ></form-auto>
               <form-auto
                 input="select"
                 :kelastitle="$message.kelas.label"
@@ -74,7 +67,7 @@
                 :class="$message.kelas.btn_light"
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
-              <button type="submit" :class="$message.kelas.btn_main">{{ $message.button.buat }} Usul</button>
+              <button type="submit" :class="$message.kelas.btn_main">{{ $message.button.buat }} sUsul</button>
             </div>
           </form>
         </ValidationObserver>

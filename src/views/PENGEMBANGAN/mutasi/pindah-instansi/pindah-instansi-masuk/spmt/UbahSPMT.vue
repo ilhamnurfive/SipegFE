@@ -38,7 +38,7 @@
             :kelasform="$message.kelas.big"
             title="Nomor SK Pengangkatan"
             read
-            v-model="tambahSpmt.no_skp"
+            v-model="ubahSpmt.no_skp"
           ></form-auto>
         </div>
         <div class="col-md-6">
@@ -48,7 +48,7 @@
             :kelasform="$message.kelas.big"
             title="Tanggal SK Pengangkatan"
             read
-            v-model="tambahSpmt.tanggal_skp"
+            v-model="ubahSpmt.tanggal_skp"
           ></form-auto>
         </div>
       </div>
@@ -61,7 +61,7 @@
             :kelasform="$message.kelas.big"
             title="Nomor SK Peralihan Kepala"
             read
-            v-model="tambahSpmt.no_sk_peralihan_kepala"
+            v-model="ubahSpmt.no_sk_peralihan_kepala"
           ></form-auto>
         </div>
         <div class="col-md-6">
@@ -71,7 +71,7 @@
             :kelasform="$message.kelas.big"
             title="Tanggal SK Peralihan Kepala"
             read
-            v-model="tambahSpmt.tanggal_sk_peralihan_kepala"
+            v-model="ubahSpmt.tanggal_sk_peralihan_kepala"
           ></form-auto>
         </div>
       </div>
@@ -81,105 +81,105 @@
           <div class="col-12 col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Nama"
               read
-              v-model="tambahSpmt.nama_pegawai"
+              v-model="ubahSpmt.nama_pegawai"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="NIP"
               read
-              v-model="tambahSpmt.nip"
+              v-model="ubahSpmt.nip"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Pangkat"
               read
-              v-model="tambahSpmt.pangkat"
+              v-model="ubahSpmt.pangkat"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Golongan Ruang"
               read
-              v-model="tambahSpmt.golongan_ruang"
+              v-model="ubahSpmt.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Jabatan"
               read
-              v-model="tambahSpmt.jabatan"
+              v-model="ubahSpmt.jabatan"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Instansi Asal"
               read
-              v-model="tambahSpmt.instansi_asal"
+              v-model="ubahSpmt.instansi_asal"
             ></form-auto>
           </div>
-          <div class="col-md-6">
+          <div class="col-12 col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Instansi Baru"
               read
-              v-model="tambahSpmt.instansi_baru"
+              v-model="ubahSpmt.instansi_baru"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Unit Kerja Baru"
               read
-              v-model="tambahSpmt.unit_kerja_baru"
+              v-model="ubahSpmt.unit_kerja_baru"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Jabatan Baru"
               read
-              v-model="tambahSpmt.jabatan_baru"
+              v-model="ubahSpmt.jabatan_baru"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Nomor SPMT"
-              v-model="tambahSpmt.nomor_spmt"
+              v-model="ubahSpmt.nomor_spmt"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="Tanggal SPMT"
-              v-model="tambahSpmt.tanggal_spmt"
+              v-model="ubahSpmt.tanggal_spmt"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="TMT"
-              v-model="tambahSpmt.tmt"
+              v-model="ubahSpmt.tmt"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.big"
-              :kelasform="$message.kelas.big"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
               title="KPPN"
-              v-model="tambahSpmt.kppn"
+              v-model="ubahSpmt.kppn"
             ></form-auto>
           </div>
         </div>
@@ -227,14 +227,14 @@
       </div>
       <div class="container mb-5 mt-5">
         <div class="row mt-4">
-          <div class="col-12 col-md-12">
+          <div class="col-12 col-md-6">
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nama"
               read
-              v-model="tambahSpmt.nama_pejabat_pernyataan"
+              v-model="ubahSpmt.nama_pejabat_pernyataan"
             ></form-auto>
             <form-auto
               input="input"
@@ -242,7 +242,7 @@
               :kelasform="$message.kelas.inputs"
               title="NIP"
               read
-              v-model="tambahSpmt.nip_pejabat_pernyataan"
+              v-model="ubahSpmt.nip_pejabat_pernyataan"
             ></form-auto>
             <form-auto
               input="input"
@@ -250,7 +250,7 @@
               :kelasform="$message.kelas.inputs"
               title="Pangkat"
               read
-              v-model="tambahSpmt.pangkat_pejabat_pernyataan"
+              v-model="ubahSpmt.pangkat_pejabat_pernyataan"
             ></form-auto>
             <form-auto
               input="input"
@@ -258,7 +258,7 @@
               :kelasform="$message.kelas.inputs"
               title="Golongan Ruang"
               read
-              v-model="tambahSpmt.golongan_ruang_pejabat_pernyataan"
+              v-model="ubahSpmt.golongan_ruang_pejabat_pernyataan"
             ></form-auto>
             <form-auto
               input="input"
@@ -266,17 +266,14 @@
               :kelasform="$message.kelas.inputs"
               title="Jabatan"
               read
-              v-model="tambahSpmt.jabatan_pejabat_pernyataan"
+              v-model="ubahSpmt.jabatan_pejabat_pernyataan"
             ></form-auto>
           </div>
         </div>
       </div>
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
-        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
-        <!-- <router-link :to="{name: 'specimen-num'}">
-          <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link>-->
+        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.ubah }}</button>
       </div>
     </CCardBody>
   </CCard>
@@ -287,7 +284,7 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      tambahSpmt: {
+      ubahSpmt: {
         no_skp: "",
         tanggal_skp: "",
         no_sk_peralihan_kepala: "",

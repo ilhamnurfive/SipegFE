@@ -11,7 +11,7 @@
               :kelasform="$message.kelas.inputs"
               title="Nama"
               read
-              v-model="ubahSpp.nama"
+              v-model="ubahSpp.nama_pegawai"
             ></form-auto>
             <form-auto
               input="input"
@@ -35,7 +35,7 @@
               :kelasform="$message.kelas.inputs"
               title="Golongan Ruang"
               read
-              v-model="ubahSpp.golonganRuang"
+              v-model="ubahSpp.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
@@ -51,7 +51,7 @@
               :kelasform="$message.kelas.inputs"
               title="Instansi Asal"
               read
-              v-model="ubahSpp.instansiAsal"
+              v-model="ubahSpp.instansi_asal"
             ></form-auto>
           </div>
           <div class="col-12 col-md-6">
@@ -64,7 +64,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Instansi Baru"
-                  v-model="ubahSpp.instansiBaru"
+                  v-model="ubahSpp.instansi_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -79,7 +79,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Unit Kerja Baru"
-                  v-model="ubahSpp.unitKerjaBaru"
+                  v-model="ubahSpp.unit_kerja_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -94,7 +94,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Jabatan Baru"
-                  v-model="ubahSpp.jabatanBaru"
+                  v-model="ubahSpp.jabatan_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -105,69 +105,97 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nomor Surat"
-              v-model="ubahSpp.noSurat"
+              v-model="ubahSpp.no_spp"
             ></form-auto>
             <form-auto
-              input="input"
+              input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Tanggal Surat"
-              v-model="ubahSpp.tanggalSurat"
+              v-model="ubahSpp.tanggal_surat"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Jabatan PPK Instansi Asal"
-              v-model="ubahSpp.jabatanPpkInstansiAsal"
+              v-model="ubahSpp.jabatan_ppk_instansi_asal"
             ></form-auto>
           </div>
         </div>
       </div>
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
-        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
-        <!-- <router-link :to="{name: 'specimen-spp'}">
-          <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link> -->
+        <button :class="$message.kelas.btn_primary" @click="ubah()">{{ $message.button.ubah }}</button>
       </div>
     </CCardBody>
   </CCard>
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
-  data(){
-    return{
-      ubahSpp:{
-        nip:'',
-        nama:'',
-        pangkat:'',
-        golonganRuang:'',
-        jabatan:'',
-        instansiAsal:'',
-        instansiBaru:'',
-        unitKerjaBaru:'',
-        jabatanBaru:'',
-        noSurat:'',
-        tanggalSurat:'',
-        jabatanPpkInstansiAsal:'',
-
+  data() {
+    return {
+      ubahSpp: {
+        no_usul: "",
+        nip: "",
+        nama_pegawai: "",
+        pangkat: "",
+        golongan_ruang: "",
+        jabatan: "",
+        instansi_asal: "",
+        instansi_baru: "",
+        unit_kerja_baru: "",
+        jabatan_baru: "",
+        no_spp: "",
+        tanggal_surat: "",
+        jabatan_ppk_instansi_asal: "",
       },
-    }
+    };
+  },
 
+  mounted() {
+    this.getDetailSpp();
   },
   methods: {
-     back() {
+    back() {
       this.$router.back();
     },
 
-    simpan(){
-      this.$router.back();
-    }
-  }
-}
+    getDetailSpp() {
+      var id = this.$route.params.id;
+
+      console.log(id);
+      Axios.get("http://localhost:8081/mutasi/" + id)
+        .then((results) => {
+          alert("data diterima");
+          this.ubahSpp = results.data;
+        })
+        .catch((err) => {
+          alert("data gagal diterima");
+        });
+    },
+
+    ubah() {
+      var id = this.$route.params.id;
+      let headers = {
+        "Access-Control-Allow-Origin": "http://localhost:8081/**",
+      };
+      console.log(id);
+      Axios.put("http://localhost:8081/mutasi/updateMutasi/" + id,this.ubahSpp)
+        .then((results) => {
+          console.log(results.data);
+          alert("data berhasil diubah");
+          this.$router.back();
+        })
+        .catch((err) => {
+          alert("data gagal diubah");
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 

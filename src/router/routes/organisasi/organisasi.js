@@ -8,7 +8,16 @@ let routePages = {
     path: '',
     name: 'organisasi',
     component: () => import('@/views/ORGANISASI/Organisasi.vue')
-  }, {
+  },
+  {
+    path: 'unit-organisasi',
+    meta: {
+      judul: 'Unit Organisasi',
+      breadcrumb: 'Unit Organisasi'
+    },
+    name: 'unit-organisasi',
+    component: () => import('@/views/ORGANISASI/unit-organisasi/UnitOrganisasi.vue')
+  },{
     path: 'analisis-jabatan',
     meta: {
       judul: 'Analisis Jabatan',

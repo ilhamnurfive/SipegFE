@@ -36,9 +36,11 @@
         <form-auto
           title="Nomor Usul"
           input="input"
+          id="no_usul"
           :kelastitle="$message.kelas.label"
           :kelasform="$message.kelas.input"
           v-model="filter.no_usul"
+          @keypress="isNumber($event)"
         ></form-auto>
         <CRow>
           <label :class="$message.kelas.label">Jenis Usul Mutasi</label>
@@ -150,7 +152,7 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
   data() {
     return {
@@ -165,15 +167,23 @@ export default {
         { jenisDokumen: "Pertek", dokumen: "Dummy Pertek" },
       ],
       isiTable: [
-        { key: "no", label: "No"},
+        { key: "no", label: "No" },
         { key: "no_usul", label: "No Usul" },
         { key: "nip", label: "NIP" },
-        { key: "namaPegawai", label: "Nama Pegawai" },
-        { key: "jenis_mutasi", label: "Jenis Usul Mutasi" },
+        { key: "nama_pegawai", label: "Nama Pegawai" },
+        { key: "jenis_pengembangan", label: "Jenis Usul Mutasi" },
         // { key: 'instansi' },
         // { key: 'satuanKerja', label: 'Satuan Kerja'},
         { key: "aksi", sorter: false },
       ],
+      model:{
+        no:'',
+        no_usul:'',
+        nip:'',
+        nama_pegawai:'',
+        jenis_pengembangan:'',
+
+      },
       itemsTable: [],
       data: "",
       isSend: false,
@@ -204,6 +214,21 @@ export default {
         // }
       }
     },
+    isNumber(evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+      console.log('a')
+    },
+
+    cari(event) {
+      console.log('a')
+      
+    },
     setupListMutasi(data) {
       if (data.length) {
         this.itemsTable = [];
@@ -230,14 +255,23 @@ export default {
       this.$router.push({ name: name, params: { id: id } });
     },
     getMutasi() {
-      var url = "http://192.168.212.93:8080/api/v1/usul-mutasi";
+      var url = "http://192.168.212.93:8080/api/v1/detail-usul-mutasi";
+      // var url = "http://192.168.212.93:8080/api/v1/usul-mutasi";
+      // var url = "http://localhost:8081/mutasi";
       Axios.get(url)
         .then((results) => {
-          console.log(results.data.data)
-          this.itemsTable=results.data.data
+          console.log(results.data.data[0]);
+          for(var i=0;i<results.data.data.length;i++){
+            this.model.no=i+1;
+            console.log(this.model)
+
+            this.itemsTable.push(this.model)
+            // this.model.nama_pegawai = results.data.data[i].pegawai.nama_pegawai
+            // this.model.nip = results.data.data[i].pegawai.nip
+
+          }
 
           alert("data berhasil diterima");
-          console.log(results.data.data);
         })
         .catch((err) => {
           alert("data gagal diterima");

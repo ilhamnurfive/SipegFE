@@ -14,7 +14,7 @@
                 :showLabels="false"
                 :allow-empty="false"
                 :loading="null"
-                v-model="tambahSpp.nip"
+                v-model="filter.nip"
               >
                 <span slot="noResult">Data tidak ditemukan!</span>
               </multiselect>
@@ -27,7 +27,7 @@
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
             title="Nama"
-            v-model="tambahSpp.nama"
+            v-model="filter.nama_pegawai"
           ></form-auto>
         </div>
 
@@ -49,7 +49,7 @@
               :kelasform="$message.kelas.inputs"
               title="Nama"
               read
-              v-model="tambahSpp.nama"
+              v-model="tambahSpp.nama_pegawai"
             ></form-auto>
             <form-auto
               input="input"
@@ -73,7 +73,7 @@
               :kelasform="$message.kelas.inputs"
               title="Golongan Ruang"
               read
-              v-model="tambahSpp.golonganRuang"
+              v-model="tambahSpp.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
@@ -89,7 +89,7 @@
               :kelasform="$message.kelas.inputs"
               title="Instansi Asal"
               read
-              v-model="tambahSpp.instansiAsal"
+              v-model="tambahSpp.instansi_asal"
             ></form-auto>
           </div>
           <div class="col-12 col-md-6">
@@ -102,7 +102,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Instansi Baru"
-                  v-model="tambahSpp.instansiBaru"
+                  v-model="tambahSpp.instansi_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -117,7 +117,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Unit Kerja Baru"
-                  v-model="tambahSpp.unitKerjaBaru"
+                  v-model="tambahSpp.unit_kerja_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -132,7 +132,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Jabatan Baru"
-                  v-model="tambahSpp.jabatanBaru"
+                  v-model="tambahSpp.jabatan_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -143,21 +143,21 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nomor Surat"
-              v-model="tambahSpp.noSurat"
+              v-model="tambahSpp.no_spp"
             ></form-auto>
             <form-auto
-              input="input"
+              input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Tanggal Surat"
-              v-model="tambahSpp.tanggalSurat"
+              v-model="tambahSpp.tanggal_surat"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Jabatan PPK Instansi Asal"
-              v-model="tambahSpp.jabatanPpkInstansiAsal"
+              v-model="tambahSpp.jabatan_ppk_instansi_asal"
             ></form-auto>
           </div>
         </div>
@@ -179,20 +179,24 @@ export default {
   data(){
     return{
       tambahSpp:{
-        nip:'',
-        nama:'',
-        pangkat:'',
-        golonganRuang:'',
-        jabatan:'',
-        instansiAsal:'',
-        instansiBaru:'',
-        unitKerjaBaru:'',
-        jabatanBaru:'',
-        noSurat:'',
-        tanggalSurat:'',
-        jabatanPpkInstansiAsal:'',
-
+        no_usul:'1',
+        nip:'G54150012',
+        nama_pegawai:'Ilham Nur Five',
+        pangkat:'Direktur',
+        golongan_ruang:'1',
+        jabatan:'Direktur',
+        instansi_asal:'Kominfo',
+        instansi_baru:'',
+        unit_kerja_baru:'',
+        jabatan_baru:'',
+        no_spp:'1',
+        tanggal_surat:'',
+        jabatan_ppk_instansi_asal:'Direktur',
       },
+      filter:{
+        nip:'',
+        nama_pegawai:''
+      }
     }
 
   },
@@ -202,7 +206,15 @@ export default {
     },
 
     simpan(){
-      this.$router.back();
+      Axios.post("http://localhost:8081/mutasi/postMutasi", this.tambahSpp)
+      .then(results=>{
+        console.log(results.data)
+        alert('data berhasil ditambah');
+        this.$router.back();
+      })
+      .catch(err=>{
+        alert('data gagal ditambah')
+      })
     }
   }
 }

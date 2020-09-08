@@ -48,21 +48,21 @@
           <div class="col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
               title="Nama"
               read
-              v-model="mutasi_keluar.nama_pejabat_persetujuan"
+              v-model="ubah_mutasi_keluar.nama_pejabat_persetujuan"
             ></form-auto>
           </div>
           <div class="col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
               title="NIP"
               read
-              v-model="mutasi_keluar.nip_pejabat_persetujuan"
+              v-model="ubah_mutasi_keluar.nip_pejabat_persetujuan"
             ></form-auto>
           </div>
         </div>
@@ -70,31 +70,31 @@
           <div class="col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
               title="Pangkat"
               read
-              v-model="mutasi_keluar.pangkat_pejabat_persetujuan"
+              v-model="ubah_mutasi_keluar.pangkat_pejabat_persetujuan"
             ></form-auto>
           </div>
           <div class="col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
               title="Golongan Ruang"
               read
-              v-model="mutasi_keluar.golongan_ruang_pejabat_persetujuan"
+              v-model="ubah_mutasi_keluar.golongan_ruang_pejabat_persetujuan"
             ></form-auto>
           </div>
           <div class="col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
               title="Jabatan"
               read
-              v-model="mutasi_keluar.jabatan_pejabat_persetujuan"
+              v-model="ubah_mutasi_keluar.jabatan_pejabat_persetujuan"
             ></form-auto>
           </div>
         </div>
@@ -107,19 +107,19 @@
             <div class="col-md-6">
               <form-auto
                 input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
                 title="Nomor Surat"
-                v-model="mutasi_keluar.no_surat_perny_pers"
+                v-model="ubah_mutasi_keluar.no_surat_perny_pers"
               ></form-auto>
             </div>
             <div class="col-md-6">
               <form-auto
                 input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
                 title="Tanggal Surat"
-                v-model="mutasi_keluar.tanggal_surat_perny_pers"
+                v-model="ubah_mutasi_keluar.tanggal_surat_perny_pers"
               ></form-auto>
             </div>
           </div>
@@ -127,10 +127,10 @@
             <div class="col-md-6">
               <form-auto
                 input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
                 title="Jabatan PPK Instansi Penerima"
-                v-model="mutasi_keluar.jabatan_ppk_instansi_penerima1"
+                v-model="ubah_mutasi_keluar.jabatan_ppk_instansi_penerima1"
               ></form-auto>
             </div>
           </div>
@@ -144,19 +144,19 @@
             <div class="col-md-6">
               <form-auto
                 input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
                 title="Nomor Surat"
-                v-model="mutasi_keluar.no_surat_pengantar_perny_pers"
+                v-model="ubah_mutasi_keluar.no_surat_pengantar_perny_pers"
               ></form-auto>
             </div>
             <div class="col-md-6">
               <form-auto
                 input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
                 title="Tanggal Surat"
-                v-model="mutasi_keluar.tanggal_surat_pengantar_perny_pers"
+                v-model="ubah_mutasi_keluar.tanggal_surat_pengantar_perny_pers"
               ></form-auto>
             </div>
           </div>
@@ -221,7 +221,7 @@
             :kelasform="$message.kelas.big"
             title="Nama"
             read
-            v-model="mutasi_keluar.nama_pegawai"
+            v-model="ubah_mutasi_keluar.nama_pegawai"
           ></form-auto>
         </div>
         <div class="col-md-6">
@@ -231,7 +231,7 @@
             :kelasform="$message.kelas.big"
             title="NIP"
             read
-            v-model="mutasi_keluar.nip"
+            v-model="ubah_mutasi_keluar.nip"
           ></form-auto>
         </div>
       </div>
@@ -241,8 +241,9 @@
             input="input"
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
-            title="Pangkat" read
-            v-model="mutasi_keluar.pangkat"
+            title="Pangkat"
+            read
+            v-model="ubah_mutasi_keluar.pangkat"
           ></form-auto>
         </div>
         <div class="col-md-6">
@@ -250,8 +251,9 @@
             input="input"
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
-            title="Golongan Ruang" read
-            v-model="mutasi_keluar.golongan_ruang"
+            title="Golongan Ruang"
+            read
+            v-model="ubah_mutasi_keluar.golongan_ruang"
           ></form-auto>
         </div>
       </div>
@@ -261,8 +263,9 @@
             input="input"
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
-            title="Jabatan" read
-            v-model="mutasi_keluar.jabatan"
+            title="Jabatan"
+            read
+            v-model="ubah_mutasi_keluar.jabatan"
           ></form-auto>
         </div>
         <div class="col-md-6">
@@ -270,8 +273,9 @@
             input="input"
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
-            title="Unit Kerja" read
-            v-model="mutasi_keluar.unit_kerja"
+            title="Unit Kerja"
+            read
+            v-model="ubah_mutasi_keluar.unit_kerja"
           ></form-auto>
         </div>
       </div>
@@ -282,52 +286,49 @@
             :kelastitle="$message.kelas.big"
             :kelasform="$message.kelas.big"
             title="Instansi Penerima"
-            v-model="mutasi_keluar.instansi_penerima"
+            v-model="ubah_mutasi_keluar.jabatan_ppk_instansi_penerima2"
           ></form-auto>
         </div>
       </div>
-       <div>
-          <label :class="$message.kelas.medium">
-            <strong>Surat Permintaan Persetujuan</strong>
-          </label>
-          <div class="row">
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
-                title="Nomor Surat"
-                v-model="mutasi_keluar.no_spp"
-              ></form-auto>
-            </div>
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
-                title="Tanggal Surat"
-                v-model="mutasi_keluar.tanggal_spp"
-              ></form-auto>
-            </div>
+      <div>
+        <label :class="$message.kelas.medium">
+          <strong>Surat Permintaan Persetujuan</strong>
+        </label>
+        <div class="row">
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor Surat"
+              v-model="ubah_mutasi_keluar.no_spp"
+            ></form-auto>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
-                title="Jabatan PPK Instansi Penerima"
-                v-model="mutasi_keluar.jabatan_ppk_instansi_penerima2"
-              ></form-auto>
-            </div>
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Surat"
+              v-model="ubah_mutasi_keluar.tanggal_spp"
+            ></form-auto>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Jabatan PPK Instansi Penerima"
+              v-model="ubah_mutasi_keluar.jabatan_ppk_instansi_penerima2"
+            ></form-auto>
+          </div>
+        </div>
+      </div>
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
-        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
-        <!-- <router-link :to="{name: 'specimen-num'}">
-          <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link>-->
+        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.ubah }}</button>
       </div>
     </CCardBody>
   </CCard>
@@ -338,38 +339,37 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      mutasi_keluar:{
-        nama_pejabat_persetujuan:"",
-        pangkat_pejabat_persetujuan:"",
-        jabatan_pejabat_persetujuan:"",
-        nip_pejabat_persetujuan:"",
-        golongan_ruang_pejabat_persetujuan:"",
-        
-        no_surat_perny_pers:"",
-        tanggal_surat_perny_pers:"",
-        jabatan_ppk_instansi_penerima1:"",
-        no_surat_pengantar_perny_pers:"",
-        tanggal_surat_pengantar_perny_pers:"",
-        nama_pegawai:"",
-        pangkat:"",
-        jabatan:"",
-        nip:"",
-        golongan_ruang:"",
-        unit_kerja:"",
-        instansi_penerima:"",
-        no_spp:"",
-        tanggal_spp:"",
-        jabatan_ppk_instansi_penerima2:"",
-      },
-      
-      filter:{
-        nama_pejabat_persetujuan:"",
-        nip_pejabat_persetujuan:"",
-        nip_pns_keluar:"",
-        nama_pns_keluar:"",
-        instansi_penerima:"",
+      ubah_mutasi_keluar: {
+        nama_pejabat_persetujuan: "",
+        pangkat_pejabat_persetujuan: "",
+        jabatan_pejabat_persetujuan: "",
+        nip_pejabat_persetujuan: "",
+        golongan_ruang_pejabat_persetujuan: "",
 
-      }
+        no_surat_perny_pers: "",
+        tanggal_surat_perny_pers: "",
+        jabatan_ppk_instansi_penerima1: "",
+        no_surat_pengantar_perny_pers: "",
+        tanggal_surat_pengantar_perny_pers: "",
+        nama_pegawai: "",
+        pangkat: "",
+        jabatan: "",
+        nip: "",
+        golongan_ruang: "",
+        unit_kerja: "",
+        instansi_penerima: "",
+        no_spp: "",
+        tanggal_spp: "",
+        jabatan_ppk_instansi_penerima2: "",
+      },
+
+      filter: {
+        nama_pejabat_persetujuan: "",
+        nip_pejabat_persetujuan: "",
+        nip_pns_keluar: "",
+        nama_pns_keluar: "",
+        instansi_penerima: "",
+      },
     };
   },
   methods: {

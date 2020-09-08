@@ -105,6 +105,24 @@ let routePages = {
           },
           name: 'specimen-num',
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/nota-usul-mutasi/SpecimenNUM.vue')
+        },
+        {
+          path: 'detail-num',
+          meta: {
+            judul: 'Detail Nomor Usul Mutasi',
+            breadcrumb: 'Detail Nomor Usul Mutasi'
+          },
+          name: 'detail-num',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/nota-usul-mutasi/DetailNUM.vue')
+        },
+        {
+          path: 'ubah-num',
+          meta: {
+            judul: 'Ubah Nota Usul Mutasi',
+            breadcrumb: 'Ubah Nota Usul Mutasi'
+          },
+          name: 'ubah-num',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/nota-usul-mutasi/UbahNUM.vue')
         }
         ]
       },
@@ -131,6 +149,24 @@ let routePages = {
           },
           name: 'specimen-pengangkatan',
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/sk-pengangkatan/SpecimenPengangkatan.vue')
+        },
+        {
+          path: 'detail-sk',
+          meta: {
+            judul: 'Detail SK Pengangkatan',
+            breadcrumb: 'Detail SK Pengangkatan'
+          },
+          name: 'detail-sk',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/sk-pengangkatan/DetailSK.vue')
+        },
+        {
+          path: 'ubah-sk',
+          meta: {
+            judul: 'Ubah SK Pengangkatan',
+            breadcrumb: 'Ubah SK Pengangkatan'
+          },
+          name: 'ubah-sk',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/sk-pengangkatan/UbahSK.vue')
         }
         ]
       },
@@ -157,6 +193,24 @@ let routePages = {
           },
           name: 'specimen-spmt-pi',
           component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spmt/SpecimenSpmt.vue')
+        },
+        {
+          path: 'detail-spmt',
+          meta: {
+            judul: 'Detail SPMT',
+            breadcrumb: 'Detail SPMT'
+          },
+          name: 'detail-spmt',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spmt/DetailSPMT.vue')
+        },
+        {
+          path: 'ubah-spmt',
+          meta: {
+            judul: 'Ubah SPMT',
+            breadcrumb: 'Ubah SPMT'
+          },
+          name: 'ubah-spmt',
+          component: () => import('../../../views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-masuk/spmt/UbahSPMT.vue')
         }
         ]
       },
@@ -177,6 +231,22 @@ let routePages = {
         },
         name: 'pindah-instansi-keluar',
         component: () => import('@/views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-keluar/PindahInstansiKeluar.vue'),
+      },
+      {
+        path: 'detail-pindah-instansi-keluar',
+        meta: {
+          judul: 'Pindah Instansi Keluar'
+        },
+        name: 'detail-pindah-instansi-keluar',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-keluar/DetailPindahInstansiKeluar.vue'),
+      },
+      {
+        path: 'ubah-pindah-instansi-keluar',
+        meta: {
+          judul: 'Ubah Instansi Keluar'
+        },
+        name: 'ubah-pindah-instansi-keluar',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/pindah-instansi/pindah-instansi-keluar/UbahPindahInstansiKeluar.vue'),
       },
       {
         path: 'tambah-mutasi-keluar',
