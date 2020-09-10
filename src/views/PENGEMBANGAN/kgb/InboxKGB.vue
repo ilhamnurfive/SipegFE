@@ -26,7 +26,7 @@
             :hover="false"
             :fields="isiTable"
           >
-            <template #aksi="{index, item}">
+            <template #aksi="{item}">
               <td>
                 <b-dropdown variant="light" toggle-class="text-decoration-none">
                   <template v-slot:button-content>

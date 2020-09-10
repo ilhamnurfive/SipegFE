@@ -175,6 +175,7 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -197,9 +198,9 @@ export default {
         no_pertek: "",
         tanggal_pertek: "",
       },
-      filter:{
-        no_num:''
-      }
+      filter: {
+        no_num: "",
+      },
     };
   },
   methods: {
@@ -207,7 +208,15 @@ export default {
       this.$router.back();
     },
     simpan() {
-      this.$router.back();
+      // Axios.post("http://localhost:8081/mutasi/postMutasi", this.tambahSk)
+      //   .then((results) => {
+      //     console.log(results.data);
+      //     alert("data berhasil ditambah");
+      //     this.$router.back();
+      //   })
+      //   .catch((err) => {
+      //     alert("data gagal ditambah");
+      //   });
     },
   },
 };

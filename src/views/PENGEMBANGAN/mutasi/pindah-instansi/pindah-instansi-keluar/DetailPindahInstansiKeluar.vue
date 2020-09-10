@@ -255,38 +255,50 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      detail_mutasi_keluar:{
-        nama_pejabat_persetujuan:"",
-        pangkat_pejabat_persetujuan:"",
-        jabatan_pejabat_persetujuan:"",
-        nip_pejabat_persetujuan:"",
-        golongan_ruang_pejabat_persetujuan:"",
-        
-        no_surat_perny_pers:"",
-        tanggal_surat_perny_pers:"",
-        jabatan_ppk_instansi_penerima1:"",
-        no_surat_pengantar_perny_pers:"",
-        tanggal_surat_pengantar_perny_pers:"",
-        nama_pegawai:"",
-        pangkat:"",
-        jabatan:"",
-        nip:"",
-        golongan_ruang:"",
-        unit_kerja:"",
-        instansi_penerima:"",
-        no_spp:"",
-        tanggal_spp:"",
-        jabatan_ppk_instansi_penerima2:"",
+      detail_mutasi_keluar: {
+        nama_pejabat_persetujuan: "",
+        pangkat_pejabat_persetujuan: "",
+        jabatan_pejabat_persetujuan: "",
+        nip_pejabat_persetujuan: "",
+        golongan_ruang_pejabat_persetujuan: "",
+
+        no_surat_perny_pers: "",
+        tanggal_surat_perny_pers: "",
+        jabatan_ppk_instansi_penerima1: "",
+        no_surat_pengantar_perny_pers: "",
+        tanggal_surat_pengantar_perny_pers: "",
+        nama_pegawai: "",
+        pangkat: "",
+        jabatan: "",
+        nip: "",
+        golongan_ruang: "",
+        unit_kerja: "",
+        instansi_penerima: "",
+        no_spp: "",
+        tanggal_spp: "",
+        jabatan_ppk_instansi_penerima2: "",
       },
     };
+  },
+  mounted(){
+    // this.detail_mutasi_keluar();
   },
   methods: {
     back() {
       this.$router.back();
     },
 
-    simpan() {
-      this.$router.back();
+    getDetailMutasiKeluar() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   var url = "http://localhost:8081/mutasi/";
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       this.detail_mutasi_keluar = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
     },
   },
 };

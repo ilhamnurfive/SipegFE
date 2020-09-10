@@ -152,6 +152,7 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -176,13 +177,42 @@ export default {
       },
     };
   },
+  mounted(){
+    // this.getDetailSk();
+  },
   methods: {
     back() {
       this.$router.back();
     },
-    simpan() {
-      this.$router.back();
-    },
+    // getDetailSk() {
+    //   var id = this.$route.params.id;
+    //   var url="http://localhost:8081/mutasi/"
+
+    //   console.log(id);
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       alert("data diterima");
+    //       this.ubahSk = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
+    // ubah() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   var url ="http://localhost:8081/mutasi/updateMutasi/"
+    //   Axios.put(url + id,this.ubahSk)
+    //     .then((results) => {
+    //       console.log(results.data);
+    //       alert("data berhasil diubah");
+    //       this.$router.back();
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diubah");
+    //       console.log(err);
+    //     });
+    // },
   },
 };
 </script>

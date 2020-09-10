@@ -157,6 +157,7 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -181,10 +182,25 @@ export default {
       },
     };
   },
+  mounted() {
+    // this.getDetailSk();
+  },
   methods: {
     back() {
       this.$router.back();
     },
+    // getDetailSk() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   var url = "http://localhost:8081/mutasi/";
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       this.detailSk = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
   },
 };
 </script>

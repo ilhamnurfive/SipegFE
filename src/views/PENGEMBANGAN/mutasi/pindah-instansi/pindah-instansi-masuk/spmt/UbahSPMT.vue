@@ -315,14 +315,43 @@ export default {
       },
     };
   },
+  mounted(){
+    // this.getDetailSpmt();
+  },
   methods: {
     back() {
       this.$router.back();
     },
+    // getDetailSpmt() {
+    //   var id = this.$route.params.id;
+    //   var url = "http://localhost:8081/mutasi/";
 
-    simpan() {
-      this.$router.back();
-    },
+    //   console.log(id);
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       alert("data diterima");
+    //       this.ubahSpmt = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
+
+    // ubah() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   var url = "http://localhost:8081/mutasi/updateMutasi/";
+    //   Axios.put(url + id, this.ubahSpmt)
+    //     .then((results) => {
+    //       console.log(results.data);
+    //       alert("data berhasil diubah");
+    //       this.$router.back();
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diubah");
+    //       console.log(err);
+    //     });
+    // },
   },
 };
 </script>

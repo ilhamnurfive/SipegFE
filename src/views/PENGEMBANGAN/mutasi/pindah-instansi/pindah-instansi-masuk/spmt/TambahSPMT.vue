@@ -324,7 +324,15 @@ export default {
     },
 
     simpan() {
-      this.$router.back();
+      // Axios.post("http://localhost:8081/mutasi/postMutasi", this.tambahSpmt)
+      //   .then((results) => {
+      //     console.log(results.data);
+      //     alert("data berhasil ditambah");
+      //     this.$router.back();
+      //   })
+      //   .catch((err) => {
+      //     alert("data gagal ditambah");
+      //   });
     },
   },
 };

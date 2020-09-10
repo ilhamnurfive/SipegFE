@@ -144,7 +144,8 @@ export default {
         no_usul: '',
         tgl_usul: '',
         bulan: '',
-        tahun: ''
+        tahun: '',
+        statusKGB:""
       },
       noUsul: 'Nomor Usul',
       tanggalUsul: 'Tanggal Usul',

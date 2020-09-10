@@ -139,16 +139,16 @@
 // Mixins
 import getNIP from "@/mixins/GetNIP";
 import j_onSending from "@/utils/j-on-sending";
+import Axios from "axios";
 
 export default {
   mixins: [j_onSending, getNIP],
   data() {
     return {
-      head_sk:{
-        no_skp:"",
-        nama_pegawai:"",
-        nip:""
-
+      head_sk: {
+        no_skp: "",
+        nama_pegawai: "",
+        nip: "",
       },
       fields: [
         { key: "no" },
@@ -160,6 +160,7 @@ export default {
         { key: "asal_instansi" },
         { key: "aksi" },
       ],
+      dataSk: [],
       unduhItems: [
         { jenisDokumen: "SK", dokumen: "Dummy SK-1" },
         { jenisDokumen: "SK", dokumen: "Dummy SK-2" },
@@ -185,39 +186,47 @@ export default {
       isSend: false,
     };
   },
+  mounted() {
+    // this.getSk();
+  },
   methods: {
     back() {
       this.$router.back();
     },
-    // deleteSk(item) {
-      // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
-      // Axios.delete(url);
-      // this.$swal
-      //   .fire(this.$message.dataMessage.deleteConfirmation)
-      //   .then((results) => {
-      //     this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
-      //       if (results) {
-      //         location.reload();
-      //       }
-      //     });
-      //   })
-      //   .catch((err) => {});
+
+    // getSk() {
+    //   var url = "http://localhost:8081/mutasi";
+    //   // var url = "http://192.168.212.93:8080/mutasi";
+    //   axios
+    //     .get(url)
+    //     .then((results) => {
+    //       console.log(results.data);
+    //       this.dataSk = results.data;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
     // },
     async deleteSk(item) {
+      // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
+
+      Axios.delete(url);
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
         .then(async (result) => {
           if (result.value) {
             let paramsSet = {};
             if (item.noUsul) paramsSet.no_usul = item.noUsul;
-            // const deleteUsulSpp = await this.$store.dispatch(
-            //   "deleteUsulSpp",
-            //   paramsSet
-            // );
-            this.$swal.fire(this.$message.dataMessage.deleted);
-            // this.getPengembanganKGB();
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
           }
-        });
+        })
+        .catch((err) => {});
     },
     unduhSk(modal) {
       this.$refs[modal].toggle("#toggle-btn");

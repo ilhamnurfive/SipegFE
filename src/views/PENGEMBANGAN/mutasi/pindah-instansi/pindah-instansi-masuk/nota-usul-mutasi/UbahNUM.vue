@@ -312,13 +312,14 @@
       </div>
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
-        <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.ubah }}</button>
+        <button :class="$message.kelas.btn_primary" @click="ubah()">{{ $message.button.ubah }}</button>
       </div>
     </CCardBody>
   </CCard>
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -353,13 +354,39 @@ export default {
       },
     };
   },
+  // mounted(){
+  //   this.getDetailNum();
+  // },
   methods: {
     back() {
       this.$router.back();
     },
-    simpan() {
-      this.$router.back();
-    },
+    // getDetailNum() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   // var url ="http://localhost:8081/mutasi/"
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       this.UbahNum = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
+    // ubah() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   Axios.put("http://localhost:8081/mutasi/updateMutasi/" + id, this.ubahNum)
+    //     .then((results) => {
+    //       console.log(results.data);
+    //       alert("data berhasil diubah");
+    //       this.$router.back();
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diubah");
+    //       console.log(err);
+    //     });
+    // },
   },
 };
 </script>

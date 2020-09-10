@@ -24,7 +24,7 @@
         </CCol>
       </CRow>
       <header-table class="text-center" :data="items" :fields="fields">
-        <template #aksi="{item,index}">
+        <template #aksi="{item}">
           <td v-if="!editNilai">
             <b-dropdown class="ye" size="sm" variant="light" toggle-class="text-decoration-none">
               <template v-slot:button-content>

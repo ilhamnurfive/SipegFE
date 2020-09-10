@@ -77,6 +77,7 @@
 
 <script>
 import getInstansi from "@/mixins/GetInstansi";
+import Axios from 'axios';
 
 export default {
   mixins: [getInstansi],

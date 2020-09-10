@@ -144,11 +144,12 @@ export default {
   mixins: [j_onSending, getNIP],
   data() {
     return {
-      head_spmt:{
-        no_spmt:"",
-        nama_pegawai:"",
-        nip:"",
+      head_spmt: {
+        no_spmt: "",
+        nama_pegawai: "",
+        nip: "",
       },
+      dataSpmt: [],
       fields: [
         { key: "no" },
         { key: "no_sk_pengangkatan", label: "No SK Pengangkatan" },
@@ -184,40 +185,48 @@ export default {
       isSend: false,
     };
   },
+  mounted() {
+    // this.getSpmt();
+  },
   methods: {
     back() {
       this.$router.back();
     },
+    getSpmt() {
+      var url = "http://localhost:8081/mutasi";
+      // var url = "http://192.168.212.93:8080/mutasi";
+      axios
+        .get(url)
+        .then((results) => {
+          console.log(results.data);
+          this.dataSpmt = results.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
-    // deleteSpmt(item) {
+
+    async deleteSpmt(item) {
       // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
-      // Axios.delete(url);
-      // this.$swal
-      //   .fire(this.$message.dataMessage.deleteConfirmation)
-      //   .then((results) => {
-      //     this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
-      //       if (results) {
-      //         location.reload();
-      //       }
-      //     });
-      //   })
-      //   .catch((err) => {});
-    // },
-    async hapusSpmt(item) {
+
+      Axios.delete(url);
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
         .then(async (result) => {
           if (result.value) {
             let paramsSet = {};
             if (item.noUsul) paramsSet.no_usul = item.noUsul;
-            // const deleteUsulSpp = await this.$store.dispatch(
-            //   "deleteUsulSpp",
-            //   paramsSet
-            // );
-            this.$swal.fire(this.$message.dataMessage.deleted);
-            // this.getPengembanganKGB();
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
           }
-        });
+        })
+        .catch((err) => {});
     },
     unduhSpmt(modal) {
       this.$refs[modal].toggle("#toggle-btn");

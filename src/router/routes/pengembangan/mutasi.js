@@ -12,7 +12,17 @@ let routePages = {
 
     },
     component: () => import('@/views/PENGEMBANGAN/mutasi/InboxMutasi.vue')
-  }, {
+  },
+  {
+    path: 'detail-mutasi',
+    name: 'detail-mutasi',
+    meta: {
+      judul: 'Detail Mutasi'
+
+    },
+    component: () => import('@/views/PENGEMBANGAN/mutasi/DetailMutasi.vue')
+  }
+  , {
     path: 'mutasi',
     component: () => import('@/views/Index.vue'),
     meta: {

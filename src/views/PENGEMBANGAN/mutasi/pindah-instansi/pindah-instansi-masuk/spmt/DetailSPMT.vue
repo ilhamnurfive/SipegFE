@@ -248,14 +248,25 @@ export default {
       },
     };
   },
+  mounted(){
+    this.getDetailSpmt();
+  },
   methods: {
     back() {
       this.$router.back();
     },
-
-    simpan() {
-      this.$router.back();
-    },
+    // getDetailSpmt() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   var url = "http://localhost:8081/mutasi/";
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       this.detailSpmt = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
   },
 };
 </script>

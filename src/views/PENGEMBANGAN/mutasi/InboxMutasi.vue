@@ -71,13 +71,13 @@
           :hover="false"
           :fields="isiTable"
         >
-          <template #aksi>
+          <template #aksi="{item}">
             <td>
               <b-dropdown class="ye" size="sm" variant="light" toggle-class="text-decoration-none">
                 <template v-slot:button-content>
                   <HeroiconsDotsVerticalOutline class="icon-size" />
                 </template>
-                <CDropdownItem>
+                <CDropdownItem @click="toRoute('detail-mutasi',item)">
                   <HeroiconsClipboardListOutline class="text-info icon-size" />
                   <span class="ml-2">Detail</span>
                 </CDropdownItem>
@@ -171,19 +171,11 @@ export default {
         { key: "no_usul", label: "No Usul" },
         { key: "nip", label: "NIP" },
         { key: "nama_pegawai", label: "Nama Pegawai" },
-        { key: "jenis_pengembangan", label: "Jenis Usul Mutasi" },
+        { key: "jenis_usul", label: "Jenis Usul Mutasi" },
         // { key: 'instansi' },
         // { key: 'satuanKerja', label: 'Satuan Kerja'},
         { key: "aksi", sorter: false },
       ],
-      model:{
-        no:'',
-        no_usul:'',
-        nip:'',
-        nama_pegawai:'',
-        jenis_pengembangan:'',
-
-      },
       itemsTable: [],
       data: "",
       isSend: false,
@@ -215,19 +207,22 @@ export default {
       }
     },
     isNumber(evt) {
-      evt = (evt) ? evt : window.event;
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
         evt.preventDefault();
       } else {
         return true;
       }
-      console.log('a')
+      console.log("a");
     },
 
     cari(event) {
-      console.log('a')
-      
+      console.log("a");
     },
     setupListMutasi(data) {
       if (data.length) {
@@ -261,14 +256,13 @@ export default {
       Axios.get(url)
         .then((results) => {
           console.log(results.data.data[0]);
-          for(var i=0;i<results.data.data.length;i++){
-            this.model.no=i+1;
-            console.log(this.model)
-
-            this.itemsTable.push(this.model)
-            // this.model.nama_pegawai = results.data.data[i].pegawai.nama_pegawai
-            // this.model.nip = results.data.data[i].pegawai.nip
-
+          this.itemsTable = results.data.data;
+          for (var i = 0; i < results.data.data.length; i++) {
+            this.itemsTable[i].no = i + 1;
+            this.itemsTable[i].no_usul = results.data.data[i].usul_mutasi.no_usul;
+            this.itemsTable[i].nama_pegawai = results.data.data[i].pegawai.nama_pegawai;
+            this.itemsTable[i].nip = results.data.data[i].pegawai.nip;
+            this.itemsTable[i].jenis_usul = results.data.data[i].jenis_pi;
           }
 
           alert("data berhasil diterima");

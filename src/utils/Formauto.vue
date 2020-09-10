@@ -14,6 +14,7 @@
               :class="errors[0] ? 'form-control border-danger' : 'form-control'"
               :placeholder="placehold ? placehold : title"
               :value="value"
+              
               v-on:input="updateValue($event.target.value)"
               :readonly="read"
               :list="list"

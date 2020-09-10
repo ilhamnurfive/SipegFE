@@ -9,7 +9,7 @@
           :kelasform="$message.kelas.inputs"
           title="NIP"
           read
-          v-model="detailSpp.nip"
+          v-model="detailMutasi.nip"
         ></form-auto>
         <form-auto
           input="input"
@@ -17,7 +17,7 @@
           :kelasform="$message.kelas.inputs"
           title="Pangkat"
           read
-          v-model="detailSpp.pangkat"
+          v-model="detailMutasi.pangkat"
         ></form-auto>
         <form-auto
           input="input"
@@ -25,7 +25,7 @@
           :kelasform="$message.kelas.inputs"
           title="Golongan Ruang"
           read
-          v-model="detailSpp.golongan_ruang"
+          v-model="detailMutasi.golongan_ruang"
         ></form-auto>
         <form-auto
           input="input"
@@ -33,7 +33,7 @@
           :kelasform="$message.kelas.inputs"
           title="Jabatan"
           read
-          v-model="detailSpp.jabatan"
+          v-model="detailMutasi.jabatan"
         ></form-auto>
         <form-auto
           input="input"
@@ -41,7 +41,7 @@
           :kelasform="$message.kelas.inputs"
           title="Instansi Asal"
           read
-          v-model="detailSpp.instansi_asal"
+          v-model="detailMutasi.instansi_asal"
         ></form-auto>
         <form-auto
           input="input"
@@ -49,7 +49,7 @@
           :kelasform="$message.kelas.inputs"
           title="Instansi Baru"
           read
-          v-model="detailSpp.instansi_baru"
+          v-model="detailMutasi.instansi_baru"
         ></form-auto>
         <form-auto
           input="input"
@@ -57,7 +57,7 @@
           :kelasform="$message.kelas.inputs"
           title="Unit Kerja Baru"
           read
-          v-model="detailSpp.unit_kerja_baru"
+          v-model="detailMutasi.unit_kerja_baru"
         ></form-auto>
         <form-auto
           input="input"
@@ -65,7 +65,7 @@
           :kelasform="$message.kelas.inputs"
           title="Jabatan Baru"
           read
-          v-model="detailSpp.jabatan_baru"
+          v-model="detailMutasi.jabatan_baru"
         ></form-auto>
         <form-auto
           input="input"
@@ -73,7 +73,7 @@
           :kelasform="$message.kelas.inputs"
           title="Nomor Surat"
           read
-          v-model="detailSpp.no_spp"
+          v-model="detailMutasi.no_spp"
         ></form-auto>
         <form-auto
           input="date"
@@ -81,7 +81,7 @@
           :kelasform="$message.kelas.inputs"
           title="Tanggal Surat"
           read
-          v-model="detailSpp.tanggal_surat"
+          v-model="detailMutasi.tanggal_surat"
         ></form-auto>
         <form-auto
           input="input"
@@ -89,7 +89,7 @@
           :kelasform="$message.kelas.inputs"
           title="Jabatan PPK Instansi Asal"
           read
-          v-model="detailSpp.jabatan_ppk_instansi_asal"
+          v-model="detailMutasi.jabatan_ppk_instansi_asal"
         ></form-auto>
       </div>
       <div class="float-right">
@@ -104,7 +104,7 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      detailSpp: {
+      detailMutasi: {
         no_usul: "",
         nip: "",
         nama_pegawai: "",
@@ -131,19 +131,20 @@ export default {
     },
 
     getDetailSpp() {
-      var id = this.$route.params.id
+      var id = this.$route.params.id.id;
       console.log(id)
-      // var url ="http://localhost:8081/mutasi/"
-      var url ="http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi/"
+      var url ="http://192.168.212.93:8080/api/v1/detail-usul-mutasi/"
+      // var url = "http://localhost:8081/mutasi/"
       Axios.get(url+id)
         .then((results) => {
-          console.log(results)
-          this.detailSpp = results.data.data;
+          this.detailMutasi = results.data.data;
         })
         .catch((err) => {
-          console.log(err)
           alert("data gagal diterima");
+          console.log(err)
+          console.log(id)
         });
+      
     },
   },
 };

@@ -197,51 +197,37 @@ export default {
       this.$router.back();
     },
 
-    getNum() {
-      var url = "http://localhost:8081/mutasi";
-      Axios.get(url)
-        .then((results) => {
-          console.log(results.data);
-          this.dataNum = results.data;
-          // for(var i=1;i<=results.dataSpp.length;i++){
-          //   results.data[no]=i;
-          //   console.log(results.data[no])
-          // }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    // deleteNum(item) {
-      // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
-
-      // Axios.delete(url);
-      // this.$swal
-      //   .fire(this.$message.dataMessage.deleteConfirmation)
-      //   .then((results) => {
-      //     this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
-      //       if (results) {
-      //         location.reload();
-      //       }
-      //     });
-      //   })
-      //   .catch((err) => {});
+    // getNum() {
+    //   var url = "http://localhost:8081/mutasi";
+    //   Axios.get(url)
+    //     .then((results) => {
+    //       console.log(results.data);
+    //       this.dataNum = results.data;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
     // },
     async deleteNum(item) {
+      // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
+
+      Axios.delete(url);
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
         .then(async (result) => {
           if (result.value) {
             let paramsSet = {};
             if (item.noUsul) paramsSet.no_usul = item.noUsul;
-            // const deleteUsulSpp = await this.$store.dispatch(
-            //   "deleteUsulSpp",
-            //   paramsSet
-            // );
-            this.$swal.fire(this.$message.dataMessage.deleted);
-            // this.getPengembanganKGB();
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
           }
-        });
+        })
+        .catch((err) => {});
     },
     unduhNum(modal) {
       this.$refs[modal].toggle("#toggle-btn");

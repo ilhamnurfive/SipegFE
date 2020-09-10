@@ -32,13 +32,13 @@
         </CCol>
       </CRow>
       <header-table class="text-center" :data="items" :fields="fields">
-        <template #aksi>
+        <template #aksi={item}>
           <td class="btn-inbox">
             <router-link :to="{name: 'peserta-upkp'}">
               <CButton color="light" class="m-1 text-info">Detail</CButton>
             </router-link>
-            <CButton color="light" class="m-1 text-warning">Ubah</CButton>
-            <CButton color="light" class="m-1 text-danger">Hapus</CButton>
+            <CButton @click="ubahUpkp(item)" color="light" class="m-1 text-warning">Ubah</CButton>
+            <CButton @click="deleteUpkp(item)" color="light" class="m-1 text-danger">Hapus</CButton>
           </td>
         </template>
       </header-table>
@@ -50,6 +50,8 @@
         >{{ $message.button.tambah }} List</button>
       </div>
     </CCardBody>
+
+    <!-- tambah upkp -->
     <div>
       <b-modal
         ok-title="Tambah"
@@ -72,49 +74,97 @@
         ></form-auto>
       </b-modal>
     </div>
+    <!-- ubah upkp -->
+    <div>
+      <b-modal
+        ok-title="Ubah"
+        cancel-title="Batal"
+        ref="ubah-upkp"
+        title="Ubah UPKP"
+        ok-variant="success"
+      >
+        <form-auto
+          title="Nomor Usul"
+          input="input"
+          :kelastitle="$message.kelas.label"
+          :kelasform="$message.kelas.inputs"
+        ></form-auto>
+        <form-auto
+          title="Tanggal Usul"
+          input="date"
+          :kelastitle="$message.kelas.label"
+          :kelasform="$message.kelas.inputs"
+        ></form-auto>
+      </b-modal>
+    </div>
   </CCard>
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
       items: [
         {
-          No: '1',
-          noUsul: '8232321XXXX',
-          'Tanggal Mulai': '11-11-2020',
-          'Tanggal Selesai': '11-11-2020'
+          No: "1",
+          noUsul: "8232321XXXX",
+          "Tanggal Mulai": "11-11-2020",
+          "Tanggal Selesai": "11-11-2020",
         },
         {
-          No: '2',
-          noUsul: '34521XXXX',
-          'Tanggal Mulai': '12-11-2020',
-          'Tanggal Selesai': '12-11-2020'
+          No: "2",
+          noUsul: "34521XXXX",
+          "Tanggal Mulai": "12-11-2020",
+          "Tanggal Selesai": "12-11-2020",
         },
         {
-          No: '3',
-          noUsul: '982521XXXX',
-          'Tanggal Mulai': '13-11-2020',
-          'Tanggal Selesai': '13-11-2020'
-        }
+          No: "3",
+          noUsul: "982521XXXX",
+          "Tanggal Mulai": "13-11-2020",
+          "Tanggal Selesai": "13-11-2020",
+        },
       ],
       fields: [
-        { key: 'No' },
-        { key: 'noUsul', label: 'Nomor Usul' },
-        { key: 'Tanggal Mulai' },
-        { key: 'Tanggal Selesai' },
-        { key: 'aksi' }
-      ]
+        { key: "No" },
+        { key: "noUsul", label: "Nomor Usul" },
+        { key: "Tanggal Mulai" },
+        { key: "Tanggal Selesai" },
+        { key: "aksi" },
+      ],
     };
   },
   methods: {
     back() {
       this.$router.back();
     },
+    coba(){
+      console.log('ilham')
+
+    },
+    ubahUpkp(item) {
+      this.toggleModal("ubah-upkp", item);
+      console.log("a");
+      // pasang api get detail usul upkp buat get dan ubah
+    },
+    deleteUpkp(item) {
+      var url = "https://jsonplaceholder.typicode.com/todos/1" + item.id;
+
+      Axios.delete(url);
+      this.$swal
+        .fire(this.$message.dataMessage.deleteConfirmation)
+        .then((results) => {
+          this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
+            if (results) {
+              location.reload();
+            }
+          });
+        })
+        .catch((err) => {});
+    },
     toggleModal(modal) {
-      this.$refs[modal].toggle('#toggle-btn');
-    }
-  }
+      this.$refs[modal].toggle("#toggle-btn");
+    },
+  },
 };
 </script>

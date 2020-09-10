@@ -23,7 +23,7 @@ export default {
         {
           title: 'UNIT ORGANISASI',
           image: 'networking.png',
-          link: '/organisasi'
+          link: '/organisasi/unit-organisasi'
         },
         {
           title: 'ANALISIS JABATAN',

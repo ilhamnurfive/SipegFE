@@ -61,7 +61,7 @@
                     <HeroiconsPencilAltOutline class="text-warning icon-size" />
                     <span class="ml-2">Ubah</span>
                   </CDropdownItem>
-                  <CDropdownItem @click="deleteSpp(item)">
+                  <CDropdownItem @click="deleteUsulSpp(item)">
                     <HeroiconsTrashOutline class="text-danger icon-size" />
                     <span class="ml-2">Hapus</span>
                   </CDropdownItem>
@@ -139,7 +139,6 @@
 // Mixins
 import getNIP from "@/mixins/GetNIP";
 import j_onSending from "@/utils/j-on-sending";
-import axios from "axios";
 import Axios from "axios";
 
 export default {
@@ -148,15 +147,13 @@ export default {
     return {
       fields: [
         { key: "no" },
-        { key: "no_spp", label: "No Surat Permintaan Persetujuan" },
+        { key: "no_surat", label: "No Surat Permintaan Persetujuan" },
         { key: "nama_pegawai" },
         { key: "nip", label: "NIP" },
         { key: "instansi_asal" },
         { key: "aksi" },
       ],
-      dataSpp: [
-        
-      ],
+      dataSpp: [],
       unduhItems: [
         { jenisDokumen: "SPP", dokumen: "Dummy SPP-1" },
         { jenisDokumen: "SPP", dokumen: "Dummy SPP-2" },
@@ -193,56 +190,47 @@ export default {
       this.$router.back();
     },
     getSpp() {
-      var url = "http://localhost:8081/mutasi";
-      // var url = "http://192.168.212.93:8080/mutasi";
-      axios
+      // var url = "http://localhost:8081/mutasi";
+      var url = "http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+      Axios
         .get(url)
         .then((results) => {
-          console.log(results.data)
-          this.dataSpp = results.data;
-          // for(var i=1;i<=results.dataSpp.length;i++){
-          //   results.data[no]=i;
-          //   console.log(results.data[no])
-          // }
-
+          
+          // console.log(results);
+          console.log(results.data.data[0].id);
+          
+          this.dataSpp=results.data.data
+          for (var i = 0; i < results.data.data.length; i++) {
+            this.dataSpp[i].no=i+1;
+            this.dataSpp[i].nip=results.data.data[i].pegawai.nip;
+            this.dataSpp[i].nama_pegawai=results.data.data[i].pegawai.nama_pegawai;
+          }
         })
         .catch((err) => {
           console.log(err);
         });
     },
 
-    deleteSpp(item) {
+    async deleteUsulSpp(item) {
       var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
-
       
       Axios.delete(url)
-      this.$swal.fire(this.$message.dataMessage.deleteConfirmation)
-        .then((results) => {
-          this.$swal.fire(this.$message.dataMessage.deleted).then((results)=>{
-            if(results){
-            location.reload();
-          }
-          });
-          
-        })
-        .catch((err) => {
-          
-        });
-    },
-    async deleteUsulSpp(item) {
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
         .then(async (result) => {
           if (result.value) {
             let paramsSet = {};
             if (item.noUsul) paramsSet.no_usul = item.noUsul;
-            // const deleteUsulSpp = await this.$store.dispatch(
-            //   "deleteUsulSpp",
-            //   paramsSet
-            // );
-            this.$swal.fire(this.$message.dataMessage.deleted);
-            // this.getPengembanganKGB();
+            this.$swal.fire(this.$message.dataMessage.deleted).then(berhasil=>{
+              if(berhasil){
+                location.reload();
+              }
+            });
+            
           }
+        })
+        .catch(err=>{
+          
         });
     },
     unduhSpp(modal) {

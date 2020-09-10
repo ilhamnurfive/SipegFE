@@ -7,7 +7,7 @@
           <hr class="line-hr" />
           <div class>
             <label for="nip">NIP</label>
-            <b-input v-model="nip" type="text" id="nip" placeholder="NIP"></b-input>
+            <b-input v-model="nip" type="text" id="nip" placeholder="NIP" @keypress="isNumber($event)"></b-input>
           </div>
           <div class="mt-3">
             <label for="passw">Kata Sandi</label>
@@ -42,25 +42,39 @@
 </template> <script>
 export default {
   data() {
-    return { eyePass: true, nip: 'dummy', pass: 'dummy' };
+    return { eyePass: true, nip: "dummy", pass: "dummy" };
   },
   methods: {
     tryLogin() {
       if (!this.pass || !this.nip) {
         return this.$swal.fire(this.$message.dataMessage.loginGagal);
       }
-      this.$swal.fire(this.$message.dataMessage.loginSukes).then(result => {
-        this.$router.push({ path: '/pengembangan' });
+      this.$swal.fire(this.$message.dataMessage.loginSukes).then((result) => {
+        this.$router.push({ path: "/pengembangan" });
       });
     },
     resetForm() {
-      this.nip = '';
-      this.pass = '';
+      this.nip = "";
+      this.pass = "";
     },
     passGuard() {
       this.eyePass = !this.eyePass;
-    }
-  }
+    },
+    isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+      console.log("a");
+    },
+  },
 };
 </script> <style lang="scss">
 .prepend-box {
@@ -99,7 +113,7 @@ export default {
   width: 500px;
   margin-top: -90px;
   padding: 40px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   height: 370px;
   background: #fff;
   border-radius: 10px;

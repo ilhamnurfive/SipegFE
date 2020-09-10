@@ -200,128 +200,127 @@
           </div>
         </div>
 
-          <label class="font-weight-bold">Surat Pengantar Pertimbangan Teknis :</label>
-          <div class="row">
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="No Surat Pengantar Pertek"
-                read
-                v-model="detailNum.no_surat_pengantar_pertek"
-              ></form-auto>
-            </div>
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="Tanggal Surat Pengantar Pertek"
-                read
-                v-model="detailNum.tanggal_surat_pengantar_pertek"
-              ></form-auto>
-            </div>
+        <label class="font-weight-bold">Surat Pengantar Pertimbangan Teknis :</label>
+        <div class="row">
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="No Surat Pengantar Pertek"
+              read
+              v-model="detailNum.no_surat_pengantar_pertek"
+            ></form-auto>
           </div>
-          <label class="font-weight-bold">Nota Usul Mutasi :</label>
-          <div class="row">
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="Nomor Nota Usul Mutasi"
-                read
-                v-model="detailNum.no_num"
-              ></form-auto>
-            </div>
-            <div class="col-md-6">
-              <form-auto
-                input="date"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="Tanggal Nota Usul Mutasi"
-                read
-                v-model="detailNum.tanggal_num"
-              ></form-auto>
-            </div>
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Surat Pengantar Pertek"
+              read
+              v-model="detailNum.tanggal_surat_pengantar_pertek"
+            ></form-auto>
           </div>
-          <label class="font-weight-bold">Surat Persetujuan Pindah Instansi Asal :</label>
-          <div class="row">
-            <div class="col-md-6">
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="Nomor Surat Persetujuan PI Asal"
-                read
-                v-model="detailNum.no_surat_pers_pi_asal"
-              ></form-auto>
-            </div>
-            <div class="col-md-6">
-              <form-auto
-                input="date"
-                :kelastitle="$message.kelas.big"
-                :kelasform="$message.kelas.big"
-                title="Tanggal Surat Persetujuan PI Asal"
-                read
-                v-model="detailNum.tanggal_surat_pers_pi_asal"
-              ></form-auto>
-            </div>
+        </div>
+        <label class="font-weight-bold">Nota Usul Mutasi :</label>
+        <div class="row">
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor Nota Usul Mutasi"
+              read
+              v-model="detailNum.no_num"
+            ></form-auto>
           </div>
+          <div class="col-md-6">
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Nota Usul Mutasi"
+              read
+              v-model="detailNum.tanggal_num"
+            ></form-auto>
+          </div>
+        </div>
+        <label class="font-weight-bold">Surat Persetujuan Pindah Instansi Asal :</label>
+        <div class="row">
+          <div class="col-md-6">
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor Surat Persetujuan PI Asal"
+              read
+              v-model="detailNum.no_surat_pers_pi_asal"
+            ></form-auto>
+          </div>
+          <div class="col-md-6">
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Surat Persetujuan PI Asal"
+              read
+              v-model="detailNum.tanggal_surat_pers_pi_asal"
+            ></form-auto>
+          </div>
+        </div>
 
-          <div class="mt-2">
-            <label class="font-weight-bold">Formasi :</label>
-            <div class="row">
-              <div class="col-md-6">
-                <form-auto
-                  input="input"
-                  :kelastitle="$message.kelas.big"
-                  :kelasform="$message.kelas.big"
-                  title="Tahun"
-                  read
-                  v-model="detailNum.formasi_tahun"
-                ></form-auto>
-              </div>
-              <div class="col-md-6">
-                <form-auto
-                  input="input"
-                  :kelastitle="$message.kelas.big"
-                  :kelasform="$message.kelas.big"
-                  title="Jabatan"
-                  read
-                  v-model="detailNum.formasi_jabatan"
-                ></form-auto>
-              </div>
+        <div class="mt-2">
+          <label class="font-weight-bold">Formasi :</label>
+          <div class="row">
+            <div class="col-md-6">
+              <form-auto
+                input="input"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
+                title="Tahun"
+                read
+                v-model="detailNum.formasi_tahun"
+              ></form-auto>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <form-auto
-                  input="input"
-                  :kelastitle="$message.kelas.big"
-                  :kelasform="$message.kelas.big"
-                  title="Jumlah Terisi"
-                  read
-                  v-model="detailNum.formasi_jumlah_terisi"
-                ></form-auto>
-              </div>
-              <div class="col-md-6">
-                <form-auto
-                  input="input"
-                  :kelastitle="$message.kelas.big"
-                  :kelasform="$message.kelas.big"
-                  title="Jumlah Tersisa"
-                  read
-                  v-model="detailNum.formasi_tersisa"
-                ></form-auto>
-              </div>
-            </div>
-              <!-- <div class="col-12 col-md-4"></div>
-              <div class="col-12 col-md-4"></div> -->
+            <div class="col-md-6">
+              <form-auto
+                input="input"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
+                title="Jabatan"
+                read
+                v-model="detailNum.formasi_jabatan"
+              ></form-auto>
             </div>
           </div>
-        
-      
+          <div class="row">
+            <div class="col-md-6">
+              <form-auto
+                input="input"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
+                title="Jumlah Terisi"
+                read
+                v-model="detailNum.formasi_jumlah_terisi"
+              ></form-auto>
+            </div>
+            <div class="col-md-6">
+              <form-auto
+                input="input"
+                :kelastitle="$message.kelas.big"
+                :kelasform="$message.kelas.big"
+                title="Jumlah Tersisa"
+                read
+                v-model="detailNum.formasi_tersisa"
+              ></form-auto>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-md-4"></div>
+          <div class="col-12 col-md-4"></div>-->
+        </div>
+      </div>
+
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.kembali }}</button>
       </div>
@@ -330,6 +329,7 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -364,13 +364,26 @@ export default {
       },
     };
   },
+  // mounted(){
+  //   this.getDetailNum();
+
+  // },
   methods: {
     back() {
       this.$router.back();
     },
-    simpan() {
-      this.$router.back();
-    },
+    // getDetailNum() {
+    //   var id = this.$route.params.id;
+    //   console.log(id);
+    //   // var url ="http://localhost:8081/mutasi/"
+    //   Axios.get(url + id)
+    //     .then((results) => {
+    //       this.detailNum = results.data;
+    //     })
+    //     .catch((err) => {
+    //       alert("data gagal diterima");
+    //     });
+    // },
   },
 };
 </script>

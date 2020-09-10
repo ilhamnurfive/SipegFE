@@ -57,7 +57,7 @@
               :kelasform="$message.kelas.inputs"
               title="NIP"
               read
-              v-model="tambahSpp.nip"
+              v-model="tambahSpp.pegawaiId"
             ></form-auto>
             <form-auto
               input="input"
@@ -102,7 +102,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Instansi Baru"
-                  v-model="tambahSpp.instansi_baru"
+                  v-model="tambahSpp.instansiBaru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -117,7 +117,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Unit Kerja Baru"
-                  v-model="tambahSpp.unit_kerja_baru"
+                  v-model="tambahSpp.unitBaru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -132,7 +132,7 @@
                   :showLabels="false"
                   label="name"
                   placeholder="Jabatan Baru"
-                  v-model="tambahSpp.jabatan_baru"
+                  v-model="tambahSpp.jabatanBaru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -143,14 +143,14 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nomor Surat"
-              v-model="tambahSpp.no_spp"
+              v-model="tambahSpp.nomorSurat"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Tanggal Surat"
-              v-model="tambahSpp.tanggal_surat"
+              v-model="tambahSpp.tglSurat"
             ></form-auto>
             <form-auto
               input="input"
@@ -179,18 +179,18 @@ export default {
   data(){
     return{
       tambahSpp:{
-        no_usul:'1',
-        nip:'G54150012',
-        nama_pegawai:'Ilham Nur Five',
+        no_usul:'',
+        pegawaiId:'193b9c0e-df21-4522-921b-94e677724506',
+        nama_pegawai:'asdd',
         pangkat:'Direktur',
         golongan_ruang:'1',
         jabatan:'Direktur',
         instansi_asal:'Kominfo',
-        instansi_baru:'',
-        unit_kerja_baru:'',
-        jabatan_baru:'',
-        no_spp:'1',
-        tanggal_surat:'',
+        instansiBaru:'',
+        unitBaru:'',
+        jabatanBaru:'',
+        nomorSurat:'1',
+        tglSurat:'',
         jabatan_ppk_instansi_asal:'Direktur',
       },
       filter:{
@@ -206,7 +206,8 @@ export default {
     },
 
     simpan(){
-      Axios.post("http://localhost:8081/mutasi/postMutasi", this.tambahSpp)
+      var url ="http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+      Axios.post(url, this.tambahSpp)
       .then(results=>{
         console.log(results.data)
         alert('data berhasil ditambah');
@@ -214,7 +215,9 @@ export default {
       })
       .catch(err=>{
         alert('data gagal ditambah')
+        console.log(err)
       })
+        console.log(this.tambahSpp)
     }
   }
 }

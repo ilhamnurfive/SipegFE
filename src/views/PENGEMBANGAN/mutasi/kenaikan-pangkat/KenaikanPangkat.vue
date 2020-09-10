@@ -9,7 +9,7 @@
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
             title="Nomor Surat Pernyataan Persetujuan"
-            v-model="pi_keluar.no_spp"
+            v-model="kenaikan_pangkat.no_spp"
           ></form-auto>
           <CRow>
             <label :class="$message.kelas.label">NIP</label>
@@ -20,7 +20,7 @@
                 :loading="null"
                 placeholder="NIP"
                 label="nip"
-                v-model="pi_keluar.nip"
+                v-model="kenaikan_pangkat.nip"
               >
                 <span slot="noResult">Data tidak ditemukan!</span>
               </multiselect>
@@ -31,14 +31,14 @@
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
             title="Nama"
-            v-model="pi_keluar.nama_pegawai"
+            v-model="kenaikan_pangkat.nama_pegawai"
           ></form-auto>
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            title="Tujuan Pindah"
-            v-model="pi_keluar.tujuan_pindah"
+            title="Unit Organisasi Induk"
+            v-model="kenaikan_pangkat.unor_induk"
           ></form-auto>
           <div class="text-right btn-tambah">
             <button
@@ -70,7 +70,7 @@
                       <HeroiconsPencilAltOutline class="text-warning icon-size" />
                       <span class="ml-2">Ubah</span>
                     </CDropdownItem>
-                    <CDropdownItem @click="deleteMutasiKeluar(item)">
+                    <CDropdownItem @click="deleteUsulSpp(item)">
                       <HeroiconsTrashOutline class="text-danger icon-size" />
                       <span class="ml-2">Hapus</span>
                     </CDropdownItem>
@@ -158,11 +158,11 @@ export default {
   mixins: [j_onSending, getNIP],
   data() {
     return {
-      pi_keluar: {
+      kenaikan_pangkat: {
         no_spp: "",
         nip: "",
         nama_pegawai: "",
-        tujuan_pindah: "",
+        unor_induk: "",
       },
       fields: [
         { key: "no" },
@@ -223,26 +223,36 @@ export default {
     //     console.log(err)
     //   })
     // },
-   async deleteMutasiKeluar(item) {
+    deleteMutasiKeluar(item) {
       // var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
 
-      Axios.delete(url);
+      // Axios.delete(url)
+      // this.$swal
+      //   .fire(this.$message.dataMessage.deleteConfirmation)
+      //   .then((results) => {
+      //     this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
+      //       if (results) {
+      //         location.reload();
+      //       }
+      //     });
+      //   })
+      //   .catch((err) => {});
+    },
+    async deleteUsulSpp(item) {
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
         .then(async (result) => {
           if (result.value) {
             let paramsSet = {};
             if (item.noUsul) paramsSet.no_usul = item.noUsul;
-            this.$swal
-              .fire(this.$message.dataMessage.deleted)
-              .then((berhasil) => {
-                if (berhasil) {
-                  location.reload();
-                }
-              });
+            // const deleteUsulSpp = await this.$store.dispatch(
+            //   "deleteUsulSpp",
+            //   paramsSet
+            // );
+            this.$swal.fire(this.$message.dataMessage.deleted);
+            // this.getPengembanganKGB();
           }
-        })
-        .catch((err) => {});
+        });
     },
     unduhPindahKeluar(modal) {
       this.$refs[modal].toggle("#toggle-btn");

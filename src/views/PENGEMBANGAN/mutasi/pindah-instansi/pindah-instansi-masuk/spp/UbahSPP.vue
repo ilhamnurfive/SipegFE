@@ -165,9 +165,10 @@ export default {
 
     getDetailSpp() {
       var id = this.$route.params.id;
+      var url="http://localhost:8081/mutasi/"
 
       console.log(id);
-      Axios.get("http://localhost:8081/mutasi/" + id)
+      Axios.get(url + id)
         .then((results) => {
           alert("data diterima");
           this.ubahSpp = results.data;
@@ -179,11 +180,9 @@ export default {
 
     ubah() {
       var id = this.$route.params.id;
-      let headers = {
-        "Access-Control-Allow-Origin": "http://localhost:8081/**",
-      };
       console.log(id);
-      Axios.put("http://localhost:8081/mutasi/updateMutasi/" + id,this.ubahSpp)
+      var url ="http://localhost:8081/mutasi/updateMutasi/"
+      Axios.put(url + id,this.ubahSpp)
         .then((results) => {
           console.log(results.data);
           alert("data berhasil diubah");
