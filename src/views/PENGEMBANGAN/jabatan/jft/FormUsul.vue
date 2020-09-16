@@ -11,6 +11,7 @@
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="pilihJenis"
+                :options="pilihanJenisPerubahan"
               ></form-auto>
               <form-auto
                 input="input"
@@ -23,12 +24,6 @@
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="jenisPerubahan"
               ></form-auto>
               <form-auto
                 input="input"
@@ -206,6 +201,12 @@ export default {
         { key: 'Angka Kredit' },
         { key: 'Tunjangan Jabatan' },
         { key: 'Aksi' }
+      ],
+      pilihanJenisPerubahan:[
+        {id:"1", name:"Pengangkatan Pertama"},
+        {id:"2", name:"Kenaikan Jabatan"},
+        {id:"3", name:"Pemberhentian Jabatan"},
+        {id:"4", name:"Inpassing"},
       ],
       pilihJenis: 'Pilih Jenis Perubahan Jabatan',
       instansi: 'Instansi',

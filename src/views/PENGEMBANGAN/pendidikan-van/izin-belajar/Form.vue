@@ -152,7 +152,26 @@ export default {
         tanggalMulai: '',
         file: '',
         select: ''
-      }
+      },
+      tambahIzinBelajar:{
+        pegawaiId:"",
+        namaPegawai:"",
+        pendidikanTerakhir:"",
+        jenjangPendidikan:"",
+        pendidikan:"",
+        universitas:"",
+        jurusan:"",
+        akreditas:"",
+        nomorAkreditasi:"",
+        tglMulai:"",
+        tglSelesai:"",
+        supengEs2:"",
+        suketUniv:"",
+        ijazahTerakhir:"",
+        
+
+
+      },
     };
   },
 

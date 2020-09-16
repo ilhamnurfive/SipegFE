@@ -11,7 +11,7 @@
                 :class="$message.kelas.input"
                 placeholder="Instansi"
                 :data="['Apple', 'Blueberry', 'Cherry']"
-                v-model="data"
+                
               />
             </CRow>
             <CRow>
@@ -20,7 +20,7 @@
                 :class="$message.kelas.input"
                 placeholder="Satuan Kerja"
                 :data="['Apple', 'Blueberry', 'Cherry']"
-                v-model="data"
+                
               />
             </CRow>
             <CRow>
@@ -29,7 +29,7 @@
                 :class="$message.kelas.input"
                 placeholder="Jenis Usul Mutasi"
                 :data="['Apple', 'Blueberry', 'Cherry']"
-                v-model="data"
+                
               />
             </CRow>
             <form-auto

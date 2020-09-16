@@ -156,7 +156,7 @@ let routePages = {
                                 judul: 'Peserta dan Nilai',
 
                             },
-                            name: 'peserta-upkp',
+                            name: 'peserta-upkp/:noUsul',
                             component: () => import('@/views/PENGEMBANGAN/pendidikan-van/upkp/ListPeserta.vue'),
                         },
                         {

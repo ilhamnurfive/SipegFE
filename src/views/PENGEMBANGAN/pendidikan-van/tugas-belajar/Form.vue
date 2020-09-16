@@ -12,7 +12,7 @@
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.no_usul"
+                  v-model="tugas_belajar.noUsul"
                 ></form-auto>
                 <CRow>
                   <label :class="$message.kelas.big">NIP</label>
@@ -35,35 +35,35 @@
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.nama_pegawai"
+                  v-model="tugas_belajar.namaPegawai"
                 ></form-auto>
                 <form-auto
                   title="SKP Y-1"
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.skp_y1"
+                  v-model="tugas_belajar.skpY1"
                 ></form-auto>
                 <form-auto
                   title="Status Hukuman Disiplin"
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.status_hukdis"
+                  v-model="tugas_belajar.statusHukdis"
                 ></form-auto>
                 <form-auto
                   title="Jenjang Pendidikan"
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.jenjang_pendidikan"
+                  v-model="tugas_belajar.jenjangPendidikan"
                 ></form-auto>
                 <form-auto
                   title="Tingkat Pendidikan"
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.tingkat_pendidikan"
+                  v-model="tugas_belajar.tingkatPendidikan"
                 ></form-auto>
                 <form-auto
                   title="Pendidikan"
@@ -77,7 +77,7 @@
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.kategori_univ"
+                  v-model="tugas_belajar.kategoriUniv"
                 ></form-auto>
               </div>
               <div class="col-sm-12 col-md-6">
@@ -93,21 +93,21 @@
                   input="input"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.no_akreditasi_jurusan"
+                  v-model="tugas_belajar.noAkreditasi"
                 ></form-auto>
                 <form-auto
                   title="Tanggal Mulai"
                   input="date"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.tanggal_mulai"
+                  v-model="tugas_belajar.tglMulai"
                 ></form-auto>
                 <form-auto
                   title="Tanggal Selesai"
                   input="date"
                   :kelastitle="$message.kelas.big"
                   :kelasform="$message.kelas.big"
-                  v-model="tugas_belajar.tanggal_selesai"
+                  v-model="tugas_belajar.tglSelesai"
                 ></form-auto>
                 <form-auto
                   title="Sponsor"
@@ -183,19 +183,19 @@ export default {
       ijazah: "Ijazah dan Transkrip Sebelumnya",
 
       tugas_belajar:{
-        no_usul:"",
+        noUsul:"",
         nip:"",
-        nama_pegawai:"",
-        skp_y1:"",
-        status_hukdis:"",
-        jenjang_pendidikan:"",
-        tingkat_pendidikan:"",
+        namaPegawai:"",
+        skpY1:"",
+        statusHukdis:"",
+        jenjangPendidikan:"",
+        tingkatPendidikan:"",
         pendidikan:"",
-        kategori_univ:"",
+        kategoriUniv:"",
         akreditasi:"",
-        no_akreditasi_jurusan:"",
-        tanggal_mulai:"",
-        tanggal_selesai:"",
+        noAkreditasi:"",
+        tglMulai:"",
+        tglSelesai:"",
         sponsor:"",
         surat_pengantar_eselon2:"",
         suket_pemberi_beasiswa:"",

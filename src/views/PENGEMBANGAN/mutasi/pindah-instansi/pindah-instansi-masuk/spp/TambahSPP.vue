@@ -57,7 +57,7 @@
               :kelasform="$message.kelas.inputs"
               title="NIP"
               read
-              v-model="tambahSpp.pegawaiId"
+              v-model="tambahSpp.pegawai_id"
             ></form-auto>
             <form-auto
               input="input"
@@ -81,7 +81,7 @@
               :kelasform="$message.kelas.inputs"
               title="Jabatan"
               read
-              v-model="tambahSpp.jabatan"
+              v-model="tambahSpp.jabatan_asal"
             ></form-auto>
             <form-auto
               input="input"
@@ -97,12 +97,12 @@
               <label :class="$message.kelas.label">Instansi Baru</label>
               <div :class="$message.kelas.inputs">
                 <multiselect
-                  :options="[]"
+                  :options="dataInstansi"
                   :loading="null"
                   :showLabels="false"
                   label="name"
                   placeholder="Instansi Baru"
-                  v-model="tambahSpp.instansiBaru"
+                  v-model="tambahSpp.instansi_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -112,12 +112,12 @@
               <label :class="$message.kelas.label">Unit Kerja Baru</label>
               <div :class="$message.kelas.inputs">
                 <multiselect
-                  :options="[]"
+                  :options="UnitKerja"
                   :loading="null"
                   :showLabels="false"
                   label="name"
                   placeholder="Unit Kerja Baru"
-                  v-model="tambahSpp.unitBaru"
+                  v-model="tambahSpp.unit_kerja_baru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -127,12 +127,12 @@
               <label :class="$message.kelas.label">Jabatan Baru</label>
               <div :class="$message.kelas.inputs">
                 <multiselect
-                  :options="[]"
+                  :options="dataJabatanBaru"
                   :loading="null"
                   :showLabels="false"
                   label="name"
+                  v-model="tambahSpp.jabatan_baru"
                   placeholder="Jabatan Baru"
-                  v-model="tambahSpp.jabatanBaru"
                 >
                   <span slot="noResult">Data tidak ditemukan!</span>
                 </multiselect>
@@ -143,14 +143,14 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nomor Surat"
-              v-model="tambahSpp.nomorSurat"
+              v-model="tambahSpp.no_surat"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Tanggal Surat"
-              v-model="tambahSpp.tglSurat"
+              v-model="tambahSpp.tgl_surat"
             ></form-auto>
             <form-auto
               input="input"
@@ -167,60 +167,84 @@
         <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
         <!-- <router-link :to="{name: 'specimen-spp'}">
           <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link> -->
+        </router-link>-->
       </div>
     </CCardBody>
   </CCard>
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
-  data(){
-    return{
-      tambahSpp:{
-        no_usul:'',
-        pegawaiId:'193b9c0e-df21-4522-921b-94e677724506',
-        nama_pegawai:'asdd',
-        pangkat:'Direktur',
-        golongan_ruang:'1',
-        jabatan:'Direktur',
-        instansi_asal:'Kominfo',
-        instansiBaru:'',
-        unitBaru:'',
-        jabatanBaru:'',
-        nomorSurat:'1',
-        tglSurat:'',
-        jabatan_ppk_instansi_asal:'Direktur',
+  data() {
+    return {
+      tambahSpp: {
+        no_usul: "144",
+        pegawai_id: "193b9c0e-df21-4522-921b-94e677724506",
+        nama_pegawai: "asdd",
+        pangkat: "Direktur",
+        golongan_ruang: "1",
+        jabatan_asal: "Direktur",
+        instansi_asal: "Kominfo",
+        instansi_baru: "s",
+        unit_kerja_baru: "OK",
+        jabatan_baru: "Ok",
+        no_surat: "19",
+        tgl_surat: "",
+        pns_id:"2",
+        jabatan_ppk_instansi_asal: "s",
       },
-      filter:{
-        nip:'',
-        nama_pegawai:''
-      }
-    }
-
+      dataInstansi: [
+        // { id: "633e0675-1dd4-40f6-a8c4-46967d62fe02", name: "Satker 1" },
+        {id:1,name: "BKN" },
+        {id:2,name: "Kominfo" },
+        {id:3,name: "Kemendikbud" },
+        {id:4,name: "Kemenkumham" },
+      ],
+      dataJabatanBaru:[
+        {id:1,name: "Presiden" },
+        {id:2,name: "Wakil Presiden" },
+        {id:3,name: "Menteri" },
+        {id:4,name: "Deputi" },
+        {id:5,name: "Direktur" },
+        {id:6,name: "Gubernur" },
+      ],
+      UnitKerja:[
+        {id:1, name:"Developer"},
+        {id:2, name:"PM"},
+        {id:3, name:"Product Design"},
+        {id:4, name:"UI/UX"},
+        {id:5, name:"Software Engineer"},
+      ],
+      filter: {
+        nip: "",
+        nama_pegawai: "",
+      },
+    };
   },
   methods: {
-     back() {
+    back() {
       this.$router.back();
     },
+    
 
-    simpan(){
-      var url ="http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+    simpan() {
+      // var url = "http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+      var url = "http://localhost:8081/api/v1/usul-mutasi/pindah-instansi";
       Axios.post(url, this.tambahSpp)
-      .then(results=>{
-        console.log(results.data)
-        alert('data berhasil ditambah');
-        this.$router.back();
-      })
-      .catch(err=>{
-        alert('data gagal ditambah')
-        console.log(err)
-      })
-        console.log(this.tambahSpp)
-    }
-  }
-}
+        .then((results) => {
+          console.log(this.tambahSpp);
+          alert("data berhasil ditambah");
+          this.$router.back();
+        })
+        .catch((err) => {
+          alert("data gagal ditambah");
+          console.log(this.tambahSpp);
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 

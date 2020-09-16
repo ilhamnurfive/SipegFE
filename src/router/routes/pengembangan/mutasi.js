@@ -334,7 +334,32 @@ let routePages = {
           judul: 'Usul Pengembangan Mutasi Kenaikan Pangkat'
         },
         name: 'kenaikan-pangkat',
-        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/FormUsul.vue')
+        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/ListKp.vue')
+      },
+      {
+        path: 'lihat-mutasi-kp',
+        meta: {
+          judul: 'Pindah Instansi Keluar'
+        },
+        name: 'lihat-mutasi-kp',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/LihatUsulKp.vue'),
+      },
+      {
+        path: 'ubah-usul-kp',
+        meta: {
+          judul: 'Ubah Usul Kenaikan Pangkat'
+        },
+        name: 'ubah-usul-kp',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/UbahUsulKp.vue'),
+      },
+      {
+        path: 'form-usul',
+        meta: {
+          judul: 'Usul Pengembangan Mutasi Kenaikan Pangkat',
+          breadcrumb: 'Form Usul'
+        },
+        name: 'usul-kenaikan-pangkat',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/FormUsul.vue'),
       },
       {
         path: 'tambah-usul',
@@ -346,6 +371,15 @@ let routePages = {
         component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/TambahUsul.vue'),
       },
       {
+        path: 'detail-pegawai',
+        meta: {
+          judul: 'Detail Pegawai',
+          breadcrumb: 'Detail Pegawai'
+        },
+        name: 'detail-pegawai-kp',
+        component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/DetailPegawai.vue'),
+      },
+      {
         path: 'specimen',
         meta: {
           judul: 'Usul Pengembangan Mutasi Kenaikan Pangkat',
@@ -353,7 +387,7 @@ let routePages = {
         },
         name: 'cetak-kenaikan-pangkat',
         component: () => import('@/views/PENGEMBANGAN/mutasi/kenaikan-pangkat/CetakUsul.vue'),
-      }
+      },
       ]
     },
     // SKP

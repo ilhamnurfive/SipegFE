@@ -116,7 +116,7 @@
             </div>
             <div class="col-md-6">
               <form-auto
-                input="input"
+                input="date"
                 :kelastitle="$message.kelas.big"
                 :kelasform="$message.kelas.big"
                 title="Tanggal Surat"
@@ -153,7 +153,7 @@
             </div>
             <div class="col-md-6">
               <form-auto
-                input="input"
+                input="date"
                 :kelastitle="$message.kelas.big"
                 :kelasform="$message.kelas.big"
                 title="Tanggal Surat"
@@ -307,11 +307,12 @@
           </div>
           <div class="col-md-6">
             <form-auto
-              input="input"
+              input="date"
               :kelastitle="$message.kelas.big"
               :kelasform="$message.kelas.big"
               title="Tanggal Surat"
               v-model="mutasi_keluar.tanggal_spp"
+              
             ></form-auto>
           </div>
         </div>
@@ -330,9 +331,6 @@
       <div class="float-right">
         <button :class="$message.kelas.btn_light" @click="back()">{{ $message.button.batal }}</button>
         <button :class="$message.kelas.btn_primary" @click="simpan()">{{ $message.button.simpan }}</button>
-        <!-- <router-link :to="{name: 'specimen-num'}">
-          <button :class="$message.kelas.btn_main">{{ $message.button.cetak}}</button>
-        </router-link>-->
       </div>
     </CCardBody>
   </CCard>

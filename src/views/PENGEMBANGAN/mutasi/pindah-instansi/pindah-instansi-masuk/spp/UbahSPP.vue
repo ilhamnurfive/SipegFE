@@ -43,7 +43,7 @@
               :kelasform="$message.kelas.inputs"
               title="Jabatan"
               read
-              v-model="ubahSpp.jabatan"
+              v-model="ubahSpp.jabatan_asal"
             ></form-auto>
             <form-auto
               input="input"
@@ -105,14 +105,14 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Nomor Surat"
-              v-model="ubahSpp.no_spp"
+              v-model="ubahSpp.no_surat"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               title="Tanggal Surat"
-              v-model="ubahSpp.tanggal_surat"
+              v-model="ubahSpp.tgl_surat"
             ></form-auto>
             <form-auto
               input="input"
@@ -140,23 +140,25 @@ export default {
       ubahSpp: {
         no_usul: "",
         nip: "",
+        pegawai_id: "193b9c0e-df21-4522-921b-94e677724506",
         nama_pegawai: "",
         pangkat: "",
         golongan_ruang: "",
-        jabatan: "",
+        jabatan_asal: "",
         instansi_asal: "",
         instansi_baru: "",
         unit_kerja_baru: "",
         jabatan_baru: "",
-        no_spp: "",
-        tanggal_surat: "",
+        no_surat: "",
+        tgl_surat: "",
         jabatan_ppk_instansi_asal: "",
+
       },
     };
   },
 
   mounted() {
-    this.getDetailSpp();
+    // this.getDetailSpp();
   },
   methods: {
     back() {
@@ -165,7 +167,7 @@ export default {
 
     getDetailSpp() {
       var id = this.$route.params.id;
-      var url="http://localhost:8081/mutasi/"
+      var url = "http://localhost:8081/mutasi/";
 
       console.log(id);
       Axios.get(url + id)
@@ -181,8 +183,8 @@ export default {
     ubah() {
       var id = this.$route.params.id;
       console.log(id);
-      var url ="http://localhost:8081/mutasi/updateMutasi/"
-      Axios.put(url + id,this.ubahSpp)
+      var url = "http://localhost:8081/mutasi/updateMutasi/";
+      Axios.put(url + id, this.ubahSpp)
         .then((results) => {
           console.log(results.data);
           alert("data berhasil diubah");

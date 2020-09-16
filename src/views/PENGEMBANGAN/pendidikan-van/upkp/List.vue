@@ -31,12 +31,14 @@
           <button class="btn-margin" :class="$message.kelas.btn_filter">{{$message.button.filter}}</button>
         </CCol>
       </CRow>
-      <header-table class="text-center" :data="items" :fields="fields">
-        <template #aksi={item}>
+      <header-table class="text-center" :data="dataUpkp" :fields="fields">
+        <template #aksi="{item}">
           <td class="btn-inbox">
-            <router-link :to="{name: 'peserta-upkp'}">
-              <CButton color="light" class="m-1 text-info">Detail</CButton>
-            </router-link>
+            <CButton
+              @click="toRoute('peserta-upkp/:noUsul',item)"
+              color="light"
+              class="m-1 text-info"
+            >Detail</CButton>
             <CButton @click="ubahUpkp(item)" color="light" class="m-1 text-warning">Ubah</CButton>
             <CButton @click="deleteUpkp(item)" color="light" class="m-1 text-danger">Hapus</CButton>
           </td>
@@ -55,6 +57,7 @@
     <div>
       <b-modal
         ok-title="Tambah"
+        @ok="tambahUpkp()"
         cancel-title="Batal"
         ref="tambah-upkp"
         title="Tambah UPKP"
@@ -65,12 +68,14 @@
           input="input"
           :kelastitle="$message.kelas.label"
           :kelasform="$message.kelas.inputs"
+          v-model="tambahUsul.no_usul"
         ></form-auto>
         <form-auto
           title="Tanggal Usul"
           input="date"
           :kelastitle="$message.kelas.label"
           :kelasform="$message.kelas.inputs"
+          v-model="tambahUsul.tgl_usul"
         ></form-auto>
       </b-modal>
     </div>
@@ -78,6 +83,7 @@
     <div>
       <b-modal
         ok-title="Ubah"
+        @ok="updateUpkp()"
         cancel-title="Batal"
         ref="ubah-upkp"
         title="Ubah UPKP"
@@ -88,12 +94,14 @@
           input="input"
           :kelastitle="$message.kelas.label"
           :kelasform="$message.kelas.inputs"
+          v-model="ubahUsul.noUsul"
         ></form-auto>
         <form-auto
           title="Tanggal Usul"
           input="date"
           :kelastitle="$message.kelas.label"
           :kelasform="$message.kelas.inputs"
+          v-model="ubahUsul.tglUsul"
         ></form-auto>
       </b-modal>
     </div>
@@ -101,69 +109,144 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
   data() {
     return {
-      items: [
-        {
-          No: "1",
-          noUsul: "8232321XXXX",
-          "Tanggal Mulai": "11-11-2020",
-          "Tanggal Selesai": "11-11-2020",
-        },
-        {
-          No: "2",
-          noUsul: "34521XXXX",
-          "Tanggal Mulai": "12-11-2020",
-          "Tanggal Selesai": "12-11-2020",
-        },
-        {
-          No: "3",
-          noUsul: "982521XXXX",
-          "Tanggal Mulai": "13-11-2020",
-          "Tanggal Selesai": "13-11-2020",
-        },
-      ],
+      dataUpkp: [],
+      tambahUsul: {
+        no_usul: "",
+        tgl_usul: "",
+      },
+      ubahUsul: {
+        noUsul: "",
+        tglUsul: "",
+      },
       fields: [
         { key: "No" },
-        { key: "noUsul", label: "Nomor Usul" },
-        { key: "Tanggal Mulai" },
-        { key: "Tanggal Selesai" },
+        { key: "no_usul", label: "Nomor Usul" },
+        { key: "tgl_usul", label: "Tanggal Mulai" },
+        // { key: "tglSelesai", label:"Tanggal Selesai" },
         { key: "aksi" },
       ],
     };
+  },
+  mounted() {
+    this.getListUpkp();
   },
   methods: {
     back() {
       this.$router.back();
     },
-    coba(){
-      console.log('ilham')
 
+    //tambah usul upkp;
+    tambahUpkp() {
+      // var url = "http://192.168.212.93:8080/api/v1/ujian-upkp";
+      var url = "http://localhost:8081/api/v1/ujian-upkp";
+      Axios.post(url, this.tambahUsul)
+        .then((results) => {
+          alert("data berhasil ditambah");
+          location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+
+    //get list upkp
+    getListUpkp() {
+      var url = "http://localhost:8081/api/v1/ujian-upkp";
+      Axios.get(url)
+        .then((results) => {
+          this.dataUpkp = results.data.data;
+          for (var i = 0; i < results.data.data.length; i++) {
+            this.dataUpkp[i].No = i + 1;
+            this.dataUpkp[i].tgl_usul = results.data.data[i].tglUsul;
+            this.dataUpkp[i].no_usul = results.data.data[i].noUsul;
+          }
+          console.log(results.data.data);
+        })
+        .catch((err) => {
+          alert("data gagal diterima");
+          console.log(err);
+        });
+    },
+
+    //get upkp by no usul
     ubahUpkp(item) {
       this.toggleModal("ubah-upkp", item);
-      console.log("a");
-      // pasang api get detail usul upkp buat get dan ubah
+      this.getUpkpbyNoUsul(item);
     },
-    deleteUpkp(item) {
-      var url = "https://jsonplaceholder.typicode.com/todos/1" + item.id;
+
+    getUpkpbyNoUsul(item) {
+      var no_usul = item.no_usul;
+
+      var url = "http://localhost:8081/api/v1/ujian-upkp/";
+      Axios.get(url + no_usul)
+        .then((results) => {
+          this.ubahUsul.noUsul = results.data.data.noUsul;
+          this.ubahUsul.tglUsul = results.data.data.tglUsul;
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("data gagal diterima");
+        });
+    },
+
+    //update upkp
+    updateUpkp() {
+      var no_usul = this.ubahUsul.noUsul;
+      console.log(no_usul);
+      var url = "http://localhost:8081/api/v1/ujian-upkp/" + no_usul;
+      Axios.patch(url, this.ubahUsul)
+        .then((results) => {
+          console.log(results);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("data gagal diubah");
+        });
+    },
+
+    async deleteUpkp(item) {
+      var url = "http://localhost:8081/api/v1/ujian-upkp/" + item.noUsul;
 
       Axios.delete(url);
       this.$swal
         .fire(this.$message.dataMessage.deleteConfirmation)
-        .then((results) => {
-          this.$swal.fire(this.$message.dataMessage.deleted).then((results) => {
-            if (results) {
-              location.reload();
-            }
-          });
+        .then(async (result) => {
+          if (result.value) {
+            let paramsSet = {};
+            if (item.noUsul) paramsSet.no_usul = item.noUsul;
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
+          }
         })
-        .catch((err) => {});
+        .catch((err) => {
+          console.log(err);
+        });
     },
     toggleModal(modal) {
       this.$refs[modal].toggle("#toggle-btn");
+    },
+    toRoute(name, item) {
+      if (!item) {
+        this.$router.push({ name });
+      } else {
+        this.$router.push({
+          name,
+          params: {
+            id: item.id,
+            no_usul: item.noUsul,
+            nip: item.nip,
+          },
+        });
+      }
     },
   },
 };

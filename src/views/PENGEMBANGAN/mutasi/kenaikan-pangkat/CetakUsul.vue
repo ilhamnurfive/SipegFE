@@ -16,7 +16,7 @@
             <h5 class="font-weight-bold">Spesimen PNS</h5>
           </CCardHeader>
           <div class="overflow-auto p-3">
-            <header-table :filter="true" :fields="fields"></header-table>
+            <header-table :filter="true" :data="spesimen" :fields="fields"></header-table>
           </div>
         </CCard>
         <div class="row mt-4 text-center float-md-right mr-0">
@@ -42,12 +42,13 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'No', _style: 'width:5%' },
-        { key: 'NIP' },
-        { key: 'Nama' },
-        { key: 'Unor Induk' },
-        { key: 'Jabatan' }
+        { key: 'no', _style: 'width:5%' },
+        { key: 'nip', label:"NIP" },
+        { key: 'nama', label:"Nama" },
+        { key: 'unor_induk', label:"Unor Induk" },
+        { key: 'jabatan', label:"Jabatan" }
       ],
+      spesimen:[{no:1}],
       instansi: 'Instansi'
     };
   },

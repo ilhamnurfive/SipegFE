@@ -250,7 +250,8 @@ export default {
       this.$router.push({ name: name, params: { id: id } });
     },
     getMutasi() {
-      var url = "http://192.168.212.93:8080/api/v1/detail-usul-mutasi";
+      // var url = "http://192.168.212.93:8080/api/v1/detail-usul-mutasi";
+      var url = "http://localhost:8081/api/v1/detail-usul-mutasi";
       // var url = "http://192.168.212.93:8080/api/v1/usul-mutasi";
       // var url = "http://localhost:8081/mutasi";
       Axios.get(url)

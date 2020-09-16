@@ -29,11 +29,7 @@
           </div>
           <div class="text-center text-sm-right pt-4">
             <button @click="resetForm" :class="`${$message.kelas.btn_light} btn-log`">Reset</button>
-            <button
-              @click="tryLogin"
-              type="submit"
-              :class="`${$message.kelas.btn_main} btn-log`"
-            >Login</button>
+            <button @click="tryLogin" type="submit" :class="`${$message.kelas.btn_main} btn-log`">Login</button>
           </div>
         </div>
       </div>

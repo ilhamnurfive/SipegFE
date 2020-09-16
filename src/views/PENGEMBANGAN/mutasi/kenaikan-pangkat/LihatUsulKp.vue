@@ -77,33 +77,6 @@
           </div>
         </div>
         <hr />
-        <div class="overflow-auto">
-          <h5>
-            <u>
-              <strong>Daftar Rekomendasi</strong>
-            </u>
-          </h5>
-          <!-- <header-table :filter="true" :data="datRekom" :fields="fields"></header-table> -->
-          <header-table :load="isSend" :data="datRekom" :filter="true" :fields="fields">
-            <template #aksi="{item}">
-              <td>
-                <button class="px-3" @click="tambah(item)" :class="$message.kelas.btn_light">+</button>
-              </td>
-            </template>
-          </header-table>
-          <div class="float-right col-2">
-            <download-excel
-              class="btn btn-default"
-              :data="datRekom"
-              :fields="fieldsRekom"
-              type="xls"
-              name="Data-Rekomendasi-KP.xls"
-            >
-              <button :class="$message.kelas.btn_primary">{{ $message.button.unduh }}</button>
-            </download-excel>
-          </div>
-        </div>
-        <hr />
         <div class="float-right pt-4">
           <button :class="$message.kelas.btn_light" v-on:click="back()">{{ $message.button.batal }}</button>
           <router-link

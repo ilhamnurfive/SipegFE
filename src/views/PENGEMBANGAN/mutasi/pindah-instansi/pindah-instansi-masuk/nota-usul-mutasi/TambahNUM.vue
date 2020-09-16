@@ -236,7 +236,7 @@
             </div>
             <div class="col-md-6">
               <form-auto
-                input="input"
+                input="date"
                 :kelastitle="$message.kelas.big"
                 :kelasform="$message.kelas.big"
                 title="Tanggal Surat Pengantar Pertek"
@@ -346,11 +346,13 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
   data() {
     return {
       tambahNum: {
+        nota_id: "",
+        usul_mutasi_pi_id: "",
         nama_pegawai: "",
         nip: "",
         tempat_lahir: "",
@@ -358,7 +360,7 @@ export default {
         pangkat: "",
         golongan_ruang: "",
         tmt_golongan_ruang: "",
-        jabatan: "",
+        jabatan_asal: "",
         pendidikan: "",
         instansi_asal: "",
         instansi_baru: "",

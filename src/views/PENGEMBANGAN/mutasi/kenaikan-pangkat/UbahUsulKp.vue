@@ -10,24 +10,6 @@
                 <br />
                 <div>
                   <form-auto
-                    input="select"
-                    :kelastitle="$message.kelas.label"
-                    :kelasform="$message.kelas.input"
-                    :title="instansi"
-                    :options="dataInstansi"
-                    aturan="required"
-                    v-model="form.instansiId"
-                  ></form-auto>
-                  <form-auto
-                    input="select"
-                    :kelastitle="$message.kelas.label"
-                    :kelasform="$message.kelas.input"
-                    title="Satuan Kerja"
-                    :options="dataSatker"
-                    aturan="required"
-                    v-model="form.satkerId"
-                  ></form-auto>
-                  <form-auto
                     input="input"
                     :kelastitle="$message.kelas.label"
                     :kelasform="$message.kelas.input"
@@ -36,21 +18,30 @@
                     v-model="form.noUsul"
                   ></form-auto>
                   <form-auto
+                    input="select"
+                    :kelastitle="$message.kelas.label"
+                    :kelasform="$message.kelas.input"
+                    :title="instansi"
+                    :options="dataInstansi"
+                    read
+                    v-model="form.instansiId"
+                  ></form-auto>
+                  <form-auto
+                    input="select"
+                    :kelastitle="$message.kelas.label"
+                    :kelasform="$message.kelas.input"
+                    title="Satuan Kerja"
+                    :options="dataSatker"
+                    read
+                    v-model="form.satkerId"
+                  ></form-auto>
+                  <form-auto
                     :title="tanggalUsul"
                     input="date"
                     :kelastitle="$message.kelas.label"
                     :kelasform="$message.kelas.input"
-                    aturan="required"
+                    read
                     v-model="form.tglUsul"
-                  ></form-auto>
-                  <form-auto
-                    :title="tahunUsul"
-                    input="input"
-                    :kelastitle="$message.kelas.label"
-                    :kelasform="$message.kelas.input"
-                    aturan="required"
-                    v-model="form.tahunUsul"
-                    v-on:keypress="numberOnly($event)"
                   ></form-auto>
                   <form-auto
                     input="input"
@@ -58,11 +49,11 @@
                     :kelasform="$message.kelas.input"
                     title="Periode"
                     :placehold="form.periode_id"
-                    aturan="required"
+                    read
                     v-model="form.periodeId"
                   ></form-auto>
                 </div>
-                <div v-if="!buatUsul" class="float-right">
+                <div class="float-right">
                   <button
                     type="button"
                     :class="$message.kelas.btn_light"
@@ -71,68 +62,11 @@
                   <button
                     type="button"
                     :class="$message.kelas.btn_main"
-                    @click="submitUsul()"
-                  >{{ $message.button.buat }} Usul</button>
-                </div>
-                <div v-else-if="buatUsul" class="float-right">
-                  <router-link :to="{ name: 'tambah-kenaikan-pangkat' }">
-                    <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
-                  </router-link>
+                    @click="ubahUsul()"
+                  >{{ $message.button.ubah }} Usul</button>
                 </div>
               </form>
             </ValidationObserver>
-          <!-- </CTab> -->
-          <!-- <CTab title="STATUS KENAIKAN PANGKAT">
-            <CCardBody>
-              <CRow>
-                <CCol sm="12" md>
-                  <form-auto
-                    input="input"
-                    :kelastitle="$message.kelas.meds"
-                    :kelasform="$message.kelas.big"
-                    title="Nomor Usul"
-                    v-model="statusForm.noUsul"
-                  ></form-auto>
-                </CCol>
-                <CCol sm="12" md>
-                  <form-auto
-                    input="input"
-                    :kelastitle="$message.kelas.meds"
-                    :kelasform="$message.kelas.big"
-                    title="NIP"
-                    v-model="statusForm.nip"
-                  ></form-auto>
-                </CCol>
-                <CCol sm="12" md>
-                  <form-auto
-                    input="input"
-                    :kelastitle="$message.kelas.meds"
-                    :kelasform="$message.kelas.big"
-                    title="Jenis KP"
-                    v-model="statusForm.jenisKp"
-                  ></form-auto>
-                </CCol>
-                <CCol sm="12" md>
-                  <form-auto
-                    input="input"
-                    :kelastitle="$message.kelas.meds"
-                    :kelasform="$message.kelas.big"
-                    title="Periode"
-                    v-model="statusForm.periode"
-                  ></form-auto>
-                </CCol>
-                <CCol sm="12" md>
-                  <button class="btn-margin" :class="$message.kelas.btn_filter">Filter</button>
-                </CCol>
-              </CRow>
-              <header-table :fields="fields"></header-table>
-              <div class="float-right">
-                <button :class="$message.kelas.btn_light">{{ $message.button.cetak }}</button>
-                <button :class="$message.kelas.btn_main">{{ $message.button.unduh }}</button>
-              </div>
-            </CCardBody>
-          </CTab> -->
-        <!-- </CTabs> -->
       </CCardBody>
     </CCard>
   </div>
@@ -184,7 +118,6 @@ export default {
       tahunUsul: "Tahun Usul",
       satuan: "Satuan Kerja",
       periode: "Periode",
-      buatUsul: false,
     };
   },
 
@@ -202,8 +135,8 @@ export default {
       //   this.$router.push({ name: "tambah-kenaikan-pangkat" });
       // }
     },
-    tambahUsul() {
-      // Axios.post("http://localhost:8081/mutasi/postMutasi", this.form)
+    ubahUsul() {
+    //   Axios.post("http://localhost:8081/mutasi/postMutasi", this.form)
       //   .then((results) => {
       //     console.log(results.data);
       //     alert("data berhasil ditambah");
@@ -215,15 +148,6 @@ export default {
     },
     wew() {
       console.log('a')
-    },
-    numberOnly: function(evt) {
-      evt = (evt) ? evt : window.event;
-      var charCode = (evt.which) ? evt.which : evt.keyCode;
-      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault();;
-      } else {
-        return true;
-      }
     },
     back() {
       this.$router.back();

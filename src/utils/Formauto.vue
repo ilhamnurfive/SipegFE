@@ -14,8 +14,8 @@
               :class="errors[0] ? 'form-control border-danger' : 'form-control'"
               :placeholder="placehold ? placehold : title"
               :value="value"
-              
               v-on:input="updateValue($event.target.value)"
+              v-on:keypress="changeValue($event.target.value)"
               :readonly="read"
               :list="list"
             />
@@ -115,6 +115,9 @@ export default {
   methods: {
     updateValue: function(value) {
       this.$emit('input', value);
+    },
+    changeValue: function(value) {
+      this.$emit('keypress', value);
     }
   }
 };

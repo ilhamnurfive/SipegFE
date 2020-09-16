@@ -183,21 +183,19 @@ export default {
     };
   },
   mounted() {
-    this.getSpp();
+    // this.getSpp();
   },
   methods: {
     back() {
       this.$router.back();
     },
     getSpp() {
-      // var url = "http://localhost:8081/mutasi";
-      var url = "http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+      // var url = "http://192.168.212.93:8080/api/v1/usul-mutasi/pindah-instansi";
+      var url = "http://localhost:8081/api/v1/usul-mutasi/pindah-instansi";
       Axios
         .get(url)
         .then((results) => {
-          
-          // console.log(results);
-          console.log(results.data.data[0].id);
+          console.log(results.data.data[0]);
           
           this.dataSpp=results.data.data
           for (var i = 0; i < results.data.data.length; i++) {

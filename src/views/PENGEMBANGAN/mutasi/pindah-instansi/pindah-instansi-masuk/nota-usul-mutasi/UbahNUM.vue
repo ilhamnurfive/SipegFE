@@ -324,14 +324,16 @@ export default {
   data() {
     return {
       ubahNum: {
-        nama: "",
+                nota_id: "",
+        usul_mutasi_pi_id: "",
+        nama_pegawai: "",
         nip: "",
         tempat_lahir: "",
         tanggal_lahir: "",
         pangkat: "",
         golongan_ruang: "",
         tmt_golongan_ruang: "",
-        jabatan: "",
+        jabatan_asal: "",
         pendidikan: "",
         instansi_asal: "",
         instansi_baru: "",

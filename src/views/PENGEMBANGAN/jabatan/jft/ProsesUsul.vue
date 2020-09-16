@@ -14,7 +14,7 @@
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            :title="instansi"
+            :title="instansiInduk"
           ></form-auto>
           <form-auto
             input="input"
@@ -59,17 +59,15 @@ export default {
         { key: 'TTL' },
         { key: 'NIP' },
         { key: 'Pendidikan' },
-        { key: 'Pangkat' },
         { key: 'Golru' },
         { key: 'Unit' },
         { key: 'TMT' },
         { key: 'Jabatan' },
-        { key: 'Angka Kredit' },
         { key: 'Tunjangan Jabatan' },
         { key: 'Aksi' }
       ],
       nip: 'NIP Baru',
-      instansi: 'Instansi Induk',
+      instansiInduk: 'Instansi Induk',
       satuanKerja: 'Satuan Kerja'
     };
   },
