@@ -12,7 +12,7 @@ const cache = setupCache({
 })
 
 //const API_URL = process.env.VUE_APP_API_URL || 'http://127.0.0.1:3100'
-const API_URL = 'http://127.0.0.1:20000'
+const API_URL = 'http://127.0.0.1:8080'
 
 function API() {
   return axios.create({

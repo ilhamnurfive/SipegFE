@@ -43,6 +43,7 @@
 
           <ValidationProvider :rules="aturan" v-slot="{ errors }" v-if="input === 'textarea'">
             <textarea
+              :type="input"
               :class="errors[0] ? 'form-control border-danger' : 'form-control'"
               :placeholder="title"
               :value="value"

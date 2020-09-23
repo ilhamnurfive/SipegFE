@@ -11,55 +11,73 @@
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="nip"
+                title="NIP"
+                read
+                v-model="pegawai_lama.nip"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="nama"
+                title="Nama"
+                read
+                v-model="pegawai_lama.nama"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="pangkat"
+                title="Pangkat"
+                read
+                v-model="pegawai_lama.pangkat"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="golongan"
+                title="Golongan Ruang"
+                read
+                v-model="pegawai_lama.golongan_ruang"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="jabatan"
+                title="Jabatan"
+                read
+                v-model="pegawai_lama.jabatan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="unit"
+                title="Unit Kerja"
+                read
+                v-model="pegawai_lama.unit_kerja"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="masaKerja"
+                title="Masa Kerja Golongan"
+                read
+                v-model="pegawai_lama.golongan_ruang"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="gajiPokok"
+                title="Gaji Pokok"
+                read
+                v-model="pegawai_lama.gaji_pokok"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="noPertek"
+                title="No Pertek CLTN"
+                read
+                v-model="pegawai_lama.no_pertek_cltn"
               ></form-auto>
             </CCol>
             <CCol lg="12" xl="6">
@@ -67,49 +85,65 @@
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tanggalPertek"
+                title="Tanggal Pertek CLTN"
+                read
+                v-model="pegawai_lama.tanggal_pertek_cltn"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="noSK"
+                title="Nomor SK CLTN"
+                read
+                v-model="pegawai_lama.no_sk_cltn"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tanggalSK"
+                title="Tanggal SK CLTN"
+                read
+                v-model="pegawai_lama.tanggal_sk_cltn"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="noPerpanjangan"
+                title="Nomor Pertek Perpanjangan"
+                read
+                v-model="pegawai_lama.no_pertek_perpanjangan"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tglPertekPerpanjangan"
+                title="Tanggal Pertek Perpanjangan"
+                read
+                v-model="pegawai_lama.tanggal_pertek_perpanjangan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="noPerpanjanganSK"
+                title="Nomor SK Perpanjangan"
+                read
+                v-model="pegawai_lama.no_sk_perpanjangan"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tglPerpanjanganSK"
+                title="Tanggal SK Perpanjangan"
+                read
+                v-model="pegawai_lama.tanggal_sk_perpanjangan"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tglSelesai"
+                title="Tanggal Selesai CLTN"
+                read
+                v-model="pegawai_lama.tanggal_selesai_cltn"
               ></form-auto>
             </CCol>
           </CRow>
@@ -120,63 +154,81 @@
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="pangkat"
+                title="Pangkat"
+                read
+                v-model="pegawai_baru.pangkat"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="golongan"
+                title="Golongan Ruang"
+                read
+                v-model="pegawai_baru.golongan_ruang"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="masaKerja"
+                title="Masa Kerja Golongan"
+                read
+                v-model="pegawai_baru.masa_kerja_golongan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="gajiPokok"
+                title="Gaji Pokok"
+                read
+                v-model="pegawai_baru.gaji_pokok"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tglBerlaku"
+                title="Berlaku Mulai Tanggal"
+                read
+                v-model="pegawai_baru.berlaku_mulai_tanggal"
               ></form-auto>
             </CCol>
             <CCol lg="12" xl="6">
               <form-auto
-                input="date"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
-                :title="tglBerlaku"
-              ></form-auto>
-              <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="noPengaktifan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.inputs"
-                :title="wilayah"
+                title="No Pertek Pengaktifan"
+                read
+                v-model="pegawai_baru.no_pertek_pengaktifan"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="tanggalSK"
+                title="Tanggal Pertek Pengangkatifan"
+                read
+                v-model="pegawai_baru.tanggal_pertek_pengaktifan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.inputs"
-                :title="nomor"
+                title="Wilayah Pembayaran"
+                read
+                v-model="pegawai_baru.wilayah_pembayaran"
+              ></form-auto>
+              <form-auto
+                input="date"
+                :kelastitle="$message.kelas.label"
+                :kelasform="$message.kelas.inputs"
+                title="Tanggal SK Pengaktifan"
+                v-model="pegawai_baru.tanggal_sk_pengaktifan"
+              ></form-auto>
+              <form-auto
+                input="input"
+                :kelastitle="$message.kelas.label"
+                :kelasform="$message.kelas.inputs"
+                title="Nomor SK Pengaktifan"
+                v-model="pegawai_baru.no_sk_pengaktifan"
               ></form-auto>
             </CCol>
           </CRow>
@@ -196,35 +248,44 @@
 export default {
   data() {
     return {
-      nip: 'NIP',
-      nama: 'Nama',
-      pangkat: 'Pangkat',
-      golongan: 'Golongan Ruang',
-      jabatan: 'Jabatan',
-      unit: 'Unit Kerja',
-      masaKerja: 'Masa Kerja Golongan',
-      gajiPokok: 'Gaji Pokok',
-      noPertek: 'No Pertek CLTN',
-      tanggalPertek: 'Tanggal Pertek CLTN',
-      noSK: 'Nomor SK CLTN',
-      tanggalCLTN: 'Tanggal SK CLTN',
-      tanggalSK: 'Tanggal SK CLTN',
-      noPerpanjangan: 'No Pertek Perpanjangan',
-      tglPertekPerpanjangan: 'Tanggal Pertek Perpanjangan',
-      noPerpanjanganSK: 'No. SK Perpanjangan',
-      tglPerpanjanganSK: 'Tanggal SK Perpanjangan',
-      tglSelesai: 'Tanggal Selesai CLTN',
-      wilayah: 'Wilayah Pembayaran',
-      tglBerlaku: 'Berlaku Mulai Tanggal',
-      noPengaktifan: 'No Pertek Pengaktifan',
-      nomor: 'Nomor'
+      pegawai_lama: {
+        nama: "",
+        nip: "",
+        pangkat: "",
+        golongan_ruang: "",
+        jabatan: "",
+        unit_kerja: "",
+        masa_kerja_golongan: "",
+        gaji_pokok: "",
+        no_pertek_cltn: "",
+        tanggal_pertek_cltn: "",
+        no_sk_cltn: "",
+        tanggal_sk_cltn: "",
+        no_pertek_perpanjangan: "",
+        tanggal_pertek_perpanjangan: "",
+        no_sk_perpanjangan: "",
+        tanggal_sk_perpanjangan: "",
+        tanggal_selesai_cltn: "",
+      },
+      pegawai_baru: {
+        pangkat: "",
+        golongan_ruang: "",
+        masa_kerja_golongan: "",
+        gaji_pokok: "",
+        berlaku_mulai_tanggal: "",
+        no_pertek_pengaktifan: "",
+        tanggal_pertek_pengaktifan: "",
+        wilayah_pembayaran: "",
+        tanggal_sk_pengaktifan: "",
+        no_sk_pengaktifan: "",
+      },
     };
   },
   methods: {
     back() {
       this.$router.back();
-    }
-  }
+    },
+  },
 };
 </script>
 

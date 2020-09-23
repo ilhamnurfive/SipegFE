@@ -8,30 +8,27 @@
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            :title="nip"
+            :title="instansi"
           ></form-auto>
-          <!-- <div class="text-right btn-tambah">
-              <button class="px-4" :class="$message.kelas.btn_second">{{ $message.button.tambah }}</button>
-          </div>-->
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            :title="nama"
+            :title="satker"
             read
           ></form-auto>
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            :title="unorInduk"
+            :title="no_usul"
             read
           ></form-auto>
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
-            :title="unor"
+            :title="tgl_usul"
             read
           ></form-auto>
           <div class="text-right btn-tambah">
@@ -54,16 +51,31 @@
                   </template>
                   <CDropdownItem @click="toRoute('detail-pegawai-kp',item)">
                     <HeroiconsClipboardListOutline class="text-info icon-size" />
-                    <span class="ml-2">Lihat</span>
+                    <span class="ml-2">Detail</span>
                   </CDropdownItem>
-                  <CDropdownItem @click="hapusUsul(item)">
+                  <CDropdownItem @click="toRoute('ubah-jenis-kp',item)">
+                    <HeroiconsPencilAltOutline class="text-warning icon-size" />
+                    <span class="ml-2">Ubah</span>
+                  </CDropdownItem>
+                  <CDropdownItem @click="deletePegawai(item)">
                     <HeroiconsTrashOutline class="text-danger icon-size" />
                     <span class="ml-2">Hapus</span>
+                  </CDropdownItem>
+                  <CDropdownItem @click="unggahSpp('modal-unggahSpp')">
+                    <HeroiconsUploadOutline class="icon-size" />
+                    <span class="ml-2">Unggah</span>
+                  </CDropdownItem>
+                  <CDropdownItem @click="unduhSpp('modal-unduhSpp')">
+                    <HeroiconsDownloadOutline class="icon-size text-success" />
+                    <span class="ml-2">Unduh</span>
                   </CDropdownItem>
                 </b-dropdown>
               </td>
             </template>
           </header-table>
+          <!-- <div class="float-right col-2">
+              <button @click="toRoute('tambah-kenaikan-pangkat',item)" :class="$message.kelas.btn_second">{{ $message.button.ubah }}</button>
+          </div> -->
           <div class="float-right col-2">
             <download-excel
               class="btn btn-default"
@@ -78,7 +90,10 @@
         </div>
         <hr />
         <div class="float-right pt-4">
-          <button :class="$message.kelas.btn_light" v-on:click="back()">{{ $message.button.batal }}</button>
+          <button
+            :class="$message.kelas.btn_light"
+            v-on:click="back()"
+          >{{ $message.button.kembali }}</button>
           <router-link
             :to="{ name: 'cetak-kenaikan-pangkat' }"
             :class="$message.kelas.btn_main"
@@ -86,12 +101,55 @@
         </div>
       </CCardBody>
     </CCard>
+    <!-- Unduh -->
+    <div>
+      <b-modal
+        ok-only
+        ok-variant="secondary"
+        ok-title="Kembali"
+        ref="modal-unduhSpp"
+        title="Unduh Dokumen"
+      >
+        <header-table class="text-center" :data="unduhItems" :fields="tableUnduh">
+          <template #unduh>
+            <td class="py-2">
+              <CButton variant="outline" color="success" class="mx-auto">
+                <HeroiconsDocumentDownloadOutline class="icon-size" />
+              </CButton>
+            </td>
+          </template>
+        </header-table>
+      </b-modal>
+    </div>
+    <!-- Unggah -->
+    <div>
+      <b-modal
+        ok-title="Unggah"
+        cancel-title="Batal"
+        ref="modal-unggahSpp"
+        title="Unggah Dokumen"
+        ok-variant="success"
+      >
+        <form-auto
+          title="Jenis Dokumen"
+          input="select"
+          :kelastitle="$message.kelas.label"
+          :kelasform="$message.kelas.inputs"
+        ></form-auto>
+        <form-group title="Dokumen">
+          <CCol md="8">
+            <CInputFile :custom="true" :class="$message.kelas.big" />
+          </CCol>
+        </form-group>
+      </b-modal>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import JsonExcel from "vue-json-excel";
+import Axios from "axios";
 
 Vue.component("downloadExcel", JsonExcel);
 export default {
@@ -118,7 +176,7 @@ export default {
         Status_Hukdis: "status_hukdis",
         // Aksi:""
       },
-      datRekom: [
+      datUsul: [
         {
           no: 1,
           nip: "ABC",
@@ -150,11 +208,21 @@ export default {
           status_hukdis: "Amat Baik",
         },
       ],
-      datUsul: [],
-      nip: "NIP",
-      nama: "Nama",
-      unorInduk: "Unor Induk",
-      unor: "Unor",
+      unduhItems: [
+        { jenisDokumen: "Usul", dokumen: "Dummy KP-1" },
+        { jenisDokumen: "Usul", dokumen: "Dummy KP-2" },
+        { jenisDokumen: "Usul", dokumen: "Dummy KP-3" },
+      ],
+      tableUnduh: [
+        { key: "jenisDokumen", sorter: false, style: "width: 40%" },
+        { key: "dokumen", sorter: false, style: "width: 40%" },
+        { key: "unduh", label: "", sorter: false, style: "width: 20$" },
+      ],
+      //   datUsul: [],
+      instansi: "Instansi",
+      satker: "Satuan Kerja",
+      no_usul: "Nomor Usul",
+      tgl_usul: "Tanggal Usul",
       isSend: false,
     };
   },
@@ -163,9 +231,36 @@ export default {
     back() {
       this.$router.back();
     },
+    unduhSpp(modal) {
+      this.$refs[modal].toggle("#toggle-btn");
+    },
+    unggahSpp(modal) {
+      this.$refs[modal].toggle("#toggle-btn");
+    },
     tambah(item) {
       this.datUsul.push(item);
       this.datRekom = this.datRekom.filter((x) => x.nip != item.nip);
+    },
+    async deletePegawai(item) {
+      var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
+
+      Axios.delete(url);
+      this.$swal
+        .fire(this.$message.dataMessage.deleteConfirmation)
+        .then(async (result) => {
+          if (result.value) {
+            let paramsSet = {};
+            if (item.noUsul) paramsSet.no_usul = item.noUsul;
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
+          }
+        })
+        .catch((err) => {});
     },
     toRoute(name, item) {
       if (!item) {

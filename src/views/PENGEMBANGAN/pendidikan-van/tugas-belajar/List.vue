@@ -19,12 +19,7 @@
               </multiselect>
             </div>
           </CRow>
-          <form-auto
-            input="input"
-            :kelastitle="$message.kelas.label"
-            :kelasform="$message.kelas.input"
-            title="Instansi"
-          ></form-auto>
+         
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
@@ -49,16 +44,25 @@
             </router-link>
           </div>
           <header-table class="text-center" :strip="true" :data="items" :fields="isitabel">
-            <template #aksi>
+            <template #aksi="{item}">
               <td>
-                <router-link
+                  <b-dropdown variant="light" toggle-class="text-decoration-none">
+                     <template v-slot:button-content>
+                    <HeroiconsDotsVerticalOutline class="icon-size" />
+                  </template>
+                     <CDropdownItem @click="toRoute('form-tugas-belajar', item)">
+                    <HeroiconsClipboardListOutline class="text-info icon-size" />
+                    <span class="ml-2">Lihat</span>
+                    </CDropdownItem>
+                  </b-dropdown>
+                <!-- <router-link
                   :to="{name:'form-tugas-belajar'}"
                   :class="$message.kelas.btn_light + ' text-success'"
                 >{{$message.button.selesai}}</router-link>
                 <router-link
                   :to="{name:'form-tb-perpanjangan'}"
                   :class="$message.kelas.btn_light + ' text-info'"
-                >{{$message.button.perpanjang}}</router-link>
+                >{{$message.button.perpanjang}}</router-link> -->
               </td>
             </template>
           </header-table>
@@ -112,7 +116,19 @@ export default {
   methods: {
     back() {
       this.$router.push({ name: 'tugasbelajar' });
-    }
+    },
+      toRoute(url, item) {
+      if (!item) {
+        this.$router.push({ name : url });
+      } else {
+        this.$router.push({
+          name : url,
+          params: {
+            
+          }
+        });
+        }
+      }
   }
 };
 </script>

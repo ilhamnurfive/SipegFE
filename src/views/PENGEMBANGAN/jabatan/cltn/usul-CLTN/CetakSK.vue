@@ -10,45 +10,59 @@
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="nip"
+              title="NIP"
+              read
+              v-model="detailPegawaiCltn.nip"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="nama"
+              title="Nama"
+              read
+              v-model="detailPegawaiCltn.nama"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="pangkat"
+              title="Pangkat"
+              read
+              v-model="detailPegawaiCltn.pangkat"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="golongan"
+              title="Golongan Ruang"
+              read
+              v-model="detailPegawaiCltn.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="jabatan"
+              title="Jabatan"
+              read
+              v-model="detailPegawaiCltn.jabatan"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="unit"
+              title="Unit Kerja"
+              read
+              v-model="detailPegawaiCltn.unit_kerja"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="masaKerja"
+              title="Masa Kerja"
+              read
+              v-model="detailPegawaiCltn.masa_kerja"
             ></form-auto>
-            <form-auto
+            <!-- <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
@@ -59,115 +73,156 @@
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
               :title="totalMasa"
+            ></form-auto>-->
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Gaji Pokok"
+              read
+              v-model="detailPegawaiCltn.gaji_pokok"
+            ></form-auto>
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Tanggal Pengajuan CLTN"
+              read
+              v-model="detailPegawaiCltn.tanggal_pengajuan"
             ></form-auto>
           </div>
           <div class="px-4 col-sm-12 col-md-6">
             <form-auto
+              input="date"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Tanggal Selesai CLTN"
+              read
+              v-model="detailPegawaiCltn.tanggal_selesai"
+            ></form-auto>
+            <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="gajiPokok"
+              title="Alasan Cuti"
+              read
+              v-model="detailPegawaiCltn.alasan_cuti"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Lama Cuti"
+              read
+              v-model="detailPegawaiCltn.lama_cuti"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Wilayah Pembayaran"
+              read
+              v-model="detailPegawaiCltn.wilayah_pembayaran"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="No Pertek"
+              read
+              v-model="detailPegawaiCltn.no_pertek"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="tglPengajuan"
+              title="Tanggal Pertek"
+              read
+              v-model="detailPegawaiCltn.tanggal_pertek"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="terhitungTgl"
+              title="Tanggal SK"
+              v-model="detailPegawaiCltn.tanggal_sk"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="alasanCuti"
+              title="Nomor SK"
+              v-model="detailPegawaiCltn.nomor_sk"
             ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="lamaCuti"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="wilayah"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="noPertek"
-            ></form-auto>
-            <form-auto
-              input="date"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tanggalSK"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="nomor"
-            ></form-auto>
+            <div class="float-right mt-3">
+              <button
+                :class="$message.kelas.btn_light"
+                v-on:click="back()"
+              >{{ $message.button.kembali }}</button>
+                <button @click="cetak(item)"
+                  :class="$message.kelas.btn_main"
+                >{{ $message.button.cetak }}</button>
+              
+            </div>
           </div>
         </CRow>
-        <div class="float-right mt-3">
-          <button
-            :class="$message.kelas.btn_light"
-            v-on:click="back()"
-          >{{ $message.button.kembali }}</button>
-          <router-link :to="{name: 'specimen-cltn'}">
-            <button
-              :to="{ name: 'specimen-cltn' }"
-              :class="$message.kelas.btn_main"
-            >{{ $message.button.cetak }}</button>
-          </router-link>
-        </div>
       </div>
     </CCardBody>
   </CCard>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
     return {
-      nip: 'NIP',
-      nama: 'Nama',
-      pangkat: 'Pangkat',
-      golongan: 'Golongan Ruang',
-      jabatan: 'Jabatan',
-      unit: 'Unit Kerja',
-      instansi: 'Instansi Induk',
-      masaKerja: 'Masa Kerja',
-      masaGolongan: 'Masa Kerja Golongan',
-      gajiPokok: 'Gaji Pokok',
-      totalMasa: 'Total Masa Kerja',
-      terhitungTgl: 'Terhitung Mulai Tanggal',
-      alasanCuti: 'Alasan Cuti',
-      lamaCuti: 'Lama Cuti',
-      wilayah: 'Wilayah Pembayaran',
-      noPertek: 'No Pertek Ka. BKN',
-      tanggalSK: 'Tanggal SK',
-      nomor: 'Nomor',
-      tglPengajuan: 'Tanggal Pengajuan'
+      detailPegawaiCltn: {
+        nip: "",
+        nama: "",
+        pangkat: "",
+        golongan_ruang: "",
+        jabatan: "",
+        unit_kerja: "",
+        masa_kerja: "",
+        gaji_pokok: "",
+        tanggal_pengajuan: "",
+        tanggal_selesai: "",
+        alasan_cuti: "",
+        lama_cuti: "",
+        wilayah_pembayaran: "",
+        no_pertek: "",
+        tanggal_pertek: "",
+        tanggal_sk: "",
+        nomor_sk: "",
+      },
     };
   },
 
   methods: {
     back() {
       this.$router.back();
-    }
-  }
+    },
+    toRoute(name, item) {
+      console.log(item);
+      if (!item) {
+        this.$router.push({ name });
+      } else {
+        this.$router.push({
+          name,
+          params: {
+            id: item.id,
+            no_usul: item.no_usul,
+            nip: item.nip,
+          },
+        });
+      }
+    },
+
+    cetak(item) {
+      this.toRoute('specimen-cltn',this.item);
+    },
+  },
 };
 </script>
 

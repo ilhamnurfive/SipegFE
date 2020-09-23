@@ -3,8 +3,8 @@
     <CCard class="overflow-auto">
       <content-header />
       <CCardBody>
-        <CTabs :active-tab="0">
-          <CTab title="USUL JFT">
+        <!-- <CTabs :active-tab="0"> -->
+          <!-- <CTab title="USUL JFT"> -->
             <div class="p-4">
               <form-auto
                 input="select"
@@ -12,42 +12,49 @@
                 :kelasform="$message.kelas.input"
                 :title="pilihJenis"
                 :options="pilihanJenisPerubahan"
+                v-model="usulJft.jenis_perubahan_jabatan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="instansi"
+                v-model="usulJft.instansi"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="satuan"
+                v-model="usulJft.satuan_kerja"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="noUsul"
+                v-model="usulJft.nomor_usul"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="tanggalUsul"
+                v-model="usulJft.tgl_usul"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="bulan"
+                v-model="usulJft.bulan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="tahun"
+                v-model="usulJft.tahun"
               ></form-auto>
             </div>
             <div v-if="!buatUsul" class="float-right">
@@ -56,7 +63,7 @@
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
               <button
-                @click="buatUsul = true"
+                @click="buatUsulJft()"
                 :class="$message.kelas.btn_main"
               >{{ $message.button.buat }} Usul</button>
             </div>
@@ -65,8 +72,8 @@
                 <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
               </router-link>
             </div>
-          </CTab>
-          <CTab title="CETAK JFT">
+          <!-- </CTab> -->
+          <!-- <CTab title="CETAK JFT">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -93,8 +100,8 @@
             <div>
               <header-table :filter="true" :fields="fieldsUnggah"></header-table>
             </div>
-          </CTab>
-          <CTab title="UNGGAH JFT">
+          </CTab> -->
+          <!-- <CTab title="UNGGAH JFT">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -121,7 +128,7 @@
             <div>
               <header-table :filter="true" :fields="fieldsUnggah"></header-table>
             </div>
-          </CTab>
+          </CTab> -->
           <!-- <CTab title="STATUS JFT">
             <CCardBody>
               <div class>
@@ -160,7 +167,7 @@
               </div>
             </CCardBody>
           </CTab>-->
-        </CTabs>
+        <!-- </CTabs> -->
       </CCardBody>
     </CCard>
   </div>
@@ -208,7 +215,17 @@ export default {
         {id:"3", name:"Pemberhentian Jabatan"},
         {id:"4", name:"Inpassing"},
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
+      usulJft:{
+        jenis_perubahan_jabatan:"",
+        instansi:"",
+        satuan_kerja:"",
+        nomor_usul:"",
+        tgl_usul:"",
+        bulan:"",
+        tahun:"",
+        status_jf:null,
+      },
+      pilihJenis: 'Jenis Perubahan Jabatan',
       instansi: 'Instansi',
       noUsul: 'Nomor Usul',
       tanggalUsul: 'Tanggal Usul',
@@ -226,6 +243,12 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    buatUsulJft(){
+      console.log(this.usulJft.status_jf);
+      this.buatUsul =true;
+      this.usulJft.status_jf = "Buat Usul";
+      console.log(this.usulJft.status_jf);
     }
   }
 };

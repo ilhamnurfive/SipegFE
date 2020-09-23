@@ -3,50 +3,50 @@
     <CCard class="overflow-auto">
       <content-header />
       <div class="p-4">
-        <CTabs :active-tab="0">
-          <CTab title="USUL PENGAKTIFAN">
+        <!-- <CTabs :active-tab="0"> -->
+          <!-- <CTab title="USUL PENGAKTIFAN"> -->
             <div class="p-4">
               <form-auto
-                input="select"
+                input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="pilihJenis"
+                title="Instansi"
+                v-model="usulAktifCltn.instansi"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="instansi"
+                title="Satuan Kerja"
+                v-model="usulAktifCltn.satuan_kerja"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="noUsul"
+                title="Nomor Usul"
+                v-model="usulAktifCltn.nomor_usul"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tanggalUsul"
+                title="Tanggal Usul"
+                v-model="usulAktifCltn.tanggal_usul"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="bulan"
+                title="Bulan"
+                v-model="usulAktifCltn.bulan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tahun"
+                title="Tahun"
+                v-model="usulAktifCltn.tahun"
               ></form-auto>
             </div>
             <div v-if="!buatUsul" class="float-right">
@@ -55,7 +55,7 @@
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
               <button
-                @click="buatUsul = true"
+                @click="buatAktifCltn()"
                 :class="$message.kelas.btn_main"
               >{{ $message.button.buat }} Usul</button>
             </div>
@@ -64,8 +64,8 @@
                 <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
               </router-link>
             </div>
-          </CTab>
-          <CTab title="CETAK PENGAKTIFAN">
+          <!-- </CTab> -->
+          <!-- <CTab title="CETAK PENGAKTIFAN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -90,8 +90,8 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
-          <CTab title="UNGGAH PENGAKTIFAN">
+          </CTab> -->
+          <!-- <CTab title="UNGGAH PENGAKTIFAN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -116,7 +116,7 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
+          </CTab> -->
           <!-- <CTab title="STATUS PENGAKTIFAN">
             <CCardBody>
               <div class>
@@ -155,7 +155,7 @@
               </div>
             </CCardBody>
           </CTab>-->
-        </CTabs>
+        <!-- </CTabs> -->
       </div>
     </CCard>
   </div>
@@ -167,6 +167,16 @@ import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
+      usulAktifCltn:{
+        instansi:"",
+        satuan_kerja:"",
+        nomor_usul:"",
+        tanggal_usul:"",
+        bulan:"",
+        tahun:"",
+        status:"",
+
+      },
       fields: [
         { key: 'no' },
         { key: 'nama' },
@@ -207,14 +217,6 @@ export default {
         { key: 'Wilayah Pembayaran' },
         { key: 'Aksi', sort: false, filter: false }
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
-      instansi: 'Instansi',
-      noUsul: 'Nomor Usul',
-      tanggalUsul: 'Tanggal Usul',
-      tahunUsul: 'Tahun Usul',
-      satuan: 'Satuan Kerja',
-      bulan: 'Bulan',
-      tahun: 'Tahun',
       buatUsul: false,
       nipBaru: 'NIP Baru',
       induk: 'Instansi Induk'
@@ -230,6 +232,10 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    buatAktifCltn(){
+      this.usulAktifCltn.status = "Buat Usul Pengaktifan";
+      this.buatUsul = true;
     }
   }
 };

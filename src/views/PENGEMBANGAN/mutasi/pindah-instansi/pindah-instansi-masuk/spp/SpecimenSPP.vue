@@ -72,48 +72,49 @@
 </template>
 
 <script>
-import getInstansi from '@/mixins/GetInstansi'
+import getInstansi from "@/mixins/GetInstansi";
 
 export default {
   mixins: [getInstansi],
   data() {
     return {
-      instansi: '',
+      instansi: "",
       fields: [
-        { key: 'no' },
-        { key: 'nip', label: 'NIP' },
-        { key: 'nama' },
-        { key: 'jabatan' },
-        { key: 'unorInduk' },
-        { key: 'aksi' }
+        { key: "no" },
+        { key: "nip", label: "NIP" },
+        { key: "nama" },
+        { key: "jabatan" },
+        { key: "unorInduk" },
+        { key: "aksi" },
       ],
-      itemTable: [{
-        no:1,
-        nip:"1233",
-        nama:'dummy',
-        jabatan:'Eselon 1',
-        unorInduk:'BKN'
+      itemTable: [
+        {
+          no: 1,
+          nip: "1233",
+          nama: "dummy",
+          jabatan: "Eselon 1",
+          unorInduk: "BKN",
         },
-        ],
+      ],
       load: false,
       selected: null,
-      isitabel: ['No', 'NIP', 'Nama', 'Unor Induk', 'Jabatan']
+      isitabel: ["No", "NIP", "Nama", "Unor Induk", "Jabatan"],
     };
   },
   watch: {
     instansi: function () {
-    let data = this.instansi
-    console.log(data.id);
+      let data = this.instansi;
+      console.log(data.id);
       if (data) {
-        this.getPegawai(data.id)
+        this.getPegawai(data.id);
       }
-    }
+    },
   },
   methods: {
     async getPegawai(val) {
       this.load = true;
-      const get = await this.$store.dispatch('get_pegawai', {
-        instansi: val
+      const get = await this.$store.dispatch("get_pegawai", {
+        instansi: val,
       });
       this.load = false;
       if (get.status) {
@@ -132,7 +133,7 @@ export default {
             nama: d.nama_pegawai,
             nip: d.nip,
             jabatan: d.jabatan.jabatan,
-            unorInduk: d.unor_induk
+            unorInduk: d.unor_induk,
           });
         });
       } else {
@@ -141,8 +142,8 @@ export default {
     },
     back() {
       this.$router.back();
-    }
-  }
+    },
+  },
 };
 </script>
 

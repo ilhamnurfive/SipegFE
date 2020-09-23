@@ -3,42 +3,85 @@
     <div class="container-login100">
       <div class="wrap-login100">
         <div class="login100-form validate-form">
-          <h2 class="text-login">SIMPEGNAS</h2>
-          <hr class="line-hr" />
-          <div class>
-            <label for="nip">NIP</label>
-            <b-input v-model="nip" type="text" id="nip" placeholder="NIP" @keypress="isNumber($event)"></b-input>
+          <!-- <img src="logoASN.jpeg" height="100" width="120"> -->
+          <!-- <h2 class="text-login">SIMPEGNAS</h2> -->
+          <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+              <a href="/"><img src="../../assets/Logo/Logo_BKN.png" height="90" width="235" /></a>
+            </div>
+            <div class="col">
+              <br />
+              <h2 class="text-center text-login">SIMPEGNAS</h2>
+            </div>
           </div>
-          <div class="mt-3">
-            <label for="passw">Kata Sandi</label>
+          <hr />
+          <div>
+            <label for="nip" class="nip-label">NIP</label>
+            <div class="input-group mb-3">
+              <input
+                v-model="nip"
+                type="text"
+                id="nip"
+                placeholder="Masukkan NIP anda"
+                @keypress="isNumber($event)"
+                class="input-nip"
+              />
+              <i>
+                <CIcon name="cil-user" />
+              </i>
+            </div>
+          </div>
+          <br />
+          <div>
+            <label for="passw" class="pass-label">Kata Sandi</label>
             <div class="input-group mb-3">
               <input
                 :type="!eyePass ? 'text' : 'password'"
                 v-model="pass"
                 id="passw"
-                class="form-control input-pass"
-                placeholder="Kata Sandi"
+                class="input-pass"
+                placeholder="Masukkan Kata Sandi"
               />
-              <div class="input-group-prepend prepend-box" @click="passGuard">
-                <span class="input-group-text eye-box">
+              <i @click="passGuard">
+                <span class="eye-box">
                   <HeroiconsEyeOffOutline v-if="eyePass" class="icon-size" />
                   <HeroiconsEyeOutline v-else class="icon-size" />
                 </span>
-              </div>
+              </i>
             </div>
           </div>
-          <div class="text-center text-sm-right pt-4">
-            <button @click="resetForm" :class="`${$message.kelas.btn_light} btn-log`">Reset</button>
-            <button @click="tryLogin" type="submit" :class="`${$message.kelas.btn_main} btn-log`">Login</button>
+          <div class="float-right lupa-pass">
+            <a href="#">Lupa password?</a>
+          </div>
+          <div class="row float-right col-sm-10">
+            <CButton @click="resetForm()" class="button-2" shape="pill" aria-pressed="true">Reset</CButton>
+            <!-- <button @click="resetForm" :class="`${$message.kelas.btn_light} btn-log`">Reset</button> -->
+            <!-- <button
+              @click="tryLogin"
+              type="submit"
+              :class="`${$message.kelas.btn_main} btn-log`"
+            >Login</button>-->
+            <!-- <CCol col="6" sm="4" md="2" xl class="mb-3 mb-xl-0"> -->
+            <CButton
+              @click="tryLogin"
+              type="submit"
+              pressed
+              block
+              class="gradient-button gradient-button-1"
+              shape="pill"
+              aria-pressed="true"
+            >Login</CButton>
+            <!-- </CCol> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </template> <script>
+// import ipul from '../../assets/Logo/Logo_BKN.png'
 export default {
   data() {
-    return { eyePass: true, nip: "dummy", pass: "dummy" };
+    return { eyePass: true, nip:"", pass:"" };
   },
   methods: {
     tryLogin() {
@@ -50,8 +93,8 @@ export default {
       });
     },
     resetForm() {
-      this.nip = "";
-      this.pass = "";
+      this.nip = null;
+      this.pass = null;
     },
     passGuard() {
       this.eyePass = !this.eyePass;
@@ -82,8 +125,31 @@ export default {
     cursor: pointer;
   }
 }
+.input-nip {
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  width: 95%;
+  font-size: 20px;
+}
+.nip-label {
+  font-size: 16px;
+  margin-top: 20px;
+}
 .input-pass {
   border-right: none;
+  border-top: none;
+  border-left: none;
+  width: 95%;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.pass-label {
+  font-size: 16px;
+}
+.lupa-pass{
+  margin-bottom: 20px;
 }
 .limiter {
   width: 100%;
@@ -101,16 +167,17 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: -webkit-linear-gradient(to bottom, #155799, #159957);
-  background: linear-gradient(to bottom, #155799, #159957);
+  background-image: url("SN.jpg");
+  // background: -webkit-linear-gradient(to bottom, #155799, #159957);
+  // background: linear-gradient(to bottom, #155799, #159957);
 }
 .wrap-login100 {
   color: #494949;
   width: 500px;
-  margin-top: -90px;
+  margin-top: -5px;
   padding: 40px;
   font-family: "Poppins";
-  height: 370px;
+  height: 515px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
@@ -125,6 +192,60 @@ export default {
 .text-login {
   text-align: center;
   letter-spacing: 2px;
+  margin-bottom: 20px;
 }
+
+.gradient-button {
+  margin: 10px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 16px;
+  padding: 6px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #fff;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  width: 25%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 29px;
+}
+.gradient-button-1 {
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+}
+.gradient-button-1:hover {
+  background-position: right center;
+}
+
+.button-2 {
+  margin: 10px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 16px;
+  padding: 6px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: rgba(43, 40, 40, 0.699);
+  background-color: #d3d3d3;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  width: 25%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 29px;
+}
+// .gradient-button-2 {background-image: (to right, #2b2d2e 0%, #3a7bd5 51%, #00d2ff 100%)}
+
+// .gradient-button-2:hover { background-position: right center; background-color: #F71919; color: #FFF;}
 </style>
 

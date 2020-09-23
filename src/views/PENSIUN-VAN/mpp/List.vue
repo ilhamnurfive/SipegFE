@@ -129,14 +129,14 @@ export default {
   data() {
     return {
       value: '',
-      optionUnit : [],
-      // optionUnit :  [
-      //   { name: 'Vue.js', language: 'JavaScript' },
-      //   { name: 'Rails', language: 'Ruby' },
-      //   { name: 'Sinatra', language: 'Ruby' },
-      //   { name: 'Laravel', language: 'PHP' },
-      //   { name: 'Phoenix', language: 'Elixir' }
-      // ],
+      // optionUnit : [],
+      optionUnit :  [
+        { name: 'Vue.js', language: 'JavaScript' },
+        { name: 'Rails', language: 'Ruby' },
+        { name: 'Sinatra', language: 'Ruby' },
+        { name: 'Laravel', language: 'PHP' },
+        { name: 'Phoenix', language: 'Elixir' }
+      ],
       tableUnduh: [
         { key: 'jenisDokumen', sorter: false, style: 'width: 40%' },
         { key: 'dokumen', sorter: false, style: 'width: 40%' },
@@ -165,8 +165,8 @@ export default {
     };
   },
   mounted(){
-    // this.getListData()
-    this.getAllUnor()
+    this.getListData()
+    // this.getAllUnor()
   },
   computed: {
       ...mapState('mpp', {
@@ -179,13 +179,14 @@ export default {
   methods: {
     ...mapActions('mpp',['listData','getDataOne']),
     ...mapActions('unor',['listDataUnor']),
-    async getAllUnor(){
-      await this.listDataUnor().then(response=>{
-          this.optionUnit = response
-      });
-    },
+    // async getAllUnor(){
+    //   await this.listDataUnor().then(response=>{
+    //       this.optionUnit = response
+    //   });
+    // },
     async getListData(){
           await this.listData().then(response=>{
+            console.log(response)
             // console.log('')
                this.listDataMppVue =  response
           })

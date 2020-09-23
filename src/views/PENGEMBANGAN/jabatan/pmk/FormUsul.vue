@@ -3,50 +3,50 @@
     <CCard class="overflow-auto">
       <content-header />
       <div class="p-4">
-        <CTabs :active-tab="0">
-          <CTab title="USUL PMK">
+        <!-- <CTabs :active-tab="0"> -->
+          <!-- <CTab title="USUL PMK"> -->
             <div class="p-4">
               <form-auto
                 input="select"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="pilihJenis"
+                title="Instansi"
+                v-model="usulPmk.instansi_id"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="instansi"
+                title="Satuan Kerja"
+                v-model="usulPmk.satuan_kerja_id"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="noUsul"
+                title="Nomor Usul"
+                v-model="usulPmk.no_usul"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tanggalUsul"
+                title="Tanggal Usul"
+                v-model="usulPmk.tanggal_usul"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="bulan"
+                title="Bulan"
+                v-model="usulPmk.bulan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tahun"
+                title="Tahun"
+                v-model="usulPmk.tahun"
               ></form-auto>
             </div>
             <div v-if="!buatUsul" class="float-right">
@@ -55,7 +55,7 @@
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
               <button
-                @click="buatUsul = true"
+                @click="buatUsulPmk()"
                 :class="$message.kelas.btn_main"
               >{{ $message.button.buat }} Usul</button>
             </div>
@@ -65,8 +65,8 @@
                 :class="$message.kelas.btn_main"
               >{{ $message.button.tampilkan }} List</router-link>
             </div>
-          </CTab>
-          <CTab title="CETAK PMK">
+          <!-- </CTab> -->
+          <!-- <CTab title="CETAK PMK">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -91,8 +91,8 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
-          <CTab title="UNGGAH PMK">
+          </CTab> -->
+          <!-- <CTab title="UNGGAH PMK">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -117,7 +117,7 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
+          </CTab> -->
           <!-- <CTab title="STATUS PMK">
             <CCardBody>
               <div class>
@@ -156,13 +156,14 @@
               </div>
             </CCardBody>
           </CTab>-->
-        </CTabs>
+        <!-- </CTabs> -->
       </div>
     </CCard>
   </div>
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
@@ -194,14 +195,16 @@ export default {
         { key: 'Wilayah Pembayaran' },
         { key: 'Aksi', sort: false, filter: false }
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
-      instansi: 'Instansi',
-      noUsul: 'Nomor Usul',
-      tanggalUsul: 'Tanggal Usul',
-      tahunUsul: 'Tahun Usul',
-      satuan: 'Satuan Kerja',
-      bulan: 'Bulan',
-      tahun: 'Tahun',
+      usulPmk:{
+        jenis_perubahan_jabatan_id:"ab9280fe-54bb-4b2f-b141-9e9262be0770",
+        instansi_id:"A5EB03E23BE8F6A0E040640A040252AD",
+        satuan_kerja_id:"013a79ba-bbd6-49b0-ab60-fb9577d709b9",
+        no_usul:"",
+        tgl_usul:"",
+        bulan:"",
+        tahun:"",
+        status_usul:"",
+      },
       buatUsul: false,
       nipBaru: 'NIP Baru',
       induk: 'Instansi Induk'
@@ -211,6 +214,18 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    buatUsulPmk(){
+      var url = "http://localhost:8081/api/v1/usul-jabatan"
+      Axios.post(url,this.usulPmk)
+      .then(response=>{
+        this.usulPmk.status_usul = "Buat Usul";
+        this.buatUsul = true;
+        console.log(response);
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     }
   }
 };

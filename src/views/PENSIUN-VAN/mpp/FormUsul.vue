@@ -52,14 +52,14 @@
               input="date"
               :kelastitle="$message.kelas.label "
               :kelasform="$message.kelas.input"
-              v-model ="usulan.tgl_usul"
+              v-model ="usulan.tanggal_usul"
             ></form-auto>
             <form-auto
               title="Tahun"
               input="input"
               :kelastitle="$message.kelas.label "
               :kelasform="$message.kelas.input"
-               v-model ="usulan.tahun_usul"
+               v-model ="usulan.tahun"
             ></form-auto>
           </div>
           <div class="container">
@@ -89,15 +89,15 @@ export default {
     }else if (this.$route.params.aksi == 'tambah'){
 
     }else if(this.$route.params.aksi == 'ubah'){
-        
+          this.getOne();
     }
   },
   data() {
     return {
       usulan : {
         no_usul     : "",
-        tgl_usul    : "",
-        tahun_usul  : "",
+        tanggal_usul    : "",
+        tahun  : "",
         id          : ""
       }
     }
@@ -111,22 +111,23 @@ export default {
       this.$router.back();
     },
     async getOne(){
-      await this.this.getDataOne(this.$route.params.id).then(res=>{
-          usulan.no_usul = res.no_usul
-          usulan.tgl_usul = res.tgl_usul
-          usulan.tahun_usul = res.tahun_usul
-          usulan.id = res.id
+      await this.getDataOne(this.$route.params.id).then(res=>{
+          this.usulan.no_usul = res.no_usul
+          this.usulan.tanggal_usul = res.tanggal_usul
+          this.usulan.tahun = res.tahun
+          this.usulan.id = res.id
       })
     },
     async sendData() {
         await this.send(this.usulan).then((res) => {
-                        if(res.code == 201){
+                        if(res.code == 201 || res.code == 200){
                               this.$swal({
                                 title:"Selamat!",
                                 text: "Usul MPP Berhasil Di Buat",
                                 type: "success",
                                 onClose: () => {
-                                        this.$router.push({ name: 'tambah-pegawai-mpp' ,params : {id : res.data.id}})
+                                        // this.$router.push({ name: 'tambah-pegawai-mpp' ,params : {id : res.data.id}})
+                                        this.$router.push({ name: 'list-mpp' })
                                     }
                             })
                         }

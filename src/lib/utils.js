@@ -35,6 +35,7 @@ const utils = {
     tampilkan: "Tampilkan",
     buat: "Buat",
     proses: "Proses",
+    cari:"Cari",
     reset: "Reset",
     simpan: "Simpan",
     hapus: "Hapus",

@@ -22,9 +22,9 @@ export const  mutations = {
         state.listDataMpp = payload;
     },
     isiDataFormUsul(state,payload){
-        state.usulan.tanggalUsul = payload.tgl_usul;
+        state.usulan.tanggalUsul = payload.tanggal_usul;
         state.usulan.nomorUsul = payload.no_usul;
-        state.usulan.tahunUsul = payload.tahun_usul;
+        state.usulan.tahunUsul = payload.tahun;
         state.usulan.id        = payload.id;
     }
 
@@ -54,8 +54,9 @@ export const actions = {
                                 id: d.id,
                                 noUsul: d.no_usul,
                                 no: idxD + 1,
-                                tglUsul: d.tgl_usul.split("-").reverse().join("-"),//YYYY-mm-dd -> dd-mm-YYYY
-                                tahunUsul: d.tahun_usul
+                                // tglUsul: d.tanggal_usul.split("-").reverse().join("-"),//YYYY-mm-dd -> dd-mm-YYYY
+                                tglUsul: d.tanggal_usul,
+                                tahunUsul: d.tahun
                             });
                             });
                         } 
@@ -76,7 +77,7 @@ export const actions = {
                  .then((response) => {
                      let data = response.data.data;
                      if(response.data.code == '200'){
-                         commit('isiDataFormUsul',data)
+                        //  commit('isiDataFormUsul',data)
                          resolve(data)  
                      }
                  }).catch(e => {
@@ -87,16 +88,31 @@ export const actions = {
          
      }, 
     send({commit},payload){
-        return new Promise((resolve) => {
-            Posting.postUsul(payload)
-            .then((response) => {
-                resolve(response.data)
-            }).catch(e => {
-                resolve(e)        
-            })
-          
-                    
-            })
+        if(payload.id){
+            console.log('testin')
+            return new Promise((resolve) => {
+                Posting.patch(payload)
+                .then((response) => {
+                    resolve(response.data)
+                }).catch(e => {
+                    resolve(e)        
+                })
+              
+                        
+                })
+        }else{
+            return new Promise((resolve) => {
+                Posting.postUsul(payload)
+                .then((response) => {
+                    resolve(response.data)
+                }).catch(e => {
+                    resolve(e)        
+                })
+              
+                        
+                })
+        }
+        
     } 
 
 

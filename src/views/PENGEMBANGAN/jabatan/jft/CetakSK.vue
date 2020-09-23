@@ -8,80 +8,136 @@
           <div class="px-4 col-sm-12 col-md-6">
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="nip"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="NIP"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="nama"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nama Pegawai"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="pangkat"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Golongan Ruang"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="golongan"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Jabatan"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="jabatan"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Unit Kerja"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="unit"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Pendidikan"
+              read
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tempat Lahir"
+              read
+            ></form-auto>
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Lahir"
+              read
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor PAK"
+              read
             ></form-auto>
           </div>
           <div class="px-4 col-sm-12 col-md-6">
             <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="pendidikan"
+              input="date"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal PAK"
+              read
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tempatLahir"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Total Nilai PAK terakhir"
+              read
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Penandatangan Surat Rekomendasi"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor Rekomendasi"
             ></form-auto>
             <form-auto
               input="date"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tanggalLahir"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal Rekomendasi"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="angkaKredit"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="TMT"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tmt"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tunjangan"
             ></form-auto>
             <form-auto
               input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tunjangan"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Nomor SK "
+            ></form-auto>
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.big"
+              :kelasform="$message.kelas.big"
+              title="Tanggal SK"
             ></form-auto>
           </div>
         </CRow>
+        <br />
+        <div v-if="this.pilihanJenisPerubahan.name=='Pemberhentian Jabatan'">
+          <form-auto
+            input="textarea"
+            :kelastitle="$message.kelas.big"
+            :kelasform="$message.kelas.big"
+            title="Alasan Pemberhentian"
+          ></form-auto>
+        </div>
         <div class="float-right mt-4">
           <button
             :class="$message.kelas.btn_light"
@@ -101,29 +157,43 @@
 export default {
   data() {
     return {
-      nip: 'NIP',
-      nama: 'Nama',
-      pangkat: 'Pangkat',
-      golongan: 'Golongan Ruang',
-      jabatan: 'Jabatan',
-      unit: 'Unit Kerja',
-      instansi: 'Instansi Induk',
-      pendidikan: 'Pendidikan',
-      tempatLahir: 'Tempat Lahir',
-      tanggalLahir: 'Tanggal Lahir',
-      angkaKredit: 'Angka Kredit',
-      tmt: 'TMT',
-      tunjangan: 'Tunjangan',
-      tanggalSK: 'Tanggal SK',
-      nomor: 'Nomor'
+      pilihanJenisPerubahan: [
+        { id: "1", name: "Pengangkatan Pertama" },
+        { id: "2", name: "Kenaikan Jabatan" },
+        { id: "3", name: "Pemberhentian Jabatan" },
+        { id: "4", name: "Inpassing" },
+      ],
+      cetakPegawaiJft:{
+          nip:"",
+          nama_pegawai:"",
+          pangkat:"",
+          golongan_ruang:"",
+          jabatan:"",
+          unit_kerja:"",
+          pendidikan:"",
+          tempat_lahir:"",
+          tanggal_lahir:"",
+          nomor_pak:"",
+          tanggal_pak:"",
+          total_nilai_pak:"",
+          penandatangan_rekom:"",
+          no_rekom:"",
+          tanggal_rekom:"",
+          tmt:"",
+          tunjangan_jabatan:"",
+          nomor_sk:"",
+          tanggal_sk:"",
+          status:"",
+          alasan_pemberhentian:"",
+      }
     };
   },
 
   methods: {
     back() {
       this.$router.back();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -18,6 +18,21 @@
                     v-model="form.noUsul"
                   ></form-auto>
                   <form-auto
+                    :title="tanggalUsul"
+                    input="date"
+                    :kelastitle="$message.kelas.label"
+                    :kelasform="$message.kelas.input"
+                    v-model="form.tglUsul"
+                  ></form-auto>
+                  <form-auto
+                    input="input"
+                    :kelastitle="$message.kelas.label"
+                    :kelasform="$message.kelas.input"
+                    title="Periode"
+                    :placehold="form.periode_id"
+                    v-model="form.periodeId"
+                  ></form-auto>
+                  <form-auto
                     input="select"
                     :kelastitle="$message.kelas.label"
                     :kelasform="$message.kelas.input"
@@ -35,25 +50,8 @@
                     read
                     v-model="form.satkerId"
                   ></form-auto>
-                  <form-auto
-                    :title="tanggalUsul"
-                    input="date"
-                    :kelastitle="$message.kelas.label"
-                    :kelasform="$message.kelas.input"
-                    read
-                    v-model="form.tglUsul"
-                  ></form-auto>
-                  <form-auto
-                    input="input"
-                    :kelastitle="$message.kelas.label"
-                    :kelasform="$message.kelas.input"
-                    title="Periode"
-                    :placehold="form.periode_id"
-                    read
-                    v-model="form.periodeId"
-                  ></form-auto>
                 </div>
-                <div class="float-right">
+                <div v-if="!ubah" class="float-right">
                   <button
                     type="button"
                     :class="$message.kelas.btn_light"
@@ -62,8 +60,13 @@
                   <button
                     type="button"
                     :class="$message.kelas.btn_main"
-                    @click="ubahUsul()"
+                    @click="submitUsul()"
                   >{{ $message.button.ubah }} Usul</button>
+                </div>
+                <div v-else-if="ubah" class="float-right">
+                  <router-link :to="{ name: 'tambah-kenaikan-pangkat' }">
+                    <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
+                  </router-link>
                 </div>
               </form>
             </ValidationObserver>
@@ -118,6 +121,7 @@ export default {
       tahunUsul: "Tahun Usul",
       satuan: "Satuan Kerja",
       periode: "Periode",
+      ubah:false,
     };
   },
 
@@ -128,7 +132,7 @@ export default {
       // const post = await this.$store.dispatch("postUsulMutasi", this.form);
       this.isSend = false;
       //merubah button tambah usul menjadi tampilkan
-      this.buatUsul = true;
+      this.ubah = true;
 
       // if (post.status) {
       //   this.$toast.success("Usul Mutasi berhasil dibuat!");

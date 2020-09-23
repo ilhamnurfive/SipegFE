@@ -3,20 +3,26 @@
     <CCard>
       <content-header />
       <CCardBody>
-        <div class="p-4">
+        <!-- <div class="p-4">
           <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
             :title="instansi"
           ></form-auto>
-        </div>
+        </div>-->
         <CCard>
           <CCardHeader>
             <h5 class="font-weight-bold">Spesimen PNS</h5>
           </CCardHeader>
           <div class="overflow-auto p-3">
-            <header-table :filter="true" :fields="fields"></header-table>
+            <header-table :filter="true" :data="specimentJpt" :fields="fields">
+              <template #aksi="{item}">
+                <td>
+                  <b-form-checkbox :value="item" unchecked-value="not_accepted">Pilih Pegawai</b-form-checkbox>
+                </td>
+              </template>
+            </header-table>
           </div>
         </CCard>
         <div class="row mt-4 text-center float-md-right mr-0">
@@ -36,27 +42,37 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
     return {
       fields: [
-        { key: 'No', _style: 'width:5%' },
-        { key: 'NIP' },
-        { key: 'Nama' },
-        { key: 'Unor Induk' },
-        { key: 'Jabatan' }
+        { key: "no", _style: "width:5%" },
+        { key: "nip", label: "NIP" },
+        { key: "nama", label: "Nama" },
+        { key: "unor_induk", label: "Unor Induk" },
+        { key: "jabatan", label: "Jabatan" },
+        { key: "aksi", label: "Aksi" },
       ],
-      instansi: 'Instansi'
+      instansi: "Instansi",
+      specimentJpt: [
+        {
+          no: 1,
+          nip: "1233",
+          nama: "dummy",
+          jabatan: "Eselon 1",
+          unor_induk: "BKN",
+        },
+      ],
     };
   },
 
   methods: {
     back() {
       this.$router.back();
-    }
-  }
+    },
+  },
 };
 </script>
 

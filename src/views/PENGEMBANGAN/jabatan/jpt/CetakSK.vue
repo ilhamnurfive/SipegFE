@@ -10,87 +10,95 @@
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="nip"
+              title="NIP"
+              read
+              v-model="cetakSk.nip"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="nama"
+              title="Nama"
+              read
+              v-model="cetakSk.nama_pegawai"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="pangkat"
+              title="Golongan Ruang"
+              read
+              v-model="cetakSk.golongan_ruang"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="golongan"
+              title="Jabatan"
+              read
+              v-model="cetakSk.jabatan"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="jabatan"
+              title="Unit Kerja"
+              read
+              v-model="cetakSk.unit_kerja"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="unit"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="pendidikan"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tempatLahir"
+              title="Pendidikan"
+              read
+              v-model="cetakSk.pendidikan"
             ></form-auto>
           </div>
           <div class="px-4 col-sm-12 col-md-6">
             <form-auto
-              input="date"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tanggalLahir"
-            ></form-auto>
-            <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="skPanselnas"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tmt"
-            ></form-auto>
-            <form-auto
-              input="input"
-              :kelastitle="$message.kelas.label"
-              :kelasform="$message.kelas.inputs"
-              :title="tunjangan"
+              title="Tempat Lahir"
+              read
+              v-model="cetakSk.tempat_lahir"
             ></form-auto>
             <form-auto
               input="date"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="tanggalSK"
+              title="Tanggal Lahir"
+              read
+              v-model="cetakSk.tanggal_lahir"
             ></form-auto>
             <form-auto
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.inputs"
-              :title="nomor"
+              title="SK Panselnas"
+              v-model="cetakSk.sk_panselnas"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="TMT"
+              v-model="cetakSk.tmt"
+            ></form-auto>
+            <form-auto
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Nomor SK"
+              v-model="cetakSk.nomor_sk"
+            ></form-auto>
+            <form-auto
+              input="date"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.inputs"
+              title="Tanggal SK"
+              v-model="cetakSk.tanggal_sk"
             ></form-auto>
           </div>
         </CRow>
@@ -114,21 +122,21 @@ import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
-      nip: 'NIP',
-      nama: 'Nama',
-      pangkat: 'Pangkat',
-      golongan: 'Golongan Ruang',
-      jabatan: 'Jabatan',
-      unit: 'Unit Kerja',
-      instansi: 'Instansi Induk',
-      pendidikan: 'Pendidikan',
-      tempatLahir: 'Tempat Lahir',
-      tanggalLahir: 'Tanggal Lahir',
-      skPanselnas: 'SK Panselnas',
-      tmt: 'TMT',
-      tunjangan: 'Tunjangan',
-      tanggalSK: 'Tanggal SK',
-      nomor: 'Nomor'
+      cetakSk:{
+        nip:"",
+        nama_pegawai:"",
+        golongan_ruang:"",
+        jabatan:"",
+        unit_kerja:"",
+        pendidikan:"",
+        tempat_lahir:"",
+        tanggal_lahir:"",
+        sk_panselnas:"",
+        tmt:"",
+        nomor_sk:"",
+        tanggal_sk:"",
+
+      },
     };
   },
 

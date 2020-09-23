@@ -5,38 +5,34 @@
       <div class="container-fluid">
         <CRow>
           <CCol>
-            <CRow>
-              <label :class="$message.kelas.label">Instansi</label>
-              <vue-bootstrap-typeahead
-                :class="$message.kelas.input"
-                placeholder="Instansi"
-                :data="['Apple', 'Blueberry', 'Cherry']"
-                
-              />
-            </CRow>
-            <CRow>
-              <label :class="$message.kelas.label">Satuan Kerja</label>
-              <vue-bootstrap-typeahead
-                :class="$message.kelas.input"
-                placeholder="Satuan Kerja"
-                :data="['Apple', 'Blueberry', 'Cherry']"
-                
-              />
-            </CRow>
-            <CRow>
-              <label :class="$message.kelas.label">Jenis Usul Mutasi</label>
-              <vue-bootstrap-typeahead
-                :class="$message.kelas.input"
-                placeholder="Jenis Usul Mutasi"
-                :data="['Apple', 'Blueberry', 'Cherry']"
-                
-              />
-            </CRow>
             <form-auto
               title="Nomor Usul"
               input="input"
               :kelastitle="$message.kelas.label"
               :kelasform="$message.kelas.input"
+              v-model="jabatan.no_usul"
+            ></form-auto>
+            <form-auto
+              title="Instansi"
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.input"
+              v-model="jabatan.instansi"
+            ></form-auto>
+            <form-auto
+              title="Satuan Kerja"
+              input="input"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.input"
+              v-model="jabatan.satuan_kerja"
+            ></form-auto>
+            <form-auto
+              title="Jenis Usul Perubahan Jabatan"
+              input="select"
+              :kelastitle="$message.kelas.label"
+              :kelasform="$message.kelas.input"
+              :options="jenisPerubahanJabatan"
+              v-model="jabatan.jenis_usul_perubahan_jabatan"
             ></form-auto>
           </CCol>
         </CRow>
@@ -51,31 +47,23 @@
           :hover="false"
           :fields="isiTable"
         >
-          <template #aksi>
+          <template #aksi="{name,item}">
             <td>
               <b-dropdown class="ye" size="sm" variant="light" toggle-class="text-decoration-none">
                 <template v-slot:button-content>
                   <HeroiconsDotsVerticalOutline class="icon-size" />
                 </template>
-                <CDropdownItem>
+                <CDropdownItem @click="lihat(name,item)">
                   <HeroiconsClipboardListOutline class="text-info icon-size" />
-                  <span class="ml-2">Detail</span>
+                  <span class="ml-2">Lihat</span>
                 </CDropdownItem>
-                <CDropdownItem>
+                <CDropdownItem @click="ubah(name,item)">
                   <HeroiconsPencilAltOutline class="text-warning icon-size" />
                   <span class="ml-2">Ubah</span>
                 </CDropdownItem>
-                <CDropdownItem>
+                <CDropdownItem @click="deleteUsuJabtan(item)">
                   <HeroiconsTrashOutline class="text-danger icon-size" />
                   <span class="ml-2">Hapus</span>
-                </CDropdownItem>
-                <CDropdownItem @click="toggleModal('modal-unduh')">
-                  <HeroiconsDownloadOutline class="icon-size text-success" />
-                  <span class="ml-2">Unduh</span>
-                </CDropdownItem>
-                <CDropdownItem @click="toggleModal('modal-unggah')">
-                  <HeroiconsUploadOutline class="icon-size" />
-                  <span class="ml-2">Unggah</span>
                 </CDropdownItem>
               </b-dropdown>
             </td>
@@ -132,80 +120,208 @@
 </template>
 
 <script>
+import Axios from "axios";
 export default {
   data() {
     return {
+      jenisPerubahanJabatan: [
+        { name: "Jabatan Pimpinan Tinggi" },
+        { name: "Jabatan Fungsional Tertentu" },
+        { name: "Jabatan Administratif" },
+        { name: "Cuti di Luar Tanggungan Negara (CLTN)" },
+        { name: "Perpanjangan CLTN" },
+        { name: "Pengaktifan CLTN" },
+        { name: "Peninjauan Masa Kerja (PMK)" },
+      ],
+      jabatan: {
+        no_usul: null,
+        instansi: null,
+        satuan_kerja: null,
+        jenis_usul_perubahan_jabatan: null,
+      },
+
       tableUnduh: [
-        { key: 'jenisDokumen', sorter: false, style: 'width: 40%' },
-        { key: 'dokumen', sorter: false, style: 'width: 40%' },
-        { key: 'unduh', label: '', sorter: false, style: 'width: 20$' }
+        { key: "jenisDokumen", sorter: false, style: "width: 40%" },
+        { key: "dokumen", sorter: false, style: "width: 40%" },
+        { key: "unduh", label: "", sorter: false, style: "width: 20$" },
       ],
       unduhItems: [
-        { jenisDokumen: 'SK', dokumen: 'Dummy SK-1' },
-        { jenisDokumen: 'SK', dokumen: 'Dummy SK-2' },
-        { jenisDokumen: 'Pertek', dokumen: 'Dummy Pertek' }
+        { jenisDokumen: "SK", dokumen: "Dummy SK-1" },
+        { jenisDokumen: "SK", dokumen: "Dummy SK-2" },
+        { jenisDokumen: "Pertek", dokumen: "Dummy Pertek" },
       ],
       isiTable: [
-        {
-          key: 'no',
-          label: 'No'
-        },
-        { key: 'noUsul' },
-
-        { key: 'namaPegawai' },
-        {
-          key: 'instansi'
-        },
-        {
-          key: 'satuanKerja',
-          label: 'Satuan Kerja'
-        },
-        {
-          key: 'aksi',
-          sorter: false
-        }
+        { key: "no", label: "No" },
+        { key: "no_usul", label: "Nomor Usul" },
+        { key: "instansi", label: "Instansi" },
+        { key: "satuan_kerja", label: "Satuan Kerja" },
+        { key: "usul_perubahan_jabatan", label: "Jenis Perubahan Jabatan" },
+        { key: "aksi", sorter: false },
       ],
       itemsTable: [
         {
           no: 1,
-          namaPegawai: 'Lea Koepp',
-          tglUsul: '09-10-2010',
-          noUsul: '28661',
-          instansi: 'Daniel, Mueller',
-          satuanKerja: 'Inc,and Sons,LLC,Group'
+          tgl_usul: "09-10-2010",
+          no_usul: "28661",
+          instansi: "Daniel, Mueller",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Jabatan Pimpinan Tinggi",
         },
         {
           no: 2,
-          namaPegawai: 'Mable McDermott',
-          tglUsul: '08-10-2010',
-          noUsul: '87959',
-          instansi: 'Berge, Stokes',
-          satuanKerja: 'Inc,and Sons,LLC,Group'
+          tgl_usul: "08-10-2010",
+          no_usul: "87959",
+          instansi: "Berge, Stokes",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Jabatan Fungsional Tertentu",
         },
         {
           no: 3,
-          namaPegawai: 'Terry Waelchi',
-          tglUsul: '07-10-2010',
-          noUsul: '1291',
-          instansi: 'Parker, Pacocha ',
-          satuanKerja: 'Inc,and Sons,LLC,Group'
+          tgl_usul: "07-10-2010",
+          no_usul: "1291",
+          instansi: "Parker, Pacocha ",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Jabatan Administratif",
         },
         {
           no: 4,
-          namaPegawai: 'Keshawn Hoeger',
-          tglUsul: '06-10-2010',
-          noUsul: '14315',
-          instansi: 'Schoen - Spinka',
-          satuanKerja: 'Inc,and Sons,LLC,Group'
-        }
-      ]
+          tgl_usul: "06-10-2010",
+          no_usul: "14315",
+          instansi: "Schoen - Spinka",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Cuti di Luar Tanggungan Negara (CLTN)",
+        },
+        {
+          no: 5,
+          tgl_usul: "21-09-2020",
+          no_usul: "41500",
+          instansi: "Deutsche Bank",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Peninjauan Masa Kerja (PMK)",
+        },
+        {
+          no: 6,
+          tgl_usul: "21-09-2020",
+          no_usul: "41500",
+          instansi: "Black Stone",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Perpanjangan CLTN",
+        },
+        {
+          no: 7,
+          tgl_usul: "21-09-2020",
+          no_usul: "41500",
+          instansi: "Quebecc",
+          satuan_kerja: "Inc,and Sons,LLC,Group",
+          usul_perubahan_jabatan: "Pengaktifan CLTN",
+        },
+      ],
     };
   },
   methods: {
     toggleModal(modal) {
-      this.$refs[modal].toggle('#toggle-btn');
-    }
-  }
+      this.$refs[modal].toggle("#toggle-btn");
+    },
+
+    ubah(name, item) {
+      console.log(item.usul_perubahan_jabatan);
+      if (item.usul_perubahan_jabatan == "Jabatan Pimpinan Tinggi") {
+        name = "ubah-usul-jpt";
+      }
+      if (item.usul_perubahan_jabatan == "Jabatan Fungsional Tertentu") {
+        name = "ubah-usul-jft";
+      }
+      if (item.usul_perubahan_jabatan == "Jabatan Administratif") {
+        name = "ubah-usul-ja";
+      }
+      if (
+        item.usul_perubahan_jabatan == "Cuti di Luar Tanggungan Negara (CLTN)"
+      ) {
+        name = "ubah-usul-cltn";
+      }
+      if (item.usul_perubahan_jabatan == "Perpanjangan CLTN") {
+        name = "ubah-perpanjangan-cltn";
+      }
+      // if(item.usul_perubahan_jabatan == 'Pengaktifan CLTN'){
+      //   name = 'ubah-usul-cltn';
+      // }
+      if (item.usul_perubahan_jabatan == "Peninjauan Masa Kerja (PMK)") {
+        name = "ubah-usul-pmk";
+      }
+      if (!item) {
+        this.$router.push({ name });
+      } else {
+        this.$router.push({
+          name,
+          params: {
+            id: item.id,
+            no_usul: item.no_usul,
+            nip: item.nip,
+          },
+        });
+      }
+    },
+    lihat(name, item) {
+      console.log(item.usul_perubahan_jabatan);
+      if (item.usul_perubahan_jabatan == "Jabatan Pimpinan Tinggi") {
+        name = "lihat-usul-jpt";
+      }
+      if (item.usul_perubahan_jabatan == "Jabatan Fungsional Tertentu") {
+        name = "lihat-usul-jft";
+      }
+      if (item.usul_perubahan_jabatan == "Jabatan Administratif") {
+        name = "lihat-usul-ja";
+      }
+      if (
+        item.usul_perubahan_jabatan == "Cuti di Luar Tanggungan Negara (CLTN)"
+      ) {
+        name = "lihat-usul-cltn";
+      }
+      if (item.usul_perubahan_jabatan == "Perpanjangan CLTN") {
+        name = "lihat-perpanjangan-cltn";
+      }
+      // if(item.usul_perubahan_jabatan == 'Pengaktifan CLTN'){
+      //   name = 'lihat-usul-cltn';
+      // }
+      if (item.usul_perubahan_jabatan == "Peninjauan Masa Kerja (PMK)") {
+        name = "lihat-usul-pmk";
+      }
+      if (!item) {
+        this.$router.push({ name });
+      } else {
+        this.$router.push({
+          name,
+          params: {
+            id: item.id,
+            no_usul: item.no_usul,
+            nip: item.nip,
+          },
+        });
+      }
+    },
+
+    async deleteUsuJabtan(item) {
+      var url = "http://localhost:8081/mutasi/deleteSpp/" + item.id;
+
+      Axios.delete(url);
+      this.$swal
+        .fire(this.$message.dataMessage.deleteConfirmation)
+        .then(async (result) => {
+          if (result.value) {
+            let paramsSet = {};
+            if (item.noUsul) paramsSet.no_usul = item.noUsul;
+            this.$swal
+              .fire(this.$message.dataMessage.deleted)
+              .then((berhasil) => {
+                if (berhasil) {
+                  location.reload();
+                }
+              });
+          }
+        })
+        .catch((err) => {});
+    },
+  },
 };
 </script>
 

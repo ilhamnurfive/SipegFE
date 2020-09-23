@@ -108,15 +108,25 @@ export default {
       isiTable: [
         { key: 'no', label: 'No' },
         { key: 'instansi' },
-        { key: 'noUsul' },
-        { key: 'satuanKerja', label: 'Satuan Kerja' },
+        { key: 'no_usul' },
+        { key: 'satuan_kerja', label: 'Satuan Kerja' },
         { key: 'tahun', label: 'Tahun' },
         { key: 'bulan', label: 'Bulan' },
         { key: 'aksi', sorter: false}
       ],
       isLoad: false,
       dataSatker: [],
-      itemsTable: [{}]
+      itemsTable: [
+        {
+          no:1,
+          instansi:"BKN",
+          no_usul:"12",
+          satuan_kerja:"A",
+          tahun:2020,
+          bulan:"Januari"
+
+        }
+        ]
     };
   },
   methods: {

@@ -3,69 +3,75 @@
     <CCard class="overflow-auto">
       <content-header />
       <div class="p-4">
-        <CTabs :active-tab="0">
-          <CTab title="USUL CLTN">
-            <div class="p-4">
-              <form-auto
+        <!-- <CTabs :active-tab="0"> -->
+        <!-- <CTab title="USUL CLTN"> -->
+        <div class="p-4">
+          <form-auto
+            input="input"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Instansi"
+            v-model="usulCltn.instansi"
+          ></form-auto>
+          <form-auto
+            input="input"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Satuan Kerja"
+            v-model="usulCltn.satuan_kerja"
+          ></form-auto>
+          <!-- <form-auto
                 input="select"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
                 :title="pilihJenis"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="instansi"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="noUsul"
-              ></form-auto>
-              <form-auto
-                input="date"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="tanggalUsul"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="bulan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="tahun"
-              ></form-auto>
-            </div>
-            <div v-if="!buatUsul" class="float-right">
-              <button
-                :class="$message.kelas.btn_light"
-                v-on:click="back()"
-              >{{ $message.button.kembali }}</button>
-              <button
-                @click="buatUsul = true"
-                :class="$message.kelas.btn_main"
-              >{{ $message.button.buat }} Usul</button>
-            </div>
-            <div v-else-if="buatUsul" class="float-right">
-              <router-link :to="{name: 'proses-usul-cltn'}">
-                <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
-              </router-link>
-            </div>
-          </CTab>
-          <CTab title="CETAK CLTN">
+          ></form-auto>-->
+          <form-auto
+            input="input"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Nomor Usul"
+            v-model="usulCltn.nomor_usul"
+          ></form-auto>
+          <form-auto
+            input="date"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Tanggal Usul"
+            v-model="usulCltn.tgl_usul"
+          ></form-auto>
+          <form-auto
+            input="input"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Bulan"
+            v-model="usulCltn.bulan"
+          ></form-auto>
+          <form-auto
+            input="input"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            title="Tahun"
+            v-model="usulCltn.tahun"
+          ></form-auto>
+        </div>
+        <div v-if="!buatUsul" class="float-right">
+          <button
+            :class="$message.kelas.btn_light"
+            v-on:click="back()"
+          >{{ $message.button.kembali }}</button>
+          <button
+            @click="buatUsulCltn()"
+            :class="$message.kelas.btn_main"
+          >{{ $message.button.buat }} Usul</button>
+        </div>
+        <div v-else-if="buatUsul" class="float-right">
+          <router-link :to="{name: 'proses-usul-cltn'}">
+            <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
+          </router-link>
+        </div>
+        <!-- </CTab> -->
+        <!-- <CTab title="CETAK CLTN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -90,8 +96,8 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
-          <CTab title="UNGGAH CLTN">
+        </CTab>-->
+        <!-- <CTab title="UNGGAH CLTN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -116,8 +122,8 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
-          <!-- <CTab title="STATUS CLTN">
+        </CTab>-->
+        <!-- <CTab title="STATUS CLTN">
             <CCardBody>
               <div class>
                 <CRow>
@@ -154,70 +160,76 @@
                 </button>
               </div>
             </CCardBody>
-          </CTab>-->
-        </CTabs>
+        </CTab>-->
+        <!-- </CTabs> -->
       </div>
     </CCard>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import Axios from "axios";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
     return {
+      usulCltn:{
+        instansi:"",
+        satuan_kerja:"",
+        nomor_usul:"",
+        tgl_usul:"",
+        bulan:"",
+        tahun:"",
+
+      },
       fields: [
-        { key: 'No' },
-        { key: 'Nama' },
-        { key: 'NIP' },
-        { key: 'Pangkat/Golru' },
-        { key: 'Jabatan' },
-        { key: 'Unit Kerja' },
-        { key: 'Masa Kerja' },
-        { key: 'Gaji Pokok' },
-        { key: 'TMT' },
-        { key: 'Alasan Cuti' },
-        { key: 'Lama Cuti' },
-        { key: 'No Pertek BKN' },
-        { key: 'Wilayah Pembayaran' },
-        { key: 'Status' }
+        { key: "No" },
+        { key: "Nama" },
+        { key: "NIP" },
+        { key: "Pangkat/Golru" },
+        { key: "Jabatan" },
+        { key: "Unit Kerja" },
+        { key: "Masa Kerja" },
+        { key: "Gaji Pokok" },
+        { key: "TMT" },
+        { key: "Alasan Cuti" },
+        { key: "Lama Cuti" },
+        { key: "No Pertek BKN" },
+        { key: "Wilayah Pembayaran" },
+        { key: "Status" },
       ],
       fieldsUnggah: [
-        { key: 'No' },
-        { key: 'Nama' },
-        { key: 'NIP' },
-        { key: 'Pangkat/Golru' },
-        { key: 'Jabatan' },
-        { key: 'Unit Kerja' },
-        { key: 'Masa Kerja' },
-        { key: 'Gaji Pokok' },
-        { key: 'TMT' },
-        { key: 'Alasan Cuti' },
-        { key: 'Lama Cuti' },
-        { key: 'No Pertek BKN' },
-        { key: 'Wilayah Pembayaran' },
-        { key: 'Aksi', sort: false, filter: false }
+        { key: "No" },
+        { key: "Nama" },
+        { key: "NIP" },
+        { key: "Pangkat/Golru" },
+        { key: "Jabatan" },
+        { key: "Unit Kerja" },
+        { key: "Masa Kerja" },
+        { key: "Gaji Pokok" },
+        { key: "TMT" },
+        { key: "Alasan Cuti" },
+        { key: "Lama Cuti" },
+        { key: "No Pertek BKN" },
+        { key: "Wilayah Pembayaran" },
+        { key: "Aksi", sort: false, filter: false },
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
-      instansi: 'Instansi',
-      noUsul: 'Nomor Usul',
-      tanggalUsul: 'Tanggal Usul',
-      tahunUsul: 'Tahun Usul',
-      satuan: 'Satuan Kerja',
-      bulan: 'Bulan',
-      tahun: 'Tahun',
+      pilihJenis: "Pilih Jenis Perubahan Jabatan",
       buatUsul: false,
-      nipBaru: 'NIP Baru',
-      induk: 'Instansi Induk'
+      nipBaru: "NIP Baru",
+      induk: "Instansi Induk",
     };
   },
 
   methods: {
     back() {
       this.$router.back();
-    }
-  }
+    },
+    buatUsulCltn() {
+      this.buatUsul = true;
+    },
+  },
 };
 </script>
 

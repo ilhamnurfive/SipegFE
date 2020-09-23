@@ -3,56 +3,50 @@
     <CCard class="overflow-auto">
       <content-header />
       <div class="p-4">
-        <CTabs :active-tab="0">
-          <CTab title="USUL JA">
+        <!-- <CTabs :active-tab="0"> -->
+          <!-- <CTab title="USUL JA"> -->
             <div class="p-4">
               <form-auto
                 input="select"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="pilihJenis"
+                title="Jenis Perubahan Jabatan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="instansi"
+                title="Instansi"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="select"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="jenisPerubahan"
+                title="Satuan Kerja"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="noUsul"
+                title="Nomor Usul"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tanggalUsul"
+                title="Tanggal Usul"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="bulan"
+                title="Bulan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tahun"
+                title="Tahun"
               ></form-auto>
             </div>
             <div v-if="!buatUsul" class="float-right">
@@ -61,7 +55,7 @@
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
               <button
-                @click="buatUsul = true"
+                @click="buatUsulJa()"
                 :class="$message.kelas.btn_main"
               >{{ $message.button.buat }} Usul</button>
             </div>
@@ -70,8 +64,8 @@
                 <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
               </router-link>
             </div>
-          </CTab>
-          <CTab title="CETAK JA">
+          <!-- </CTab> -->
+          <!-- <CTab title="CETAK JA">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -98,8 +92,8 @@
             <div>
               <header-table :filter="true" :fields="fieldStatus"></header-table>
             </div>
-          </CTab>
-          <CTab title="UNGGAH JA">
+          </CTab> -->
+          <!-- <CTab title="UNGGAH JA">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -126,7 +120,7 @@
             <div>
               <header-table :filter="true" :fields="fieldStatus"></header-table>
             </div>
-          </CTab>
+          </CTab> -->
           <!-- <CTab title="STATUS JA">
             <CCardBody>
               <div class>
@@ -165,7 +159,7 @@
               </div>
             </CCardBody>
           </CTab>-->
-        </CTabs>
+        <!-- </CTabs> -->
       </div>
     </CCard>
   </div>
@@ -192,15 +186,17 @@ export default {
         { key: 'Tunjangan Jabatan' },
         { key: 'Status' }
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
-      instansi: 'Instansi',
-      noUsul: 'Nomor Usul',
-      tanggalUsul: 'Tanggal Usul',
-      tahunUsul: 'Tahun Usul',
-      satuan: 'Satuan Kerja',
-      jenisPerubahan: 'Jenis Perubahan Jabatan',
-      bulan: 'Bulan',
-      tahun: 'Tahun',
+      usulJa:{
+        jenis_perubahan:"",
+        instansi:"",
+        satuan_kerja:"",
+        nomor_usul:"",
+        tanggal_usul:"",
+        bulan:"",
+        tahun:"",
+        status:"",
+
+      },
       buatUsul: false,
       nipBaru: 'NIP Baru',
       induk: 'Instansi Induk'
@@ -216,6 +212,10 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    buatUsulJa(){
+      this.buatUsul = true;
+      this.usulJa.status = "Buat Usul"
     }
   }
 };

@@ -3,51 +3,57 @@
     <CCard class="overflow-auto">
       <content-header />
       <div class="p-4">
-        <CTabs :active-tab="0">
-          <CTab title="USUL PERPANJANGAN">
+        <!-- <CTabs :active-tab="0"> -->
+          <!-- <CTab title="USUL PERPANJANGAN"> -->
             <div class="p-4">
               <form-auto
-                input="select"
+                input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="pilihJenis"
+                title="Instansi"
+                v-model="usulPerpanjangCltn.instansi"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="instansi"
+                title="Satuan Kerja"
+                v-model="usulPerpanjangCltn.satuan_kerja"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="satuan"
-              ></form-auto>
-              <form-auto
-                input="input"
-                :kelastitle="$message.kelas.label"
-                :kelasform="$message.kelas.input"
-                :title="noUsul"
+                title="Nomor Usul"
+                v-model="usulPerpanjangCltn.nomor_usul"
               ></form-auto>
               <form-auto
                 input="date"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tanggalUsul"
+                title="Tanggal Usul"
+                v-model="usulPerpanjangCltn.tanggal_usul"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="bulan"
+                title="Bulan"
+                v-model="usulPerpanjangCltn.bulan"
               ></form-auto>
               <form-auto
                 input="input"
                 :kelastitle="$message.kelas.label"
                 :kelasform="$message.kelas.input"
-                :title="tahun"
+                title="Tahun"
+                v-model="usulPerpanjangCltn.tahun"
               ></form-auto>
+              <!-- <form-auto
+                input="select"
+                :kelastitle="$message.kelas.label"
+                :kelasform="$message.kelas.input"
+                :title="pilihJenis"
+              ></form-auto> -->
             </div>
             <div v-if="!buatUsul" class="float-right">
               <button
@@ -55,7 +61,7 @@
                 v-on:click="back()"
               >{{ $message.button.kembali }}</button>
               <button
-                @click="buatUsul = true"
+                @click="buatPerpanjangCltn()"
                 :class="$message.kelas.btn_main"
               >{{ $message.button.buat }} Usul</button>
             </div>
@@ -64,8 +70,8 @@
                 <button :class="$message.kelas.btn_main">{{ $message.button.tampilkan }} List</button>
               </router-link>
             </div>
-          </CTab>
-          <CTab title="CETAK PERPANJANGAN">
+          <!-- </CTab> -->
+          <!-- <CTab title="CETAK PERPANJANGAN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -90,8 +96,8 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
-          <CTab title="UNGGAH PERPANJANGAN">
+          </CTab> -->
+          <!-- <CTab title="UNGGAH PERPANJANGAN">
             <div class="p-4">
               <form-auto
                 input="input"
@@ -116,7 +122,7 @@
               </div>
             </div>
             <header-table :filter="true" :fields="fieldsUnggah"></header-table>
-          </CTab>
+          </CTab> -->
           <!-- <CTab title="STATUS PERPANJANGAN">
             <CCardBody>
               <div class>
@@ -155,7 +161,7 @@
               </div>
             </CCardBody>
           </CTab>-->
-        </CTabs>
+        <!-- </CTabs> -->
       </div>
     </CCard>
   </div>
@@ -167,6 +173,15 @@ import { mapActions, mapState } from 'vuex';
 export default {
   data() {
     return {
+      usulPerpanjangCltn:{
+        instansi:"",
+        satuan_kerja:"",
+        nomor_usul:"",
+        tanggal_usul:"",
+        bulan:"",
+        tahun:"",
+        status:"",
+      },
       fields: [
         { key: 'no' },
         { key: 'nama' },
@@ -207,13 +222,6 @@ export default {
         { key: 'Wilayah Pembayaran' },
         { key: 'Aksi', sort: false, filter: false }
       ],
-      pilihJenis: 'Pilih Jenis Perubahan Jabatan',
-      instansi: 'Instansi',
-      noUsul: 'Nomor Usul',
-      tanggalUsul: 'Tanggal Usul',
-      tahunUsul: 'Tahun Usul',
-      satuan: 'Satuan Kerja',
-      bulan: 'Bulan',
       tahun: 'Tahun',
       buatUsul: false,
       nipBaru: 'NIP Baru',
@@ -224,6 +232,10 @@ export default {
   methods: {
     back() {
       this.$router.back();
+    },
+    buatPerpanjangCltn(){
+      this.usulPerpanjangCltn.status = "Buat Usul"
+      this.buatUsul = true;
     }
   }
 };

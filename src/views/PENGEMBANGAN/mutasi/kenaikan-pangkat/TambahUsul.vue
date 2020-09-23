@@ -14,6 +14,13 @@
               <button class="px-4" :class="$message.kelas.btn_second">{{ $message.button.tambah }}</button>
           </div>-->
           <form-auto
+            input="select"
+            :kelastitle="$message.kelas.label"
+            :kelasform="$message.kelas.input"
+            :title="jeniskp"
+            :options="dataJenisKp"
+          ></form-auto>
+          <form-auto
             input="input"
             :kelastitle="$message.kelas.label"
             :kelasform="$message.kelas.input"
@@ -135,6 +142,15 @@ export default {
         { key: "status_hukdis", label: "Status Hukdis" },
         { key: "aksi", label: "Aksi" },
       ],
+      dataJenisKp:[
+        {id:1,name:"Reguler"},
+        {id:2,name:"Struktural"},
+        {id:3,name:"Jabatan Fungsional"},
+        {id:4,name:"Penyesuaian Ijazah"},
+        {id:5,name:"Sedang Melaksanakan Tugas Belajar"},
+        {id:6,name:"Diperbantukan/Dipekerjakan Instansi Lain"},
+        {id:7,name:"Kenaikan Pangkat Luar Biasa"},
+      ],
       fieldsRekom: {
         No: "no",
         Nip: "nip",
@@ -180,6 +196,7 @@ export default {
       datUsul: [],
       nip: "NIP",
       nama: "Nama",
+      jeniskp:"Jenis KP",
       unorInduk: "Unor Induk",
       unor: "Unor",
       isSend: false,
